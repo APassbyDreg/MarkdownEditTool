@@ -4,4 +4,4 @@ A program to edit and render Markdown documents
 
 ---
 
-This is an assignment of my course.
+This is an assignment of my java programming course.
