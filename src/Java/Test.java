@@ -1,9 +1,9 @@
 import Convert.Converter;
-import File.MarkdownFile;
-import File.ProgramInfo;
-import File.FileInfo;
+import File.*;
+import Global.GlobalVariables;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -13,9 +13,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class Test extends Application {
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+public class Test {
 
+    public static void main(String[] args) throws IOException {
+        GlobalVariables gbv = new GlobalVariables();
+        MarkdownFile md = new MarkdownFile(GlobalVariables.programAbsolutePath + "\\README.md");
+        md.str = "11111";
+        md.save();
+        WebFile web = new WebFile(GlobalVariables.programAbsolutePath + "\\tmp\\tmp.html");
+        web.str = "1111";
+        web.save();
     }
 }

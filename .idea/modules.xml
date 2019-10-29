@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/JavaMarkdownEditTool.iml" filepath="$PROJECT_DIR$/JavaMarkdownEditTool.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MarkdownEditTool.iml" filepath="$PROJECT_DIR$/MarkdownEditTool.iml" />
     </modules>
   </component>
 </project>

@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.* ;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.*;
 
@@ -23,16 +24,40 @@ import File.*;
 import javax.sound.midi.spi.MidiDeviceProvider;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class EditPage implements Initializable{
+public class EditPageController implements Initializable{
     public static MarkdownFile md;
     public static WebFile web;
     public static Converter converter;
 
-    @FXML public static TextArea editPane;
-    @FXML public static WebView previewPane;
+    @FXML public TextArea editPane;
+    @FXML public WebView previewPane;
+    public WebEngine previewEngine;
+
+
+    public static void displayEditWindow(String mdsrc) throws IOException {
+        md = new MarkdownFile(mdsrc);
+        web = new WebFile(GlobalVariables.programAbsolutePath + "\\tmp\\pre_render_html.html");
+        converter = new Converter(md, web, new ProgramInfo());
+
+
+        Stage window = new Stage();
+        Parent root = FXMLLoader.load(EditPageController.class.getResource("/fxml/GUI_edit.fxml"));
+        Image logoPNG = new Image("Logo.png");
+        window.setTitle("MDTool");
+        window.getIcons().add(logoPNG);
+        window.setScene(new Scene(root, 1200, 720));
+        window.show();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(111);
+        editPane.setText(md.str);
+        previewEngine = previewPane.getEngine();
+
+        try {
+            previewEngine.loadContent(converter.getHTML());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

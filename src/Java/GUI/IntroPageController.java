@@ -13,7 +13,7 @@ import javafx.stage.*;
 import Global.GlobalVariables;
 import File.*;
 
-public class IntroPage implements Initializable{
+public class IntroPageController implements Initializable{
     private static ProgramInfo editor;
 
     @FXML public Button buttonOpen,buttonNew;
@@ -32,38 +32,26 @@ public class IntroPage implements Initializable{
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog((Stage) buttonOpen.getScene().getWindow());
         if (file != null) {
-            displayEditWindow();
-            EditPage.md = new MarkdownFile(file.getAbsolutePath());
+            EditPageController.md = new MarkdownFile(file.getAbsolutePath());
             Stage thisWindow = (Stage) buttonOpen.getScene().getWindow();
             thisWindow.close();
             editor.addNewRecentFile(file.getAbsolutePath());
+            EditPageController.displayEditWindow(file.getAbsolutePath());
         }
     }
 
     @FXML
     public void openNewFile() throws IOException {
-        displayEditWindow();
-        EditPage.md = new MarkdownFile("");
         Stage thisWindow = (Stage) buttonNew.getScene().getWindow();
         thisWindow.close();
+        EditPageController.displayEditWindow("");
     }
 
     private void openRecent(int index) throws IOException {
-        displayEditWindow();
-        EditPage.md = new MarkdownFile(recentFilePath[index]);
         Stage thisWindow = (Stage) buttonOpen.getScene().getWindow();
         thisWindow.close();
+        EditPageController.displayEditWindow(recentFilePath[index]);
         editor.addNewRecentFile(recentFilePath[index]);
-    }
-
-    private static void displayEditWindow() throws IOException {
-        Stage window = new Stage();
-        Parent root = FXMLLoader.load(EditPage.class.getResource("/fxml/GUI_edit.fxml"));
-        Image logoPNG = new Image("Logo.png");
-        window.setTitle("JMDTool");
-        window.getIcons().add(logoPNG);
-        window.setScene(new Scene(root, 1200, 720));
-        window.show();
     }
 
     /**

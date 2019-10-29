@@ -17,8 +17,14 @@ public class Converter extends BlockBuilder {
         editor = info;
     }
 
+    public void convert() throws IOException {
+        html.str = "<!doctype html><html>" + genHead().replaceAll("\\s+"," ") + genBody() + "</html>";
+        html.save();
+    }
+
     public String getHTML() throws IOException {
-        return "<!doctype html><html>" + genHead().replaceAll("\\s+"," ") + genBody() + "</html>";
+        convert();
+        return html.str;
     }
 
     // main convert function (editor info to html head)
@@ -88,6 +94,7 @@ public class Converter extends BlockBuilder {
                     break;
             }
         }
+        md.reload();
         return "<body>" + converted.toString() + "</body>";
     }
 
@@ -103,5 +110,6 @@ public class Converter extends BlockBuilder {
     // save to file
     public void toFile() throws IOException {
         md.save();
+        html.save();
     }
 }

@@ -1,4 +1,4 @@
-# Welcome to JavaMarkdownEditTool
+# Welcome to MarkdownEditTool
 
 ## Project Info
 
