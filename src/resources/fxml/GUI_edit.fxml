@@ -36,12 +36,12 @@
             </MenuBar>
       <SplitPane dividerPositions="0.5">
          <items>
-            <TextArea prefHeight="2000.0" prefWidth="795.0" promptText="text here" wrapText="true">
+            <TextArea fx:id="editPane" prefHeight="2000.0" prefWidth="795.0" promptText="text here" wrapText="true">
                <font>
                   <Font size="16.0" />
                </font>
             </TextArea>
-            <WebView prefHeight="200.0" prefWidth="200.0" />
+            <WebView fx:id="previewPane" prefHeight="200.0" prefWidth="200.0" />
          </items>
       </SplitPane>
       <HBox maxHeight="-Infinity" prefHeight="0.0" prefWidth="1600.0">

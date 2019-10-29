@@ -1,47 +1,38 @@
 package GUI;
 
+import Convert.Converter;
+import Global.GlobalVariables;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.* ;
+import javafx.scene.web.WebView;
 import javafx.stage.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import File.*;
+
+import javax.sound.midi.spi.MidiDeviceProvider;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class EditPage {
-    public static boolean display(String title, String message) {
-        Stage window = new Stage();
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle(title);
-        window.setMinWidth(250);
-        Label label = new Label();
-        label.setText(message);
+public class EditPage implements Initializable{
+    public static MarkdownFile md;
+    public static WebFile web;
+    public static Converter converter;
 
-        //Create two buttons
-        Button yesButton = new Button("Yes");
-        Button noButton = new Button("No");
+    @FXML public static TextArea editPane;
+    @FXML public static WebView previewPane;
 
-        //Clicking will set answer and close window
-        AtomicBoolean answer = new AtomicBoolean(false);
-        yesButton.setOnAction(e -> {
-            answer.set(true);
-            window.close();
-        });
-        noButton.setOnAction(e -> {
-            answer.set(false);
-            window.close();
-        });
-
-        VBox layout = new VBox(10);
-
-        //Add buttons
-        layout.getChildren().addAll(label, yesButton, noButton);
-        layout.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(layout);
-        window.setScene(scene);
-        window.showAndWait();
-
-        //Make sure to return answer
-        return answer.get();
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println(111);
     }
 }

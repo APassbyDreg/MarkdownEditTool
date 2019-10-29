@@ -20,6 +20,7 @@ public class FileInfo extends GlobalVariables {
 
     public FileInfo(String address, char addressType) throws IOException {
         super();
+        address = address.replace('/','\\');
         if (addressType == 'r') {
             address = programAbsolutePath + address;
         }
@@ -82,11 +83,13 @@ public class FileInfo extends GlobalVariables {
     }
 
     public void hide() throws IOException {
+        isTemp = true;
         String sets = "attrib +H \"" + file.getAbsolutePath() + "\"";
         Runtime.getRuntime().exec(sets);
     }
 
     public void unhide() throws IOException {
+        isTemp = false;
         String sets = "attrib -H \"" + file.getAbsolutePath() + "\"";
         Runtime.getRuntime().exec(sets);
     }

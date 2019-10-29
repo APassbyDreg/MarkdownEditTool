@@ -1,20 +1,15 @@
 package GUI;
-import	java.io.FileInputStream;
-import java.io.IOException;
-import java.util.LinkedList;
-import	java.util.Properties;
 
-import java.io.File;
+import java.io.*;
 import java.net.URL;
-import java.util.ResourceBundle;
-
+import java.util.*;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.layout.VBox;
+import javafx.fxml.*;
+import javafx.scene.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
-import javafx.stage.FileChooser;
+import javafx.stage.*;
 import Global.GlobalVariables;
 import File.*;
 
@@ -28,12 +23,47 @@ public class IntroPage implements Initializable{
     public static Button[] recentFileChooser = new Button[GlobalVariables.MAX_RECENT_FILES_STORED];
     public static Label[] recentFileContent = new Label[GlobalVariables.MAX_RECENT_FILES_STORED];
     public static Label[] recentFileAddress = new Label[GlobalVariables.MAX_RECENT_FILES_STORED];
+    public static String[] recentFilePath = new String[GlobalVariables.MAX_RECENT_FILES_STORED];
 
-    public void openFile() {
+    @FXML
+    public void openExistFile() throws IOException {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Markdown Docs", "*.md");
         fileChooser.getExtensionFilters().add(extFilter);
-        File file = fileChooser.showOpenDialog(GlobalVariables.introWindow);
+        File file = fileChooser.showOpenDialog((Stage) buttonOpen.getScene().getWindow());
+        if (file != null) {
+            displayEditWindow();
+            EditPage.md = new MarkdownFile(file.getAbsolutePath());
+            Stage thisWindow = (Stage) buttonOpen.getScene().getWindow();
+            thisWindow.close();
+            editor.addNewRecentFile(file.getAbsolutePath());
+        }
+    }
+
+    @FXML
+    public void openNewFile() throws IOException {
+        displayEditWindow();
+        EditPage.md = new MarkdownFile("");
+        Stage thisWindow = (Stage) buttonNew.getScene().getWindow();
+        thisWindow.close();
+    }
+
+    private void openRecent(int index) throws IOException {
+        displayEditWindow();
+        EditPage.md = new MarkdownFile(recentFilePath[index]);
+        Stage thisWindow = (Stage) buttonOpen.getScene().getWindow();
+        thisWindow.close();
+        editor.addNewRecentFile(recentFilePath[index]);
+    }
+
+    private static void displayEditWindow() throws IOException {
+        Stage window = new Stage();
+        Parent root = FXMLLoader.load(EditPage.class.getResource("/fxml/GUI_edit.fxml"));
+        Image logoPNG = new Image("Logo.png");
+        window.setTitle("JMDTool");
+        window.getIcons().add(logoPNG);
+        window.setScene(new Scene(root, 1200, 720));
+        window.show();
     }
 
     /**
@@ -54,10 +84,11 @@ public class IntroPage implements Initializable{
         FileInfo[] recentFiles = new FileInfo[GlobalVariables.MAX_RECENT_FILES_STORED];
 
         ObservableList<VBox> items = recentList.getItems();
-        LinkedList<String> recentFilePaths = editor.recentFilePaths;
-        for (int i=0; recentFilePaths.size()>0; i++) {
+        LinkedList<String> paths = editor.recentFilePaths;
+        for (int i=0; paths.size()>0; i++) {
+            recentFilePath[i] = paths.pop();
             try {
-                recentFiles[i] = new FileInfo(recentFilePaths.pop(),'a');
+                recentFiles[i] = new FileInfo(recentFilePath[i],'a');
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -67,6 +98,15 @@ public class IntroPage implements Initializable{
             recentFileContainer[i] = new VBox();
             recentFileContainer[i].getChildren().addAll(recentFileChooser[i],recentFileContent[i],recentFileAddress[i]);
             items.add(recentFileContainer[i]);
+
+            int index = i;
+            recentFileChooser[i].setOnAction(e -> {
+                try {
+                    openRecent(index);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
         }
     }
 }

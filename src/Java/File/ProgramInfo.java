@@ -59,7 +59,7 @@ public class ProgramInfo extends FileInfo {
             String[] recentList = recentFiles.split(",");
             for (String s : recentList) {
                 if (s.endsWith(".md")) {
-                    recentFilePaths.offer(s);
+                    recentFilePaths.offer(s.replace('/','\\'));
                 }
             }
         }
@@ -86,6 +86,7 @@ public class ProgramInfo extends FileInfo {
     }
 
     public void addNewRecentFile(String path) throws IOException {
+        path = path.replace('/','\\');
         if (path.endsWith(".md")) {
             recentFilePaths.remove(path);
             recentFilePaths.push(path);

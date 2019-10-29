@@ -6,7 +6,31 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="add functions to GUI">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaMarkdownEditTool/File/FileInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaMarkdownEditTool/File/FileInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaMarkdownEditTool/File/ProgramInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaMarkdownEditTool/File/ProgramInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaMarkdownEditTool/GUI/EditPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaMarkdownEditTool/GUI/EditPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaMarkdownEditTool/GUI/IntroPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaMarkdownEditTool/GUI/IntroPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaMarkdownEditTool/GUI_edit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/GUI_edit.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaMarkdownEditTool/GUI_intro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/GUI_intro.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaMarkdownEditTool/Global/GlobalVariables.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaMarkdownEditTool/Global/GlobalVariables.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaMarkdownEditTool/Logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaMarkdownEditTool/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaMarkdownEditTool/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaMarkdownEditTool/fxml/GUI_listCellItem.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaMarkdownEditTool/resources/UserSettings.config" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaMarkdownEditTool/resources/UserSettings.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/File/FileInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/File/FileInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/File/ProgramInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/File/ProgramInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GUI/EditPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/EditPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GUI/IntroPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/IntroPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Global/GlobalVariables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Global/GlobalVariables.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/GUI_edit.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/GUI_intro.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/Logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/fxml/GUI_listCellItem.fxml" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,8 +96,17 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="APassbyDreg" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectId" id="1SPViDiJrXJ25UdEPrlXeYZJ69I" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
   </component>
@@ -93,7 +126,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+    <property name="last_opened_file_path" value="C:/Program Files (x86)/Oracle/JavaFX Scene Builder 2.0/JavaFX Scene Builder 2.0.exe" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -107,18 +140,18 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources\fxml" />
+      <recent name="C:\Users\APass\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\resources\fxml" />
+      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\resources" />
+      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\Java" />
+      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\APass\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\resources\fxml" />
-      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\resources" />
-      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\Java" />
-      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src" />
-      <recent name="C:\Users\APass\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\doc\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -293,6 +326,9 @@
       <workItem from="1571912083147" duration="5984000" />
       <workItem from="1571996651316" duration="274000" />
       <workItem from="1571996937381" duration="26000" />
+      <workItem from="1572000778692" duration="6566000" />
+      <workItem from="1572193036316" duration="47000" />
+      <workItem from="1572340350678" duration="7000" />
     </task>
     <servers />
   </component>
@@ -302,8 +338,23 @@
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.config" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <MESSAGE value="add functions to GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="add functions to GUI" />
   </component>
 </project>

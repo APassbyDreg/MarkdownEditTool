@@ -11,8 +11,6 @@ public class GlobalVariables {
     public static String jarName = "test";
     public static String programAbsolutePath;
     public static final int MAX_RECENT_FILES_STORED = 5;
-    public static Stage introWindow;
-    public static Stage editWindow;
 
     public GlobalVariables() throws UnsupportedEncodingException {
         programAbsolutePath = getRuntimeFolder();

@@ -2,9 +2,6 @@
 
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -14,7 +11,7 @@
            <left>
                <VBox prefHeight="600.0" prefWidth="330.0" BorderPane.alignment="TOP_LEFT">
                   <children>
-                      <Button alignment="BASELINE_LEFT" prefHeight="50.0" prefWidth="200.0" text="New File">
+                      <Button alignment="BASELINE_LEFT" prefHeight="50.0" prefWidth="200.0" text="New File" fx:id="buttonNew" onAction="#openNewFile">
                      <VBox.margin>
                         <Insets bottom="25.0" />
                      </VBox.margin>
@@ -22,7 +19,7 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                      <Button alignment="BASELINE_LEFT" prefHeight="50.0" prefWidth="200.0" text="Open File" fx:id="buttonOpen" onAction="#openFile">
+                      <Button alignment="BASELINE_LEFT" prefHeight="50.0" prefWidth="200.0" text="Open File" fx:id="buttonOpen" onAction="#openExistFile">
                      <VBox.margin>
                         <Insets bottom="50.0" />
                      </VBox.margin>
