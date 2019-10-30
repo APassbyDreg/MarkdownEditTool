@@ -2,7 +2,7 @@
 
 ## Project Info
 
-**Creator**: 贺梓淇 - 18373263 (blog at [apassbydreg.work](https://apassbydreg.work))
+**Creator**: Martin_Z_He 18373263 (blog at [apassbydreg.work](https://apassbydreg.work))
 
 **Final Edit Date**: 2019 11
 
@@ -17,6 +17,12 @@
     - horizontal separate line
 - output to an HTML file
 - edit with syntax highlight
+
+## Known issues
+
+- sometimes recent files disappear
+- error preview on file open
+- chinese characters might come across encoding problem
 
 ## References
 
