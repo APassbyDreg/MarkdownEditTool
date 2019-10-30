@@ -13,7 +13,7 @@ public class ProgramInfo extends FileInfo {
     // in UserSettings.conf
     public String currentTheme;
     public LinkedList<String> recentFilePaths = new LinkedList<String>(); // new -> old
-    private ArrayList<String> themesList = new ArrayList<String>();
+    public LinkedList<String> themesList = new LinkedList<String>();
 
     // default values
     public final String jarName = "test";
@@ -29,23 +29,12 @@ public class ProgramInfo extends FileInfo {
 
         // read config
         loadConfig();
-
-        // get available themes
-        File themeFolder = new File(programAbsolutePath + themesFolderRelativePath);
-        String[] fileList = themeFolder.list();
-        if (fileList != null) {
-            for (String s : fileList) {
-                if (s.endsWith(".css")) {
-                    themesList.add(s);
-                }
-            }
-        }
-        else {
-            throw new RuntimeException("NO THEME FILE FOUND");
-        }
     }
 
     private void loadConfig() {
+        recentFilePaths = new LinkedList<String>();
+        themesList = new LinkedList<String>();
+
         Pattern themeSettingRegex = Pattern.compile("# Theme: (.*)");
         Pattern recentRecordRegex = Pattern.compile("# Recent Files: \\[(.*)\\]");
         Matcher m;
@@ -62,6 +51,20 @@ public class ProgramInfo extends FileInfo {
                     recentFilePaths.offer(s.replace('/','\\'));
                 }
             }
+        }
+
+        // get available themes
+        File themeFolder = new File(programAbsolutePath + themesFolderRelativePath);
+        String[] fileList = themeFolder.list();
+        if (fileList != null) {
+            for (String s : fileList) {
+                if (s.endsWith(".css")) {
+                    themesList.add(s);
+                }
+            }
+        }
+        else {
+            throw new RuntimeException("NO THEME FILE FOUND");
         }
     }
 
@@ -87,6 +90,9 @@ public class ProgramInfo extends FileInfo {
 
     public void addNewRecentFile(String path) throws IOException {
         path = path.replace('/','\\');
+        if (path.startsWith("\\")) {
+            path = path.substring(1,path.length());
+        }
         if (path.endsWith(".md")) {
             recentFilePaths.remove(path);
             recentFilePaths.push(path);
@@ -107,6 +113,7 @@ public class ProgramInfo extends FileInfo {
         settings.append("]");
         str = settings.toString();
         save();
+        loadConfig();
     }
 
     private void initialize() throws IOException {

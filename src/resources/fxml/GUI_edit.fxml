@@ -21,12 +21,7 @@
                     <MenuItem mnemonicParsing="false" text="Close" />
                   </items>
                 </Menu>
-                  <Menu mnemonicParsing="false" text="Preference">
-                    <items>
-                        <CheckMenuItem mnemonicParsing="false" text="Auto Save" />
-                    </items>
-                  </Menu>
-                <Menu mnemonicParsing="false" text="Theme" />
+                <Menu fx:id="themeMenu" mnemonicParsing="false" text="Theme" />
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
                     <MenuItem mnemonicParsing="false" text="About" />

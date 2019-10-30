@@ -6,11 +6,11 @@ html {
 body {
     font-family: sans-serif;
     max-width: 60em;
-    width: 90%;
+    width: 84%;
     padding: 4%;
     margin: 4em auto;
     background-color: #fafafa;
-    line-height: 1.8em;
+    line-height: 180%;
     font-size: 1em;
     letter-spacing: 0.04em;
     box-shadow: #aaaaaa 0.1em 0.1em 0.5em;
@@ -27,7 +27,6 @@ pre {
     background-color: #eeeeee;
     padding: 1em;
     border-radius: 0.4em;
-    line-height: 1.5em;
 }
 
 code {
@@ -64,42 +63,40 @@ b {
 }
 
 h1 {
+    line-height: 150%;
     padding-bottom: 0.4em;
     font-size: 3em;
-    line-height: 4em;
     border: rgb(100,100,100) 0.05em;
     border-bottom-style: solid;
 }
 
 h2 {
+    line-height: 140%;
     padding-bottom: 0.3em;
     font-size: 2.4em;
-    line-height: 3em;
     border: rgb(100,100,100) 0.03em;
     border-bottom-style: solid;
 }
 
 h3 {
+    line-height: 130%;
     font-size: 2.1em;
-    line-height: 2.7em;
 }
 
 h4 {
-    line-height: 2.4em;
+    line-height: 120%;
     font-size: 1.8em;
     margin-block-start: 1em;
     margin-block-end: 1em;
 }
 
 h5 {
-    line-height: 2.1em;
     font-size: 1.6em;
     margin-block-start: 1em;
     margin-block-end: 1em;
 }
 
 h6 {
-    line-height: 2em;
     font-size: 1.5em;
     margin-block-start: 1em;
     margin-block-end: 1em;

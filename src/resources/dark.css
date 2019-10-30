@@ -3,7 +3,7 @@ body {
     max-width: 60em;
     margin: 10vh auto;
     background-color: #19253b;
-    line-height: 1.8em;
+    line-height: 180%;
     font-size: 1em;
     color: white;
     letter-spacing: 0.08em;
@@ -19,7 +19,6 @@ pre {
     background-color: #061a2e;
     padding: 1em;
     border-radius: 0.4em;
-    line-height: 1.5em;
 }
 
 code {
@@ -61,20 +60,20 @@ b {
 }
 
 h1 {
+    line-height: 150%;
     padding-bottom: 0.4em;
     text-align: center;
     font-family: sans-serif;
     font-size: 3em;
-    line-height: 4em;
     border: rgb(204, 212, 212) 0.06em;
     border-bottom-style: solid;
     font-weight: normal;
 }
 
 h2 {
+    line-height: 140%;
     padding-bottom: 0.3em;
     font-size: 2.4em;
-    line-height: 3em;
     font-family: sans-serif;
     border: rgb(204, 212, 212) 0.03em;
     border-bottom-style: solid;
@@ -83,28 +82,26 @@ h2 {
 
 
 h3 {
+    line-height: 130%;
     font-size: 2.1em;
-    line-height: 2.7em;
     font-family: sans-serif;
     font-weight: normal;
 }
 
 h4 {
-    line-height: 2.4em;
+    line-height: 120%;
     font-size: 1.8em;
     margin-block-start: 1em;
     margin-block-end: 1em;
 }
 
 h5 {
-    line-height: 2em;
     font-size: 1.6em;
     margin-block-start: 1em;
     margin-block-end: 1em;
 }
 
 h6 {
-    line-height: 2em;
     font-size: 1.5em;
     margin-block-start: 1em;
     margin-block-end: 1em;
