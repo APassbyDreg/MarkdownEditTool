@@ -2,9 +2,18 @@
 
 ## Project Info
 
-**Creator：** Martin_Z_He
+**Creator:** Martin_Z_He
 
-**Download：** [latest release](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/test/test.jar)
+**Download:** [latest release (20191030 21:00)](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/test/test.jar)
+
+## How to use
+
+just run it XD
+
+
+```
+java -jar [file location]/test.jar
+```
 
 ## Functions
 
