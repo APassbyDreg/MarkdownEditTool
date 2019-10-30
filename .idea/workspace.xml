@@ -6,15 +6,15 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="add functions to GUI">
-      <change afterPath="$PROJECT_DIR$/src/Java/GUI/AlertBox.java" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="add functions to Edit Pannel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Java/File/ProgramInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/File/ProgramInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GUI/AlertBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/AlertBox.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Java/GUI/EditPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/EditPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/dark.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/themes/dark.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/fxml/GUI_edit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/GUI_edit.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/light(default).css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/light(default).css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/page.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/light(default).css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/themes/light(default).css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/themes/page.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,8 +71,8 @@
       <list>
         <option value="Enum" />
         <option value="HTML File" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -125,18 +125,18 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources\fxml" />
-      <recent name="C:\Users\APass\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\resources\fxml" />
-      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\resources" />
-      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\Java" />
-      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources\themes" />
+      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources\fxml" />
+      <recent name="C:\Users\APass\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\resources\fxml" />
+      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\resources" />
+      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\Java" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -316,7 +316,7 @@
       <workItem from="1572340350678" duration="3492000" />
       <workItem from="1572362957112" duration="6000" />
       <workItem from="1572402291679" duration="727000" />
-      <workItem from="1572421529061" duration="8071000" />
+      <workItem from="1572421529061" duration="13426000" />
     </task>
     <task id="LOCAL-00001" summary="add functions to GUI">
       <created>1572340530273</created>
@@ -325,7 +325,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572340530273</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add functions to Edit Pannel">
+      <created>1572429627122</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1572429627122</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -351,7 +358,8 @@
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <MESSAGE value="add functions to GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="add functions to GUI" />
+    <MESSAGE value="add functions to Edit Pannel" />
+    <option name="LAST_COMMIT_MESSAGE" value="add functions to Edit Pannel" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -360,11 +368,6 @@
           <url>file://$PROJECT_DIR$/src/Java/Test.java</url>
           <line>27</line>
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Java/GUI/EditPageController.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Java/File/ProgramInfo.java</url>

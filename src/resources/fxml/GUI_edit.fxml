@@ -15,10 +15,10 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                        <MenuItem mnemonicParsing="false" text="New" />
-                        <MenuItem mnemonicParsing="false" text="Open" />
-                        <MenuItem mnemonicParsing="false" text="Save" />
-                    <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" text="New" fx:id="newButton" onAction="#openNewFile"/>
+                        <MenuItem mnemonicParsing="false" text="Open" fx:id="openButton" onAction="#openExistedFile"/>
+                        <MenuItem mnemonicParsing="false" text="Save" fx:id="saveButton" onAction="#setSaveButton"/>
+                        <MenuItem mnemonicParsing="false" text="Close" fx:id="closeButton" onAction="#setCloseButton"/>
                   </items>
                 </Menu>
                 <Menu fx:id="themeMenu" mnemonicParsing="false" text="Theme" />

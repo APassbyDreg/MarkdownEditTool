@@ -119,9 +119,9 @@ public class ProgramInfo extends FileInfo {
     private void initialize() throws IOException {
         InputStream rms = Thread.currentThread().getContextClassLoader().getResourceAsStream("README.md");
         InputStream uss = Thread.currentThread().getContextClassLoader().getResourceAsStream("UserSettings.config");
-        InputStream lts = Thread.currentThread().getContextClassLoader().getResourceAsStream("light(default).css");
-        InputStream dts = Thread.currentThread().getContextClassLoader().getResourceAsStream("dark.css");
-        InputStream pts = Thread.currentThread().getContextClassLoader().getResourceAsStream("page.css");
+        InputStream lts = Thread.currentThread().getContextClassLoader().getResourceAsStream("themes/light(default).css");
+        InputStream dts = Thread.currentThread().getContextClassLoader().getResourceAsStream("themes/dark.css");
+        InputStream pts = Thread.currentThread().getContextClassLoader().getResourceAsStream("themes/page.css");
         createDefaultFiles(rms, "resources\\README.md");
         createDefaultFiles(uss, "resources\\UserSettings.config");
         createDefaultFiles(lts, "resources\\themes\\light(default).css");

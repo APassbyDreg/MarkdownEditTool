@@ -1,35 +1,51 @@
 package GUI;
 
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.geometry.*;
 
-public class AlertBox {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AlertBox implements Initializable {
 
     //Create variable
-    static char answer;
+    static char answer = 'c';
+    static Stage window;
+    static String msg1;
 
-    public static char display(String fileName) {
-        Stage window = new Stage();
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("FILE NOT SAVE ALERT");
-        window.setMinWidth(250);
-        Label label = new Label();
-        label.setText(fileName + "is changed but NOT saved, do you want to save it before close?");
+    @FXML public Button yesButton,noButton,cancelButton;
+    @FXML public Label fileNameLabel;
 
-        //Create two buttons
-        Button yesButton = new Button("Yes");
-        Button noButton = new Button("No");
-        Button cancelButton = new Button("Cancel");
+    public static char display(String line) throws IOException {
+        msg1 = line;
 
-        //Clicking will set answer and close window
-        yesButton.setOnAction(e -> {
+        window = new Stage();
+        Parent root = FXMLLoader.load(EditPageController.class.getResource("/fxml/AlertBox.fxml"));
+        Image logoPNG = new Image("Logo.png");
+        window.setTitle("File NOT Save Alert");
+        window.getIcons().add(logoPNG);
+        window.setScene(new Scene(root, 360, 120));
+        window.setResizable(false);
+        window.showAndWait();
+
+        return answer;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        yesButton.setOnAction(event -> {
             answer = 'y';
             window.close();
         });
-        noButton.setOnAction(e -> {
+        noButton.setOnAction(event -> {
             answer = 'n';
             window.close();
         });
@@ -37,18 +53,6 @@ public class AlertBox {
             answer = 'c';
             window.close();
         });
-
-        VBox layout = new VBox(10);
-
-        //Add buttons
-        layout.getChildren().addAll(label, yesButton, noButton, cancelButton);
-        layout.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(layout);
-        window.setScene(scene);
-        window.showAndWait();
-
-        //Make sure to return answer
-        return answer;
+        fileNameLabel.setText(msg1);
     }
-
 }
