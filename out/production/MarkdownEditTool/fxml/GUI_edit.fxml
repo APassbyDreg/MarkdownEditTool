@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.web.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EditPageController">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                        <MenuItem fx:id="newButton" mnemonicParsing="false" onAction="#openNewFile" text="New" />
+                        <MenuItem fx:id="openButton" mnemonicParsing="false" onAction="#openExistedFile" text="Open" />
+                        <MenuItem fx:id="saveButton" mnemonicParsing="false" onAction="#setSaveButton" text="Save" />
+                  <Menu mnemonicParsing="false" text="Export As">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#saveAsTxt" text="Plain Text (.txt)" />
+                        <MenuItem mnemonicParsing="false" onAction="#saveAsHtml" text="Web Page (.html)" />
+                    </items>
+                  </Menu>
+                        <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#setCloseButton" text="Close" />
+                  </items>
+                </Menu>
+                <Menu fx:id="themeMenu" mnemonicParsing="false" text="Theme" />
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#openAboutPage" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+      <SplitPane dividerPositions="0.5">
+         <items>
+            <TextArea fx:id="editPane" prefHeight="2000.0" prefWidth="795.0" promptText="text here" wrapText="true">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextArea>
+            <WebView fx:id="previewPane" prefHeight="200.0" prefWidth="200.0" />
+         </items>
+      </SplitPane>
+      <HBox maxHeight="-Infinity" prefHeight="0.0" prefWidth="1600.0">
+         <children>
+            <Label fx:id="charNumLabel" text="Label">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+         </children>
+      </VBox>
