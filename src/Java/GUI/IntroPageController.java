@@ -81,12 +81,11 @@ public class IntroPageController implements Initializable{
                 e.printStackTrace();
             }
             recentFileChooser[i] = new Button(recentFiles[i].name);
-            recentFileContent[i] = new Label(recentFiles[i].str.split("\n")[0]);
-            recentFileAddress[i] = new Label((recentFiles[i].src.length()<50) ? recentFiles[i].src : recentFiles[i].src.substring(0,50)+"...");
+            recentFileContent[i] = new Label(recentFiles[i].str.split("\n")[0].trim());
+            recentFileAddress[i] = new Label((recentFiles[i].src.length()<100) ? recentFiles[i].src : recentFiles[i].src.substring(0,100)+"...");
             recentFileContainer[i] = new VBox();
             recentFileContainer[i].getChildren().addAll(recentFileChooser[i],recentFileContent[i],recentFileAddress[i]);
             items.add(recentFileContainer[i]);
-
             int index = i;
             recentFileChooser[i].setOnAction(e -> {
                 try {

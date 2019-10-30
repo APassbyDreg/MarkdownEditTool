@@ -1,6 +1,7 @@
 package File;
 
 import java.net.URLDecoder;
+import java.util.Base64;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.*;
@@ -8,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import Global.*;
+import sun.awt.AWTCharset;
 
 public class FileInfo extends GlobalVariables {
     public String str = "";
@@ -40,7 +42,7 @@ public class FileInfo extends GlobalVariables {
     public void load() throws IOException {
         if (file.exists()) {
             InputStream ipStream = new FileInputStream(file);
-            InputStreamReader ipsReader = new InputStreamReader(ipStream, StandardCharsets.UTF_8);
+            InputStreamReader ipsReader = new InputStreamReader(ipStream,StandardCharsets.UTF_8);
             while (ipsReader.ready()) {
                 str += (char) ipsReader.read();
             }
@@ -82,16 +84,12 @@ public class FileInfo extends GlobalVariables {
         lastEditTime = ft.format(d);
     }
 
-    public void hide() throws IOException {
+    public void makeTemp() throws IOException {
         isTemp = true;
-        String sets = "attrib +H \"" + file.getAbsolutePath() + "\"";
-        Runtime.getRuntime().exec(sets);
     }
 
-    public void unhide() throws IOException {
+    public void unmarkTemp() throws IOException {
         isTemp = false;
-        String sets = "attrib -H \"" + file.getAbsolutePath() + "\"";
-        Runtime.getRuntime().exec(sets);
     }
 
     public void delete() {
