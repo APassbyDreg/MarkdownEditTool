@@ -4,7 +4,7 @@
 
 **Creator：** Martin_Z_He
 
-**Download：** [latest release]()
+**Download：** [latest release](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/test/test.jar)
 
 ## Functions
 
