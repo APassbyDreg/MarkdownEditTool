@@ -53,12 +53,6 @@ public class MarkdownFile extends FileInfo{
     }
 
     @Override
-    public void writeNew(String newStr) {
-        super.writeNew(newStr);
-        reload();
-    }
-
-    @Override
     public void save() throws IOException {
         super.save();
         reload();

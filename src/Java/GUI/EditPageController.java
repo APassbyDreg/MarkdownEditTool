@@ -2,13 +2,21 @@ package GUI;
 
 import Convert.Converter;
 import Global.GlobalVariables;
+import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.*;
@@ -18,14 +26,18 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import File.*;
+
+import javax.swing.*;
 
 public class EditPageController implements Initializable{
     public static Stage window;
     public static MarkdownFile md;
     public static WebFile web;
     public static ProgramInfo settings;
-    public static boolean isChanged = false;
     public static boolean isTemp = false;
 
     public static TextArea editor;
@@ -64,7 +76,7 @@ public class EditPageController implements Initializable{
         window.getIcons().add(logoPNG);
         window.setScene(new Scene(root, 1200, 720));
         window.setOnCloseRequest(e -> {
-            if (isChanged) {
+            if (md.isChanged()) {
                 try {
                     e.consume();
                     closeProgram();
@@ -80,6 +92,12 @@ public class EditPageController implements Initializable{
         md.str = editor.getText().replace("\t","  ");
         Converter converter = new Converter(md, web, settings);
         previewEngine.loadContent(converter.getHTML());
+        if (md.isChanged()) {
+            window.setTitle("MDEditTool : " + md.name + "*");
+        }
+        else {
+            window.setTitle("MDEditTool : " + md.name);
+        }
         updateCharNum();
     }
 
@@ -103,20 +121,35 @@ public class EditPageController implements Initializable{
             else {
                 isSuccessful = false;
             }
-            isChanged = false;
         }
-        else if (isChanged) {
+        else if (md.isChanged()) {
             md.save();
-            isChanged = false;
         }
         return isSuccessful;
     }
 
     public static void chooseTheme(int index) throws IOException {
-        String name = themesToggleGroupItems[index].getText();
+        String name = themesToggleGroupItems[index].getText() + ".css";
         int i = settings.themesList.indexOf(name);
         settings.setTheme(i);
+        setEditorStyle(name);
         refresh();
+    }
+
+    public static void setEditorStyle(String name) throws IOException {
+        FileInfo style = new FileInfo(settings.themesFolderRelativePath + name,'r');
+        Pattern bg = Pattern.compile("body *\\{[\\s\\S]*?background-color:(.*?);[\\s\\S]*");
+        Pattern text = Pattern.compile("body *\\{[\\s\\S]*?[^-]color: (#.*?);[\\s\\S]*");
+        Matcher bgMatcher = bg.matcher(style.str);
+        Matcher textMatcher = text.matcher(style.str);
+        String editorStyle = "";
+        if (bgMatcher.find()) {
+            editorStyle += "-fx-control-inner-background: " + bgMatcher.group(1) + ";";
+        }
+        if (textMatcher.find()) {
+            editorStyle += "-fx-text-fill:" + textMatcher.group(1) + ";";
+        }
+        editor.setStyle(editorStyle);
     }
 
     public static void closeProgram() throws IOException {
@@ -227,17 +260,19 @@ public class EditPageController implements Initializable{
         previewEngine = previewPane.getEngine();
         totalCharNumIndicator = charNumLabel;
 
-        // ini edit board
+        // ini edit pane
         editor.setText(md.str);
         editor.setOnKeyReleased( e-> {
             try {
-                isChanged = true;
-                window.setTitle("MDEditTool : " + md.name + "*");
                 refresh();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         });
+        editor.setFont(Font.loadFont(Thread.currentThread().getContextClassLoader().getResourceAsStream("Cascadia.ttf"),15));
+
+
+        // ini preview pane
         try {
             Converter converter = new Converter(md, web, settings);
             previewEngine.loadContent(converter.getHTML());
@@ -249,7 +284,7 @@ public class EditPageController implements Initializable{
         LinkedList<String> themeList = settings.themesList;
         for (int i=0; i<themeList.size(); i++) {
             String name = themeList.get(i);
-            themesToggleGroupItems[i] = new RadioMenuItem(name);
+            themesToggleGroupItems[i] = new RadioMenuItem(name.substring(0, name.length()-4));
             themesToggleGroupItems[i].setToggleGroup(themesToggleGroup);
             int themeIndex = i;
             themesToggleGroupItems[i].setOnAction(e->{
@@ -263,6 +298,12 @@ public class EditPageController implements Initializable{
                 themesToggleGroupItems[i].setSelected(true);
             }
             themeSelector.getItems().add(themesToggleGroupItems[i]);
+        }
+
+        try {
+            setEditorStyle(settings.currentTheme);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         updateCharNum();

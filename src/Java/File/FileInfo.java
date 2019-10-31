@@ -17,6 +17,7 @@ public class FileInfo extends GlobalVariables {
     public String name;
     public String type;
     public String lastEditTime;
+    public String lastSaveStr;
     public boolean isTemp = false;
     private File file;
 
@@ -37,6 +38,7 @@ public class FileInfo extends GlobalVariables {
             name = matcher.group(1);
             type = matcher.group(2);
         }
+        lastSaveStr = str;
     }
 
     public void load() throws IOException {
@@ -61,12 +63,8 @@ public class FileInfo extends GlobalVariables {
         }
     }
 
-    public String readAll() {
-        return str;
-    }
-
-    public void writeNew(String newStr) {
-        str = newStr;
+    public boolean isChanged() {
+        return !str.equals(lastSaveStr);
     }
 
     public void save() throws IOException {
@@ -76,6 +74,7 @@ public class FileInfo extends GlobalVariables {
         writer.append(str);
         writer.close();
         markTime();
+        lastSaveStr = str;
     }
 
     public void markTime() {
