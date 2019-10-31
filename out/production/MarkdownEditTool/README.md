@@ -1,12 +1,16 @@
-# Welcome to MarkdownEditTool
+# MarkdownEditTool
 
 ## Project Info
 
-**Creator**: Martin_Z_He 18373263 (blog at [apassbydreg.work](https://apassbydreg.work))
+**Creator:** Martin_Z_He (ID.18373263)
 
-**Final Edit Date**: 2019 11
+## Introduction
 
-## Functions
+With this program, you can edit your Markdown file with different theme.
+
+This program is written with Java, GUI powered by JavaFX.
+
+## Functions and features
 
 - available MD syntax:
     - lists
@@ -15,8 +19,10 @@
     - bold and italic
     - code blocks
     - horizontal separate line
-- output to an HTML file
-- edit with syntax highlight
+    - code blocks and inline code
+    - quotes
+- output to TXT/HTML file
+- customizable theme (view the instructions [here](https://github.com/APassbyDreg/MarkdownEditTool/blob/master/doc/Customize%20Themes%20Instructions.md))
 
 ## Known issues
 
@@ -24,6 +30,6 @@
 - error preview on file open
 - chinese characters might come across encoding problem
 
-## References
+## User Guide
 
-N/A
+see [here](https://apassbydreg.work/2019/10/31/codemarkdownedittool-user-guide/)
