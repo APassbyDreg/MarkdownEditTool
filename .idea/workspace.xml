@@ -151,7 +151,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JAR Application.test.jar">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -271,8 +271,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GetTotalLineNumber" />
         <item itemvalue="JAR Application.test.jar" />
+        <item itemvalue="Application.GetTotalLineNumber" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.Sample" />
         <item itemvalue="JAR Application.test2.jar" />
