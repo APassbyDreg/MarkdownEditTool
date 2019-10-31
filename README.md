@@ -10,7 +10,7 @@
 
 With this program, you can edit your Markdown file with different theme.
 
-This programe is written with Java, GUI powered by JavaFX.
+This program is written with Java, GUI powered by JavaFX.
 
 ## How to use
 
@@ -35,9 +35,10 @@ download the whole project and open it in IntelliJ IDEA, build 'Main' class.
     - bold and italic
     - code blocks
     - horizontal separate line
+    - code blocks and inline code
     - quotes
 - output to TXT/HTML file
-- customizable theme (view the instructions [here]())
+- customizable theme (view the instructions [here](https://github.com/APassbyDreg/MarkdownEditTool/blob/master/doc/Customize%20Themes%20Instructions.md))
 
 ## Known issues
 
@@ -47,4 +48,4 @@ download the whole project and open it in IntelliJ IDEA, build 'Main' class.
 
 ## User Guide
 
-see [here]()
+see [here](https://apassbydreg.work/2019/10/31/codemarkdownedittool-user-guide/)

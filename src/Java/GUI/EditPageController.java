@@ -268,7 +268,7 @@ public class EditPageController implements Initializable{
         Stage about = new Stage();
         WebView aboutView = new WebView();
         WebEngine aboutEngine = aboutView.getEngine();
-        aboutEngine.load("https://apassbydreg.work");
+        aboutEngine.load("https://apassbydreg.work/2019/10/31/codemarkdownedittool-user-guide/");
         Image logoPNG = new Image("Logo.png");
         about.setTitle("MDEditTool : About");
         about.getIcons().add(logoPNG);
