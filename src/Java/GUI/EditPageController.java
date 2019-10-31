@@ -269,7 +269,7 @@ public class EditPageController implements Initializable{
                 ex.printStackTrace();
             }
         });
-        editor.setFont(Font.loadFont(Thread.currentThread().getContextClassLoader().getResourceAsStream("Cascadia.ttf"),15));
+        editor.setFont(Font.loadFont(Thread.currentThread().getContextClassLoader().getResourceAsStream("sarasa-monoT-sc-regular.ttf"),15));
 
 
         // ini preview pane
