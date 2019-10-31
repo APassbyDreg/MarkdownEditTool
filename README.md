@@ -4,7 +4,7 @@
 
 **Creator:** Martin_Z_He
 
-**Download:** [latest release (20191031 11:50)](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/test/test.jar)
+**Download:** [latest release (20191030 21:00)](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/test/test.jar)
 
 ## How to use
 

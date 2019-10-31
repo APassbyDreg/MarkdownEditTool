@@ -16,7 +16,7 @@ public class FileInfo extends GlobalVariables {
     public String src;
     public String name;
     public String type;
-    public String lastEditTime;
+    public String lastSaveTime;
     public String lastSaveStr;
     public boolean isTemp = false;
     private File file;
@@ -48,7 +48,6 @@ public class FileInfo extends GlobalVariables {
             while (ipsReader.ready()) {
                 str += (char) ipsReader.read();
             }
-            markTime();
             ipsReader.close();
             ipStream.close();
         }
@@ -80,7 +79,7 @@ public class FileInfo extends GlobalVariables {
     public void markTime() {
         Date d = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        lastEditTime = ft.format(d);
+        lastSaveTime = ft.format(d);
     }
 
     public void makeTemp() throws IOException {

@@ -20,9 +20,11 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/GUI_intro.fxml"));
         Image logoPNG = new Image("Logo.png");
         Stage window = primaryStage;
+        Scene scene = new Scene(root, 1050, 600);
+        scene.getStylesheets().add("IntroPageDesign.css");
         window.setTitle("MDEditTool");
         window.getIcons().add(logoPNG);
-        window.setScene(new Scene(root, 1050, 600));
+        window.setScene(scene);
         window.setResizable(false);
         window.show();
     }

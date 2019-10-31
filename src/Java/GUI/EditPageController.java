@@ -2,20 +2,16 @@ package GUI;
 
 import Convert.Converter;
 import Global.GlobalVariables;
-import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -31,33 +27,30 @@ import java.util.regex.Pattern;
 
 import File.*;
 
-import javax.swing.*;
-
 public class EditPageController implements Initializable{
-    public static Stage window;
     public static MarkdownFile md;
-    public static WebFile web;
-    public static ProgramInfo settings;
-    public static boolean isTemp = false;
+    private static WebFile web;
+    private static ProgramInfo settings;
+    private static Stage window;
+    private static boolean isTemp = false;
 
-    public static TextArea editor;
-    public static WebView preview;
-    public static WebEngine previewEngine;
-    public static Menu themeSelector;
-    public static RadioMenuItem[] themesToggleGroupItems;
-    public static ToggleGroup themesToggleGroup = new ToggleGroup();
-    public static Label totalCharNumIndicator;
+    private static TextArea editor;
+    private static WebView preview;
+    private static WebEngine previewEngine;
+    private static RadioMenuItem[] themesToggleGroupItems;
+    private static ToggleGroup themesToggleGroup = new ToggleGroup();
+    private static Label totalCharNumIndicator, lastSaveTimeIndicator;
 
     @FXML public TextArea editPane;
     @FXML public WebView previewPane;
     @FXML public Menu themeMenu;
-    @FXML public MenuItem newButton,openButton,closeButton,saveButton;
-    @FXML public Label charNumLabel;
+    @FXML public MenuItem newButton,openButton,closeButton,saveButton,returnButton;
+    @FXML public Label charNumLabel,lastSaveTimeLabel;
+    @FXML public VBox mainPane;
 
     public static void displayEditWindow(String mdPath) throws IOException {
         if (mdPath.equals("")) {
             mdPath = GlobalVariables.programAbsolutePath + "\\tmp\\Untitled.md";
-            md.makeTemp();
             isTemp = true;
         }
 
@@ -74,7 +67,9 @@ public class EditPageController implements Initializable{
         Image logoPNG = new Image("Logo.png");
         window.setTitle("MDEditTool : " + md.name);
         window.getIcons().add(logoPNG);
-        window.setScene(new Scene(root, 1200, 720));
+        Scene scene = new Scene(root, 1200, 720);
+        scene.getStylesheets().add("EditPageDesign.css");
+        window.setScene(scene);
         window.setOnCloseRequest(e -> {
             if (md.isChanged()) {
                 try {
@@ -86,6 +81,10 @@ public class EditPageController implements Initializable{
             }
         });
         window.show();
+
+        if (mdPath.equals("")) {
+            md.makeTemp();
+        }
     }
 
     public static void refresh() throws IOException {
@@ -124,6 +123,8 @@ public class EditPageController implements Initializable{
         }
         else if (md.isChanged()) {
             md.save();
+            updateLastSaveTime();
+            window.setTitle("MDEditTool : " + md.name);
         }
         return isSuccessful;
     }
@@ -152,54 +153,62 @@ public class EditPageController implements Initializable{
         editor.setStyle(editorStyle);
     }
 
-    public static void closeProgram() throws IOException {
+    public static boolean closeProgram() throws IOException {
         boolean isClosing = true;
         char usrConfirm = 'c';
-        if (isTemp) {
-            usrConfirm = AlertBox.display("This new file has NOT been saved");
-        }
-        else {
-            usrConfirm = AlertBox.display(md.name + " is changed but NOT saved");
-        }
-        switch (usrConfirm){
-            case 'y': // yes
-                if (!save()) {
+        if (md.isChanged()){
+            if (isTemp) {
+                usrConfirm = AlertBox.display("This new file has NOT been saved");
+            }
+            else {
+                usrConfirm = AlertBox.display(md.name + " is changed but NOT saved");
+            }
+            switch (usrConfirm){
+                case 'y': // yes
+                    if (!save()) {
+                        isClosing = false;
+                    }
+                    break;
+                case 'n': // no
+                    break;
+                case 'c': // cancel
                     isClosing = false;
-                }
-                break;
-            case 'n': // no
-                break;
-            case 'c': // cancel
-                isClosing = false;
-                break;
+                    break;
+            }
         }
         if (isClosing) {
             window.close();
         }
+        return isClosing;
     }
 
-    public static void updateCharNum() {
+    private static void updateCharNum() {
         int charNum = editor.getText().trim().length();
         totalCharNumIndicator.setText("Total characters: " + charNum);
     }
 
+    private static void updateLastSaveTime() {
+        String t = md.lastSaveTime;
+        lastSaveTimeIndicator.setText("Last save time: " + t);
+    }
+
     public void openNewFile() throws IOException {
-        save();
-        window.close();
-        displayEditWindow("");
+        if (closeProgram()) {
+            displayEditWindow("");
+        }
     }
 
     public void openExistedFile() throws IOException {
-        save();
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Markdown Docs", "*.md");
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(window);
         if (file !=  null) {
-            window.close();
-            md = new MarkdownFile(file.getAbsolutePath());
-            settings.addNewRecentFile(file.getAbsolutePath());
-            displayEditWindow(file.getAbsolutePath());
+            if (closeProgram()) {
+                md = new MarkdownFile(file.getAbsolutePath());
+                settings.addNewRecentFile(file.getAbsolutePath());
+                displayEditWindow(file.getAbsolutePath());
+            }
         }
     }
 
@@ -240,6 +249,21 @@ public class EditPageController implements Initializable{
         Notification.display("Notification","plz pay attention to your image references!");
     }
 
+    public void returnIndex() throws IOException {
+        if (closeProgram()) {
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/GUI_intro.fxml"));
+            Image logoPNG = new Image("Logo.png");
+            Stage index = new Stage();
+            Scene scene = new Scene(root, 1050, 600);
+            scene.getStylesheets().add("IntroPageDesign.css");
+            index.setTitle("MDEditTool");
+            index.getIcons().add(logoPNG);
+            index.setScene(scene);
+            index.setResizable(false);
+            index.show();
+        }
+    }
+
     public void openAboutPage() {
         Stage about = new Stage();
         WebView aboutView = new WebView();
@@ -252,25 +276,26 @@ public class EditPageController implements Initializable{
         about.show();
     }
 
+    private void hotKeyHandler(KeyEvent e) throws IOException {
+        if (e.isControlDown() && e.getCode() == KeyCode.S) {
+            save();
+        }
+        else if (e.isControlDown() && e.getCode() == KeyCode.N) {
+            openNewFile();
+        }
+        else if (e.getCode() == KeyCode.F1) {
+            openAboutPage();
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        themeSelector = themeMenu;
+        Menu themeSelector = themeMenu;
         editor = editPane;
         preview = previewPane;
         previewEngine = previewPane.getEngine();
         totalCharNumIndicator = charNumLabel;
-
-        // ini edit pane
-        editor.setText(md.str);
-        editor.setOnKeyReleased( e-> {
-            try {
-                refresh();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
-        editor.setFont(Font.loadFont(Thread.currentThread().getContextClassLoader().getResourceAsStream("sarasa-monoT-sc-regular.ttf"),15));
-
+        lastSaveTimeIndicator = lastSaveTimeLabel;
 
         // ini preview pane
         try {
@@ -300,11 +325,30 @@ public class EditPageController implements Initializable{
             themeSelector.getItems().add(themesToggleGroupItems[i]);
         }
 
+        // ini edit pane
+        editor.setText(md.str);
+        editor.setOnKeyReleased(e -> {
+            try {
+                refresh();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
         try {
             setEditorStyle(settings.currentTheme);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        editor.setFont(Font.loadFont(Thread.currentThread().getContextClassLoader().getResourceAsStream("sarasa-monoT-sc-semibold.ttf"),16));
+
+        // ini hot key listener
+        mainPane.setOnKeyPressed(e -> {
+            try {
+                hotKeyHandler(e);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
 
         updateCharNum();
     }

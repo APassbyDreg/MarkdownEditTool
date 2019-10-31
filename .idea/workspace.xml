@@ -6,7 +6,43 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Built new jar file" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Built new jar file">
+      <change afterPath="$PROJECT_DIR$/src/resources/EditPageDesign.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/IntroPageDesign.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/test/test.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/test/test.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/Convert/Converter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/Convert/Converter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/File/FileInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/File/FileInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/File/ProgramInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/File/ProgramInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/EditPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/EditPageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GetTotalLineNumber.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/GetTotalLineNumber.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/Global/GlobalVariables.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/Global/GlobalVariables.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/Logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/Logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/fxml/GUI_edit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/fxml/GUI_edit.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/fxml/GUI_intro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/fxml/GUI_intro.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/themes/dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/themes/dark.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/themes/light(default).css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/themes/light(default).css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/themes/page.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/themes/page.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Convert/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Convert/Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/File/FileInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/File/FileInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GUI/EditPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/EditPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GUI/IntroPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/IntroPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GetTotalLineNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GetTotalLineNumber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Global/GlobalVariables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Global/GlobalVariables.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/Logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/fxml/GUI_edit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/GUI_edit.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/fxml/GUI_intro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/GUI_intro.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/sarasa-monoT-sc-regular.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/sarasa-monoT-sc-semibold.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/themes/dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/themes/dark.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/themes/light(default).css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/themes/light(default).css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/themes/page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/themes/page.css" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +100,7 @@
         <option value="HTML File" />
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -106,6 +143,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../JAVAFX_test" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -119,18 +157,18 @@
     <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\APass\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources" />
+      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources\themes" />
+      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources\fxml" />
+      <recent name="C:\Users\APass\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\resources\fxml" />
+      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\resources" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources\themes" />
-      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources\fxml" />
-      <recent name="C:\Users\APass\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\resources\fxml" />
-      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\resources" />
-      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\Java" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -145,7 +183,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JAR Application.test.jar">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -265,8 +303,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JAR Application.test.jar" />
         <item itemvalue="Application.GetTotalLineNumber" />
+        <item itemvalue="JAR Application.test.jar" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.Sample" />
         <item itemvalue="JAR Application.test2.jar" />
@@ -315,6 +353,9 @@
       <workItem from="1572454402588" duration="163000" />
       <workItem from="1572486631773" duration="6847000" />
       <workItem from="1572493650561" duration="481000" />
+      <workItem from="1572501555253" duration="1660000" />
+      <workItem from="1572508970761" duration="8628000" />
+      <workItem from="1572522996559" duration="6790000" />
     </task>
     <task id="LOCAL-00001" summary="add functions to GUI">
       <created>1572340530273</created>
@@ -417,9 +458,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Java/Test.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="9" />
+          <url>file://$PROJECT_DIR$/src/Java/File/ProgramInfo.java</url>
+          <line>131</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

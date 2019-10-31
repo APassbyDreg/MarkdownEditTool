@@ -5,7 +5,7 @@ public class GetTotalLineNumber {
     public static void main(String[] args) throws IOException {
         final String codeFolderName = "\\src";
         String codeDir = System.getProperty("user.dir") + codeFolderName;
-        System.out.println((sum(codeDir)<1500) ? "GO CODING!!!(" + sum(codeDir) + "/1500)" : "nb");
+        System.out.println((sum(codeDir)<1500) ? "GO CODING!!!(" + sum(codeDir) + "/1500)" : sum(codeDir) + ", nb");
     }
 
     private static int sum(String name) throws IOException {
@@ -18,7 +18,7 @@ public class GetTotalLineNumber {
                 num += sum(name + "\\" + s);
             }
         }
-        else if (name.endsWith(".java")) {
+        else if (!name.endsWith(".ttf")) {
             InputStream in = new FileInputStream(file);
             InputStreamReader isr = new InputStreamReader(in);
             while (isr.ready()) {

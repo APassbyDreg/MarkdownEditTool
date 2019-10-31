@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 public class GlobalVariables {
     public static String jarName = "test";
     public static String programAbsolutePath;
-    public static final int MAX_RECENT_FILES_STORED = 5;
+    public static final int MAX_RECENT_FILES_STORED = 4;
 
     public GlobalVariables() throws UnsupportedEncodingException {
         programAbsolutePath = getRuntimeFolder();

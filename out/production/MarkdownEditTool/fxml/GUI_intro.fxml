@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -11,7 +12,7 @@
            <left>
                <VBox prefHeight="600.0" prefWidth="330.0" BorderPane.alignment="TOP_LEFT">
                   <children>
-                      <Button alignment="BASELINE_LEFT" prefHeight="50.0" prefWidth="200.0" text="New File" fx:id="buttonNew" onAction="#openNewFile">
+                      <Button fx:id="buttonNew" alignment="BASELINE_LEFT" onAction="#openNewFile" onMouseEntered="#introButtonAnimationIn" onMouseExited="#introButtonAnimationOut" prefHeight="50.0" prefWidth="200.0" text="New File">
                      <VBox.margin>
                         <Insets bottom="25.0" />
                      </VBox.margin>
@@ -19,7 +20,7 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                      <Button alignment="BASELINE_LEFT" prefHeight="50.0" prefWidth="200.0" text="Open File" fx:id="buttonOpen" onAction="#openExistFile">
+                      <Button fx:id="buttonOpen" alignment="BASELINE_LEFT" onAction="#openExistFile" onMouseEntered="#introButtonAnimationIn" onMouseExited="#introButtonAnimationOut" prefHeight="50.0" prefWidth="200.0" text="Open File">
                      <VBox.margin>
                         <Insets bottom="50.0" />
                      </VBox.margin>
@@ -32,7 +33,7 @@
                   <Insets />
                </BorderPane.margin>
                <padding>
-                  <Insets left="30.0" top="60.0" />
+                  <Insets left="50.0" top="100.0" />
                </padding>
                </VBox>
            </left>
@@ -47,7 +48,7 @@
                         <Font size="36.0" />
                      </font>
                   </Label>
-                  <ListView maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" fx:id="recentList">
+                  <ListView fx:id="recentList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>

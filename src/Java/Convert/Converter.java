@@ -52,7 +52,7 @@ public class Converter extends BlockBuilder {
                         converted.append(content);
                     }
                     else if (previousType == -1){
-                        converted.append("<br />");
+                        converted.append("<br /><br />");
                     }
                     break;
                 case 0:
