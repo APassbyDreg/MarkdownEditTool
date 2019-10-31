@@ -6,7 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Built new jar file">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="updated project info">
       <change afterPath="$PROJECT_DIR$/src/resources/EditPageDesign.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/resources/IntroPageDesign.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -24,6 +24,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/Test.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/fxml/GUI_edit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/fxml/GUI_edit.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/fxml/GUI_intro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/fxml/GUI_intro.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/sarasa-monoT-sc-regular.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/sarasa-monoT-sc-semibold.ttf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/themes/dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/themes/dark.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/themes/light(default).css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/themes/light(default).css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/themes/page.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/themes/page.css" afterDir="false" />
@@ -38,7 +39,7 @@
       <change beforePath="$PROJECT_DIR$/src/resources/Logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/fxml/GUI_edit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/GUI_edit.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/fxml/GUI_intro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/GUI_intro.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/sarasa-monoT-sc-regular.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/sarasa-monoT-sc-semibold.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/sarasa-monoT-sc-regular.ttf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/themes/dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/themes/dark.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/themes/light(default).css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/themes/light(default).css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/themes/page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/themes/page.css" afterDir="false" />
@@ -355,7 +356,7 @@
       <workItem from="1572493650561" duration="481000" />
       <workItem from="1572501555253" duration="1660000" />
       <workItem from="1572508970761" duration="8628000" />
-      <workItem from="1572522996559" duration="6790000" />
+      <workItem from="1572522996559" duration="7056000" />
     </task>
     <task id="LOCAL-00001" summary="add functions to GUI">
       <created>1572340530273</created>
@@ -452,7 +453,9 @@
     <MESSAGE value="Include .jar download link in README.md" />
     <MESSAGE value="Add style to edit pane" />
     <MESSAGE value="Built new jar file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Built new jar file" />
+    <MESSAGE value="new UI" />
+    <MESSAGE value="updated project info" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated project info" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
