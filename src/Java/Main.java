@@ -1,3 +1,4 @@
+import Global.GlobalVariables;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -6,14 +7,19 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
 
 public class Main extends Application {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, URISyntaxException {
+        // ini program info
+        String src = Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+        GlobalVariables.programAbsolutePath = src.substring(0, src.length() - GlobalVariables.jarName.length() - ".jar".length());
+
         launch();
     }
-
-    public static void show() {launch(); }
 
     @Override
     public void start(Stage primaryStage) throws Exception {

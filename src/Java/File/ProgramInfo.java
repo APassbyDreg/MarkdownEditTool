@@ -68,19 +68,6 @@ public class ProgramInfo extends FileInfo {
         }
     }
 
-    public String getProgramAbsolutePath () {
-        System.out.println(System.getProperty("java.class.path"));
-        Pattern pathPattern = Pattern.compile("(.+)\\\\" + jarName + "\\.jar");
-        Matcher pathMatcher = pathPattern.matcher(System.getProperty("java.class.path"));
-        assert pathMatcher.find() : "exec path error";
-        if (pathMatcher.find()) {
-            return pathMatcher.group(1);
-        }
-        else {
-            return System.getProperty("user.dir");
-        }
-    }
-
     public void setTheme(int index) throws IOException {
         if (index < themesList.size()) {
             currentTheme = themesList.get(index);

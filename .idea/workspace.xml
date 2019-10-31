@@ -7,9 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="updated project info">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/File/ProgramInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/File/ProgramInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/Global/GlobalVariables.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/Global/GlobalVariables.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/File/ProgramInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/File/ProgramInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Global/GlobalVariables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Global/GlobalVariables.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -152,7 +157,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JAR Application.MarkdownEditTool.jar">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -232,8 +237,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test2.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/test2/test2.jar" />
+    <configuration name="MarkdownEditTool.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar" />
       <method v="2" />
     </configuration>
     <configuration name="test.jar" type="JarApplication" temporary="true">
@@ -268,15 +273,15 @@
       <item itemvalue="Application.Sample" />
       <item itemvalue="Application.GetTotalLineNumber" />
       <item itemvalue="JAR Application.test.jar" />
-      <item itemvalue="JAR Application.test2.jar" />
+      <item itemvalue="JAR Application.MarkdownEditTool.jar" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JAR Application.MarkdownEditTool.jar" />
         <item itemvalue="Application.GetTotalLineNumber" />
         <item itemvalue="JAR Application.test.jar" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.Sample" />
-        <item itemvalue="JAR Application.test2.jar" />
       </list>
     </recent_temporary>
   </component>
@@ -327,6 +332,7 @@
       <workItem from="1572522996559" duration="7240000" />
       <workItem from="1572530871936" duration="1028000" />
       <workItem from="1572532492986" duration="27000" />
+      <workItem from="1572533242999" duration="2891000" />
     </task>
     <task id="LOCAL-00001" summary="add functions to GUI">
       <created>1572340530273</created>
@@ -432,7 +438,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Java/File/ProgramInfo.java</url>
-          <line>131</line>
+          <line>118</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
