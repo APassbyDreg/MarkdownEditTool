@@ -38,6 +38,23 @@ public class IntroPageController implements Initializable{
     public static Label[] recentFileAddress = new Label[GlobalVariables.MAX_RECENT_FILES_STORED];
     public static String[] recentFilePath = new String[GlobalVariables.MAX_RECENT_FILES_STORED];
 
+    public static void display(Stage primaryStage) throws IOException {
+        editor = new ProgramInfo();
+        Parent root = FXMLLoader.load(IntroPageController.class.getResource("/fxml/GUI_intro.fxml"));
+        Image logoPNG = new Image("Logo.png");
+        Stage window = primaryStage;
+        Scene scene = new Scene(root, 1050, 600);
+        scene.getStylesheets().add("IntroPageDesign.css");
+        window.setTitle("MDEditTool");
+        window.getIcons().add(logoPNG);
+        window.setScene(scene);
+        window.setResizable(false);
+        window.show();
+        if (editor.isFirstOpen) {
+            editor.save();
+        }
+    }
+
     @FXML
     public void openExistFile() throws IOException {
         FileChooser fileChooser = new FileChooser();
@@ -49,7 +66,7 @@ public class IntroPageController implements Initializable{
             Stage thisWindow = (Stage) buttonOpen.getScene().getWindow();
             thisWindow.close();
             editor.addNewRecentFile(file.getAbsolutePath());
-            EditPageController.displayEditWindow(file.getAbsolutePath());
+            EditPageController.displayEditWindow(file.getAbsolutePath(),editor);
         }
     }
 
@@ -57,13 +74,13 @@ public class IntroPageController implements Initializable{
     public void openNewFile() throws IOException {
         Stage thisWindow = (Stage) buttonNew.getScene().getWindow();
         thisWindow.close();
-        EditPageController.displayEditWindow("");
+        EditPageController.displayEditWindow("",editor);
     }
 
     private void openRecent(int index) throws IOException {
         Stage thisWindow = (Stage) buttonOpen.getScene().getWindow();
         thisWindow.close();
-        EditPageController.displayEditWindow(recentFilePath[index]);
+        EditPageController.displayEditWindow(recentFilePath[index],editor);
         editor.addNewRecentFile(recentFilePath[index]);
     }
 
@@ -227,11 +244,6 @@ public class IntroPageController implements Initializable{
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            editor = new ProgramInfo();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         FileInfo[] recentFiles = new FileInfo[GlobalVariables.MAX_RECENT_FILES_STORED];
 
         buttonOpen.getStyleClass().add("mainButtons");

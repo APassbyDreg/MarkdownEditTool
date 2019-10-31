@@ -48,14 +48,14 @@ public class EditPageController implements Initializable{
     @FXML public Label charNumLabel,lastSaveTimeLabel;
     @FXML public VBox mainPane;
 
-    public static void displayEditWindow(String mdPath) throws IOException {
+    public static void displayEditWindow(String mdPath, ProgramInfo editor) throws IOException {
         if (mdPath.equals("")) {
             mdPath = GlobalVariables.programAbsolutePath + "\\tmp\\Untitled.md";
             isTemp = true;
         }
 
         // create basic files
-        settings = new ProgramInfo();
+        settings = editor;
         themesToggleGroupItems = new RadioMenuItem[settings.themesList.size()];
         md = new MarkdownFile(mdPath);
         web = new WebFile(GlobalVariables.programAbsolutePath + "\\tmp\\pre_render_html.html");
@@ -115,7 +115,7 @@ public class EditPageController implements Initializable{
                 md.save();
                 window.close();
                 settings.addNewRecentFile(file.getAbsolutePath());
-                displayEditWindow(file.getAbsolutePath());
+                displayEditWindow(file.getAbsolutePath(), settings);
             }
             else {
                 isSuccessful = false;
@@ -194,7 +194,7 @@ public class EditPageController implements Initializable{
 
     public void openNewFile() throws IOException {
         if (closeProgram()) {
-            displayEditWindow("");
+            displayEditWindow("",settings);
         }
     }
 
@@ -207,7 +207,7 @@ public class EditPageController implements Initializable{
             if (closeProgram()) {
                 md = new MarkdownFile(file.getAbsolutePath());
                 settings.addNewRecentFile(file.getAbsolutePath());
-                displayEditWindow(file.getAbsolutePath());
+                displayEditWindow(file.getAbsolutePath(),settings);
             }
         }
     }

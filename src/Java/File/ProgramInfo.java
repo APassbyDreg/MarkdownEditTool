@@ -11,7 +11,7 @@ import java.util.*;
 
 public class ProgramInfo extends FileInfo {
     // in UserSettings.conf
-    public String currentTheme;
+    public String currentTheme = "light(default)";
     public LinkedList<String> recentFilePaths = new LinkedList<String>(); // new -> old
     public LinkedList<String> themesList = new LinkedList<String>();
 
@@ -19,11 +19,14 @@ public class ProgramInfo extends FileInfo {
     public final String jarName = "test";
     public final String themesFolderRelativePath = "\\resources\\themes\\";
 
+    public boolean isFirstOpen = false;
+
     public ProgramInfo() throws IOException {
         super("\\resources\\UserSettings.config",'r');
 
         // on first run
         if (str.length() == 0) {
+            isFirstOpen = true;
             initialize();
         }
 
@@ -109,14 +112,14 @@ public class ProgramInfo extends FileInfo {
         InputStream lts = Thread.currentThread().getContextClassLoader().getResourceAsStream("themes/light(default).css");
         InputStream dts = Thread.currentThread().getContextClassLoader().getResourceAsStream("themes/dark.css");
         InputStream pts = Thread.currentThread().getContextClassLoader().getResourceAsStream("themes/page.css");
-        createDefaultFiles(rms, "resources\\README.md");
-        createDefaultFiles(uss, "resources\\UserSettings.config");
-        createDefaultFiles(lts, "resources\\themes\\light(default).css");
-        createDefaultFiles(dts, "resources\\themes\\dark.css");
-        createDefaultFiles(pts, "resources\\themes\\page.css");
+        createDefaultFiles(rms, "\\resources\\README.md");
+        createDefaultFiles(uss, "\\resources\\UserSettings.config");
+        createDefaultFiles(lts, "\\resources\\themes\\light(default).css");
+        createDefaultFiles(dts, "\\resources\\themes\\dark.css");
+        createDefaultFiles(pts, "\\resources\\themes\\page.css");
         super.load();
+        addNewRecentFile(programAbsolutePath +  "\\resources\\README.md");
         loadConfig();
-        addNewRecentFile(programAbsolutePath +  "resources\\README.md");
     }
 
     private void createDefaultFiles(InputStream is, String relativePath) throws IOException {
