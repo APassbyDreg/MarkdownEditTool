@@ -1,28 +1,25 @@
 package File;
 
+import Global.Global;
+
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import	java.util.regex.Matcher;
 import	java.util.regex.Pattern;
-
 import java.io.IOException;
 import java.util.*;
 
 public class ProgramInfo extends FileInfo {
     // in UserSettings.conf
-    public String currentTheme = "light(default)";
+    public String currentTheme = "light(default).css";
     public LinkedList<String> recentFilePaths = new LinkedList<String>(); // new -> old
     public LinkedList<String> themesList = new LinkedList<String>();
-
-    // default values
-    public final String jarName = "test";
-    public final String themesFolderRelativePath = "\\resources\\themes\\";
 
     public boolean isFirstOpen = false;
 
     public ProgramInfo() throws IOException {
-        super("\\resources\\UserSettings.config",'r');
+        super(Global.resourcePath + Global.userConfigName,'r');
 
         // on first run
         if (str.length() == 0) {
@@ -57,7 +54,7 @@ public class ProgramInfo extends FileInfo {
         }
 
         // get available themes
-        File themeFolder = new File(programAbsolutePath + themesFolderRelativePath);
+        File themeFolder = new File(Global.programAbsolutePath + Global.themesFolderPath);
         String[] fileList = themeFolder.list();
         if (fileList != null) {
             for (String s : fileList) {
@@ -96,7 +93,7 @@ public class ProgramInfo extends FileInfo {
         settings.append("# Theme: ").append(currentTheme).append("\n\n");
         settings.append("# Recent Files: [");
         int i=0;
-        while (tmp.size()!=0 && i<MAX_RECENT_FILES_STORED) {
+        while (tmp.size()!=0 && i<Global.MAX_RECENT_FILES_STORED) {
             settings.append(tmp.pop()).append(",");
             i++;
         }
@@ -107,18 +104,18 @@ public class ProgramInfo extends FileInfo {
     }
 
     private void initialize() throws IOException {
-        InputStream rms = Thread.currentThread().getContextClassLoader().getResourceAsStream("README.md");
-        InputStream uss = Thread.currentThread().getContextClassLoader().getResourceAsStream("UserSettings.config");
-        InputStream lts = Thread.currentThread().getContextClassLoader().getResourceAsStream("themes/light(default).css");
-        InputStream dts = Thread.currentThread().getContextClassLoader().getResourceAsStream("themes/dark.css");
-        InputStream pts = Thread.currentThread().getContextClassLoader().getResourceAsStream("themes/page.css");
-        createDefaultFiles(rms, "\\resources\\README.md");
-        createDefaultFiles(uss, "\\resources\\UserSettings.config");
-        createDefaultFiles(lts, "\\resources\\themes\\light(default).css");
-        createDefaultFiles(dts, "\\resources\\themes\\dark.css");
-        createDefaultFiles(pts, "\\resources\\themes\\page.css");
+        InputStream rms = Thread.currentThread().getContextClassLoader().getResourceAsStream(Global.readmePath);
+        InputStream uss = Thread.currentThread().getContextClassLoader().getResourceAsStream(Global.settingsPath);
+        InputStream lts = Thread.currentThread().getContextClassLoader().getResourceAsStream(Global.defaultThemesPaths[0]);
+        InputStream dts = Thread.currentThread().getContextClassLoader().getResourceAsStream(Global.defaultThemesPaths[1]);
+        InputStream pts = Thread.currentThread().getContextClassLoader().getResourceAsStream(Global.defaultThemesPaths[2]);
+        createDefaultFiles(rms, Global.resourcePath + Global.readmeName);
+        createDefaultFiles(uss, Global.resourcePath + Global.userConfigName);
+        createDefaultFiles(lts, Global.resourcePath + Global.themesFolderPath + Global.defaultThemesNames[0]);
+        createDefaultFiles(dts, Global.resourcePath + Global.themesFolderPath + Global.defaultThemesNames[1]);
+        createDefaultFiles(pts, Global.resourcePath + Global.themesFolderPath + Global.defaultThemesNames[2]);
         super.load();
-        addNewRecentFile(programAbsolutePath +  "\\resources\\README.md");
+        addNewRecentFile(Global.programAbsolutePath +  Global.resourcePath + Global.readmeName);
         loadConfig();
     }
 

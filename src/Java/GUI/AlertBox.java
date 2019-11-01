@@ -1,15 +1,13 @@
 package GUI;
 
+import Global.Global;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.stage.*;
 import javafx.scene.*;
-import javafx.scene.layout.*;
 import javafx.scene.control.*;
-import javafx.geometry.*;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,8 +26,8 @@ public class AlertBox implements Initializable {
         msg1 = line;
 
         window = new Stage();
-        Parent root = FXMLLoader.load(EditPageController.class.getResource("/fxml/AlertBox.fxml"));
-        Image logoPNG = new Image("Logo.png");
+        Parent root = FXMLLoader.load(EditPageController.class.getResource(Global.alertFXMLPath));
+        Image logoPNG = new Image(Global.logoRelativePath);
         window.setTitle("File NOT Save Alert");
         window.getIcons().add(logoPNG);
         window.setScene(new Scene(root, 360, 120));

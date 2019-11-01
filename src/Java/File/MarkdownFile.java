@@ -1,7 +1,6 @@
 package File;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 
 public class MarkdownFile extends FileInfo{
     private String[] lines;

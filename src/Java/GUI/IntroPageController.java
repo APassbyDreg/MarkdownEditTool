@@ -5,24 +5,21 @@ import java.net.URL;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.Transition;
 import javafx.collections.ObservableList;
 import javafx.fxml.*;
-import javafx.geometry.Insets;
 import javafx.scene.*;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.*;
-import Global.GlobalVariables;
+import Global.Global;
 import File.*;
 import javafx.util.Duration;
 
@@ -31,25 +28,28 @@ public class IntroPageController implements Initializable{
 
     @FXML public Button buttonOpen,buttonNew;
     @FXML public ListView<VBox> recentList;
+    @FXML public BorderPane mainWindow;
 
-    public static VBox[] recentFileContainer = new VBox[GlobalVariables.MAX_RECENT_FILES_STORED];
-    public static Button[] recentFileChooser = new Button[GlobalVariables.MAX_RECENT_FILES_STORED];
-    public static Label[] recentFileContent = new Label[GlobalVariables.MAX_RECENT_FILES_STORED];
-    public static Label[] recentFileAddress = new Label[GlobalVariables.MAX_RECENT_FILES_STORED];
-    public static String[] recentFilePath = new String[GlobalVariables.MAX_RECENT_FILES_STORED];
+    public static VBox[] recentFileContainer = new VBox[Global.MAX_RECENT_FILES_STORED];
+    public static Button[] recentFileChooser = new Button[Global.MAX_RECENT_FILES_STORED];
+    public static Label[] recentFileContent = new Label[Global.MAX_RECENT_FILES_STORED];
+    public static Label[] recentFileAddress = new Label[Global.MAX_RECENT_FILES_STORED];
+    public static String[] recentFilePath = new String[Global.MAX_RECENT_FILES_STORED];
 
     public static void display(Stage primaryStage) throws IOException {
         editor = new ProgramInfo();
         Parent root = FXMLLoader.load(IntroPageController.class.getResource("/fxml/GUI_intro.fxml"));
-        Image logoPNG = new Image("Logo.png");
+        Image logoPNG = new Image(Global.logoRelativePath);
         Stage window = primaryStage;
         Scene scene = new Scene(root, 1050, 600);
-        scene.getStylesheets().add("IntroPageDesign.css");
-        window.setTitle("MDEditTool");
+        scene.getStylesheets().add(Global.introPageDesignPath);
+        window.setTitle(Global.programName);
         window.getIcons().add(logoPNG);
         window.setScene(scene);
         window.setResizable(false);
         window.show();
+
+        // for a strange bug: config reset when image load
         if (editor.isFirstOpen) {
             editor.save();
         }
@@ -234,6 +234,18 @@ public class IntroPageController implements Initializable{
         animation.play();
     }
 
+    private void hotKeyHandler(KeyEvent e) throws IOException {
+        if (e.isControlDown() && e.getCode() == KeyCode.N) {
+            openNewFile();
+        }
+        else if (e.isControlDown() && e.getCode() == KeyCode.O) {
+            openExistFile();
+        }
+        else if (e.isControlDown() && e.getCode() == KeyCode.H) {
+            AboutPage.display();
+        }
+    }
+
     /**
      * Called to initialize a controller after its root element has been
      * completely processed.
@@ -244,7 +256,7 @@ public class IntroPageController implements Initializable{
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        FileInfo[] recentFiles = new FileInfo[GlobalVariables.MAX_RECENT_FILES_STORED];
+        FileInfo[] recentFiles = new FileInfo[Global.MAX_RECENT_FILES_STORED];
 
         buttonOpen.getStyleClass().add("mainButtons");
         buttonNew.getStyleClass().add("mainButtons");
@@ -279,6 +291,14 @@ public class IntroPageController implements Initializable{
                     openRecent(index);
                 } catch (IOException ex) {
                     ex.printStackTrace();
+                }
+            });
+
+            mainWindow.setOnKeyPressed(event -> {
+                try {
+                    hotKeyHandler(event);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             });
         }

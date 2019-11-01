@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import File.*;
+import Global.Global;
 
 public class Converter extends BlockBuilder {
     private MarkdownFile md;
@@ -29,7 +30,7 @@ public class Converter extends BlockBuilder {
 
     // main convert function (editor info to html head)
     private String genHead() throws IOException {
-        FileInfo style = new FileInfo(editor.themesFolderRelativePath + editor.currentTheme, 'r');
+        FileInfo style = new FileInfo(Global.themesFolderPath + editor.currentTheme, 'r');
         String headContent = "<head>\n<meta charset='UTF-8'>\n";
         headContent += "<title>" + md.name + "</title>\n";
         headContent += "<style>\n" + style.str + "</style>";

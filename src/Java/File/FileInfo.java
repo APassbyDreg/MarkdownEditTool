@@ -1,7 +1,5 @@
 package File;
 
-import java.net.URLDecoder;
-import java.util.Base64;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.*;
@@ -9,9 +7,8 @@ import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import Global.*;
-import sun.awt.AWTCharset;
 
-public class FileInfo extends GlobalVariables {
+public class FileInfo {
     public String str = "";
     public String src;
     public String name;
@@ -25,7 +22,7 @@ public class FileInfo extends GlobalVariables {
         super();
         address = address.replace('/','\\');
         if (addressType == 'r') {
-            address = programAbsolutePath + address;
+            address = Global.programAbsolutePath + address;
         }
         file = new File(address);
         src = file.getAbsolutePath();
@@ -63,7 +60,7 @@ public class FileInfo extends GlobalVariables {
     }
 
     public boolean isChanged() {
-        return !str.equals(lastSaveStr);
+        return !str.replace("\r","").equals(lastSaveStr.replace("\r",""));
     }
 
     public void save() throws IOException {

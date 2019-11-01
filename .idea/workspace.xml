@@ -7,44 +7,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="updated project info">
+      <change afterPath="$PROJECT_DIR$/src/Java/GUI/AboutPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Java/Global/Global.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/Convert/BlockBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/Convert/BlockInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/Convert/Converter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/EditPageDesign.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/File/FileInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/File/MarkdownFile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/File/ProgramInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/File/WebFile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/AlertBox.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/EditPageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/Notification.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GetTotalLineNumber.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/Global/GlobalVariables.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/IntroPageDesign.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/Logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/UserSettings.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/fxml/AlertBox.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/fxml/GUI_edit.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/fxml/GUI_intro.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/sarasa-monoT-sc-semibold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/themes/dark.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/themes/light(default).css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/themes/page.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Convert/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Convert/Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/File/FileInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/File/FileInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/File/MarkdownFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/File/MarkdownFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Java/File/ProgramInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/File/ProgramInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/File/WebFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/File/WebFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GUI/AlertBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/AlertBox.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Java/GUI/EditPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/EditPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Java/GUI/IntroPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/IntroPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GUI/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/Notification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GetTotalLineNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GetTotalLineNumber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Global/GlobalVariables.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/fxml/GUI_edit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/GUI_edit.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/fxml/GUI_intro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/GUI_intro.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -102,8 +82,8 @@
         <option value="Enum" />
         <option value="HTML File" />
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -187,7 +167,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JAR Application.MarkdownEditTool.jar">
+  <component name="RunManager" selected="Application.GetTotalLineNumber">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -307,8 +287,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JAR Application.MarkdownEditTool.jar" />
         <item itemvalue="Application.GetTotalLineNumber" />
+        <item itemvalue="JAR Application.MarkdownEditTool.jar" />
         <item itemvalue="JAR Application.test.jar" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.Sample" />
@@ -365,6 +345,9 @@
       <workItem from="1572533242999" duration="2891000" />
       <workItem from="1572539260432" duration="1334000" />
       <workItem from="1572540613968" duration="1024000" />
+      <workItem from="1572541699010" duration="61000" />
+      <workItem from="1572605413937" duration="4824000" />
+      <workItem from="1572611201180" duration="861000" />
     </task>
     <task id="LOCAL-00001" summary="add functions to GUI">
       <created>1572340530273</created>
@@ -469,14 +452,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Java/File/ProgramInfo.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Java/GUI/EditPageController.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="15" />
+          <url>file://$PROJECT_DIR$/src/Java/GUI/IntroPageController.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

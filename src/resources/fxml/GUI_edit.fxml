@@ -15,17 +15,18 @@
               <menus>
                 <Menu mnemonicParsing="false" text="_File">
                   <items>
-                        <MenuItem fx:id="newButton" mnemonicParsing="false" onAction="#openNewFile" text="New" />
-                        <MenuItem fx:id="openButton" mnemonicParsing="false" onAction="#openExistedFile" text="Open" />
-                        <MenuItem fx:id="saveButton" mnemonicParsing="false" onAction="#setSaveButton" text="Save" />
-                  <Menu mnemonicParsing="false" text="Export As">
+                        <MenuItem fx:id="newButton" mnemonicParsing="false" onAction="#openNewFile" text="New (Ctrl+N)" />
+                        <MenuItem fx:id="openButton" mnemonicParsing="false" onAction="#openExistedFile" text="Open (Ctrl+O)" />
+                        <MenuItem fx:id="saveButton" mnemonicParsing="false" onAction="#setSaveButton" text="Save (Ctrl+S)" />
+                  <Menu mnemonicParsing="false" text="Save As">
                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#saveAsMarkdown" text="New Markdown File (.md)" />
                       <MenuItem mnemonicParsing="false" onAction="#saveAsTxt" text="Plain Text (.txt)" />
                         <MenuItem mnemonicParsing="false" onAction="#saveAsHtml" text="Web Page (.html)" />
                     </items>
                   </Menu>
-                  <MenuItem mnemonicParsing="false" onAction="#returnIndex" text="Return Home Page" />
-                        <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#setCloseButton" text="Close" />
+                  <MenuItem mnemonicParsing="false" onAction="#returnIndex" text="Return Home Page (Ctrl+R)" />
+                        <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#setCloseButton" text="Close (Ctrl+E)" />
                   </items>
                 </Menu>
                 <Menu fx:id="themeMenu" mnemonicParsing="false" text="_Theme" />

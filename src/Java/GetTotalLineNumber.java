@@ -18,7 +18,7 @@ public class GetTotalLineNumber {
                 num += sum(name + "\\" + s);
             }
         }
-        else if (!name.endsWith(".ttf")) {
+        else if (name.endsWith(".java")) {
             InputStream in = new FileInputStream(file);
             InputStreamReader isr = new InputStreamReader(in);
             while (isr.ready()) {

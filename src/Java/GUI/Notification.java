@@ -1,5 +1,6 @@
 package GUI;
 
+import Global.Global;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -16,7 +17,7 @@ public class Notification {
         content.setStyle("-fx-font-size: 16");
         container.setAlignment(Pos.CENTER);
         container.getChildren().add(content);
-        Image logoPNG = new Image("Logo.png");
+        Image logoPNG = new Image(Global.logoRelativePath);
         window.setTitle(title);
         window.getIcons().add(logoPNG);
         window.setScene(new Scene(container,320,40));

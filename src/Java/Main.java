@@ -1,17 +1,9 @@
 import GUI.IntroPageController;
-import Global.GlobalVariables;
+import Global.Global;
 import javafx.application.Application;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
-import java.net.URLDecoder;
 
 public class Main extends Application {
 
@@ -19,12 +11,12 @@ public class Main extends Application {
         // ini program info
         String src = Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
         if (src.endsWith(".jar")) {
-            GlobalVariables.programAbsolutePath = src.substring(0, src.length() - GlobalVariables.jarName.length() - ".jar".length());
+            Global.programAbsolutePath = src.substring(0, src.length() - Global.jarName.length() - ".jar".length());
         }
         else {
-            GlobalVariables.programAbsolutePath = src;
+            Global.programAbsolutePath = src;
         }
-
+        // launch program
         launch();
     }
 
