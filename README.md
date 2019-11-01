@@ -42,7 +42,6 @@ download the whole project and open it in IntelliJ IDEA, build 'Main' class.
 
 ## Known issues
 
-- sometimes recent files disappear
 - error preview on file open
 - chinese characters might come across encoding problem
 
