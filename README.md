@@ -4,27 +4,7 @@
 
 **Creator:** Martin_Z_He
 
-**Download:** [latest release (20191101 20:35)](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/test/test.jar)
-
-## Introduction
-
-With this program, you can edit your Markdown file with different theme.
-
-This program is written with Java, GUI powered by JavaFX.
-
-## How to use
-
-- run with JRE (requiers Java 8 or above)
-
-```
-java -jar [file location]/test.jar
-```
-
-- build yourself
-
-```
-download the whole project and open it in IntelliJ IDEA, build 'Main' class.
-```
+**Download:** [latest release (20191102 16:00)](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar)
 
 ## Functions and features
 
@@ -40,11 +20,25 @@ download the whole project and open it in IntelliJ IDEA, build 'Main' class.
 - output to TXT/HTML file
 - customizable theme (view the instructions [here](https://github.com/APassbyDreg/MarkdownEditTool/blob/master/doc/Customize%20Themes%20Instructions.md))
 
+## How to use
+
+- run with JRE (requires Java 8 or above)
+
+```
+java -jar [file location]/test.jar
+```
+
+- build yourself
+
+```
+download the whole project and open it in IntelliJ IDEA, build 'Main' class.
+```
+
 ## Known issues
 
 - error preview on file open
 - chinese characters might come across encoding problem
 
-## User Guide
+## User Guide and Program Introduction
 
-see [here](https://apassbydreg.work/2019/10/31/codemarkdownedittool-user-guide/)
+[Chinese] see [here](https://apassbydreg.work/open-source-files/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A%E8%AF%B4%E6%98%8E_update20191102.html)

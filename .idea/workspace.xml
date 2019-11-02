@@ -6,22 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="updated project info">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="BUG fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/Convert/BlockBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Convert/BlockBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/Convert/BlockInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Convert/BlockInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/Convert/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Convert/Converter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/File/FileInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/File/FileInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/File/MarkdownFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/File/MarkdownFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/File/ProgramInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/File/ProgramInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/File/WebFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/File/WebFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/GUI/AboutPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/AboutPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/GUI/EditPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/EditPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/GUI/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/GetTotalLineNumber.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/Global/Global.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Global/Global.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -316,7 +303,7 @@
       <workItem from="1572541699010" duration="61000" />
       <workItem from="1572605413937" duration="4824000" />
       <workItem from="1572611201180" duration="861000" />
-      <workItem from="1572677021576" duration="4520000" />
+      <workItem from="1572677021576" duration="4696000" />
     </task>
     <task id="LOCAL-00001" summary="add functions to GUI">
       <created>1572340530273</created>
@@ -381,7 +368,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572493987572</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="BUG fix">
+      <created>1572681578697</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1572681578697</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -415,6 +409,7 @@
     <MESSAGE value="Built new jar file" />
     <MESSAGE value="new UI" />
     <MESSAGE value="updated project info" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated project info" />
+    <MESSAGE value="BUG fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="BUG fix" />
   </component>
 </project>

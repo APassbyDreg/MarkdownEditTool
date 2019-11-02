@@ -1,0 +1,38 @@
+.root {
+    -fx-background-color: #f5f7fa
+}
+
+.mainButtons {
+    -fx-font-size: 20;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #aaaaaa;
+    -fx-border-width: 2;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian , rgba(0,0,0,0.25) , 10,0,2,2 );
+}
+
+.recentViewChooser {
+    -fx-background-color: #EBF3FD;
+    -fx-font-size: 30;
+    -fx-font-weight: bold;
+    -fx-pref-width: 620;
+    -fx-pref-height: 30;
+}
+
+.recentViewContent {
+     -fx-font-size: 15;
+     -fx-font-weight: bold;
+     -fx-background-color: #464A5C;
+     -fx-text-fill: #eeeeee;
+     -fx-pref-height: 15;
+     -fx-pref-width: 620;
+ }
+
+.recentViewAddress {
+    -fx-font-size: 15;
+    -fx-background-color: #464A5C;
+    -fx-text-fill: #eeeeee;
+    -fx-pref-height: 15;
+    -fx-pref-width: 620;
+}
