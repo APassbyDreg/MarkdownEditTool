@@ -6,6 +6,11 @@ import java.util.regex.Pattern;
 
 public class BlockBuilder {
 
+    /* naming rules:
+    ** xxx Maker: intake blockinfo and output string
+    ** xxx Builder: intake string and pass blockinfo to maker
+     */
+
     public String[] lineRegex = {
             "^(#+)\\s*(.*)", // head
             "^&gt; (.*)", // blockquote
@@ -70,6 +75,7 @@ public class BlockBuilder {
         return block.content;
     }
 
+    // builde headers
     public String headerBuilder(String source) {
         BlockInfo blockInfo = new BlockInfo(linePattenNames[0]);
         Matcher m = linePatterns[0].matcher(source);
@@ -82,6 +88,7 @@ public class BlockBuilder {
         return blockMaker(blockInfo);
     }
 
+    // build quotes
     public String quoteBuilder(String source) {
         BlockInfo blockInfo = new BlockInfo(linePattenNames[1]);
         Matcher m = linePatterns[1].matcher(source);
@@ -91,6 +98,7 @@ public class BlockBuilder {
         return blockMaker(blockInfo);
     }
 
+    // build code lines
     public String codeLinesBuilder(String source) {
         BlockInfo blockInfo = new BlockInfo(linePattenNames[3]);
         String codeLinesRegex = "^```(.*)\n([\\s\\S]*\n)```";
@@ -102,6 +110,8 @@ public class BlockBuilder {
         return blockMaker(blockInfo);
     }
 
+    // make lists
+    // use stack to push/pop using lists
     private String listMaker(BlockInfo[] lists) {
         Stack<BlockInfo> blockStack = new Stack<BlockInfo>();
         StringBuilder str= new StringBuilder();
@@ -137,6 +147,7 @@ public class BlockBuilder {
         return str.toString();
     }
 
+    // build lists
     public String listBuilder(String source) {
         source.replace("\t","  ");
         String[] listsStr = source.split("\n");
@@ -160,6 +171,7 @@ public class BlockBuilder {
         return listMaker(lists);
     }
 
+    // build inline html content
     public String spanBuilder(String line) {
         for (int i=0; i<spanRegex.length; i++) {
             Matcher m = spanPatterns[i].matcher(line);

@@ -6,9 +6,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
+import javax.xml.stream.FactoryConfigurationError;
+
 public class Notification {
+
     public static void display(String title,String msg) {
         Stage window = new Stage();
         Label content = new Label(msg);
@@ -24,4 +29,5 @@ public class Notification {
         window.setResizable(false);
         window.showAndWait();
     }
+
 }

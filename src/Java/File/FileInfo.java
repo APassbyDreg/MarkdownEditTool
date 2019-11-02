@@ -15,11 +15,10 @@ public class FileInfo {
     public String type;
     public String lastSaveTime;
     public String lastSaveStr;
-    public boolean isTemp = false;
+    private boolean isTemp = false;
     private File file;
 
     public FileInfo(String address, char addressType) throws IOException {
-        super();
         address = address.replace('/','\\');
         if (addressType == 'r') {
             address = Global.programAbsolutePath + address;
@@ -38,6 +37,7 @@ public class FileInfo {
         lastSaveStr = str;
     }
 
+    // load file and get str
     public void load() throws IOException {
         if (file.exists()) {
             InputStream ipStream = new FileInputStream(file);
@@ -59,10 +59,12 @@ public class FileInfo {
         }
     }
 
+    // get if the file content has been changed
     public boolean isChanged() {
         return !str.replace("\r","").equals(lastSaveStr.replace("\r",""));
     }
 
+    // save the file
     public void save() throws IOException {
         OutputStream opStream = new FileOutputStream(file);
         OutputStreamWriter writer = new OutputStreamWriter(opStream, StandardCharsets.UTF_8);
@@ -73,11 +75,14 @@ public class FileInfo {
         lastSaveStr = str;
     }
 
+    // mark last save time of the file
     public void markTime() {
         Date d = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         lastSaveTime = ft.format(d);
     }
+
+    // temp file will be delete after program exits
 
     public void makeTemp() throws IOException {
         isTemp = true;
@@ -87,6 +92,11 @@ public class FileInfo {
         isTemp = false;
     }
 
+    public boolean isTemp() {
+        return isTemp;
+    }
+
+    // delete file
     public void delete() {
         if (!file.delete()) {
             System.out.println("error: delete failed");
@@ -94,8 +104,7 @@ public class FileInfo {
     }
 
     @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
+    protected void finalize() throws IOException, Throwable {
         save();
         if (isTemp) {
             delete();

@@ -31,14 +31,12 @@ public class EditPageController implements Initializable{
     private static WebFile web;
     private static ProgramInfo settings;
     private static Stage window;
-    private static boolean isTemp = false;
 
     private static TextArea editor;
     private static WebEngine previewEngine;
     private static RadioMenuItem[] themesToggleGroupItems;
     private static ToggleGroup themesToggleGroup = new ToggleGroup();
     private static Label totalCharNumIndicator, lastSaveTimeIndicator;
-    private static int themeIndex;
 
     @FXML public TextArea editPane;
     @FXML public WebView previewPane;
@@ -50,13 +48,16 @@ public class EditPageController implements Initializable{
     public static void displayEditWindow(String mdPath, ProgramInfo editor) throws IOException {
         if (mdPath.equals("")) {
             mdPath = Global.programAbsolutePath + Global.tmpFolderPath + Global.tmpMDName;
-            isTemp = true;
+            md = new MarkdownFile(mdPath);
+            md.makeTemp();
+        }
+        else {
+            md = new MarkdownFile(mdPath);
         }
 
         // create basic files
         settings = editor;
         themesToggleGroupItems = new RadioMenuItem[settings.themesList.size()];
-        md = new MarkdownFile(mdPath);
         web = new WebFile(Global.programAbsolutePath + Global.tmpFolderPath + Global.tmpHTMLName);
         web.makeTemp();
 
@@ -101,14 +102,13 @@ public class EditPageController implements Initializable{
 
     public static boolean save() throws IOException {
         boolean isSuccessful = true;
-        if (isTemp) {
+        if (md.isTemp()) {
             String content = md.str;
             FileChooser fileChooser = new FileChooser();
             FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Markdown Docs", "*.md");
             fileChooser.getExtensionFilters().add(extFilter);
             File file = fileChooser.showSaveDialog(window);
             if (file != null) {
-                isTemp = false;
                 md = new MarkdownFile(file.getAbsolutePath());
                 md.str = content;
                 md.save();
@@ -137,7 +137,7 @@ public class EditPageController implements Initializable{
     }
 
     private static void setEditorStyle(String name) throws IOException {
-        FileInfo style = new FileInfo(Global.themesFolderPath + name,'r');
+        FileInfo style = new FileInfo(Global.resourcePath + Global.themesFolderPath + name,'r');
         Pattern bg = Pattern.compile("body *\\{[\\s\\S]*?background-color:(.*?);[\\s\\S]*");
         Pattern text = Pattern.compile("body *\\{[\\s\\S]*?[^-]color: (#.*?);[\\s\\S]*");
         Matcher bgMatcher = bg.matcher(style.str);
@@ -156,7 +156,7 @@ public class EditPageController implements Initializable{
         boolean isClosing = true;
         char usrConfirm = 'c';
         if (md.isChanged()){
-            if (isTemp) {
+            if (md.isTemp()) {
                 usrConfirm = AlertBox.display("This new file has NOT been saved");
             }
             else {
@@ -177,6 +177,12 @@ public class EditPageController implements Initializable{
         }
         if (isClosing) {
             window.close();
+            if (web.isTemp()) {
+                web.delete();
+            }
+            if (md.isTemp()) {
+                md.delete();
+            }
         }
         return isClosing;
     }

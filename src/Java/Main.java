@@ -16,7 +16,7 @@ public class Main extends Application {
         else {
             Global.programAbsolutePath = src;
         }
-        // launch program
+
         launch();
     }
 

@@ -18,26 +18,27 @@ public class Converter extends BlockBuilder {
         editor = info;
     }
 
-    public void convert() throws IOException {
-        html.str = "<!doctype html><html>" + genHead().replaceAll("\\s+"," ") + genBody() + "</html>";
-        html.save();
-    }
-
     public String getHTML() throws IOException {
         convert();
         return html.str;
     }
 
-    // main convert function (editor info to html head)
+    // gather all infomation and make full html string
+    public void convert() throws IOException {
+        html.str = "<!doctype html><html>" + genHead().replaceAll("\\s+"," ") + genBody() + "</html>";
+        html.save();
+    }
+
+    // main convert function 1 (editor info to html head)
     private String genHead() throws IOException {
-        FileInfo style = new FileInfo(Global.themesFolderPath + editor.currentTheme, 'r');
+        FileInfo style = new FileInfo(Global.resourcePath + Global.themesFolderPath + editor.currentTheme, 'r');
         String headContent = "<head>\n<meta charset='UTF-8'>\n";
         headContent += "<title>" + md.name + "</title>\n";
         headContent += "<style>\n" + style.str + "</style>";
         return headContent + "</head>";
     }
 
-    // main convert function (md to html body)
+    // main convert function 2 (md to html body)
     private String genBody() {
         StringBuilder converted = new StringBuilder();
         int type = -1, previousType = -1;

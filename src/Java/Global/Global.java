@@ -14,8 +14,7 @@ public class Global {
     public static final String tmpMDName = "Untitled.md";
     public static final String tmpHTMLName = "pre_render_html.html";
     public static final String[] defaultThemesNames = {"light(default).css","dark.css","page.css"};
-    public static final String aboutUrl = "https://apassbydreg.work/2019/10/31/codemarkdownedittool-user-guide/";
-
+    public static final String aboutUrl = "https://apassbydreg.work/open-source-files/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A%E8%AF%B4%E6%98%8E_update20191102.html";
 
     // resources
     public static final String logoRelativePath = "Logo.png";

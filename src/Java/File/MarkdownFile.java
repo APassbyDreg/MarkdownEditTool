@@ -11,6 +11,7 @@ public class MarkdownFile extends FileInfo{
         reload();
     }
 
+    // refresh lines
     public void reload() {
         lines = str.split("\n");
         if (lines == null) {
@@ -19,10 +20,12 @@ public class MarkdownFile extends FileInfo{
         lineIndex = 0;
     }
 
+    // return is able to read lines
     public boolean isReady() {
         return lineIndex < lines.length;
     }
 
+    // read str line by line
     public String readLine() {
         if (lineIndex < lines.length) {
             lineIndex++;
@@ -33,6 +36,7 @@ public class MarkdownFile extends FileInfo{
         return lines[lineIndex - 1];
     }
 
+    // mover back one line
     public void moveBack(int lineCount) {
         if (lineIndex - lineCount > 0) {
             lineIndex -= lineCount;
@@ -42,6 +46,7 @@ public class MarkdownFile extends FileInfo{
         }
     }
 
+    // move forward one line
     public void moveForward(int lineCount) {
         if (lineIndex + lineCount < lines.length) {
             lineIndex += lineCount;

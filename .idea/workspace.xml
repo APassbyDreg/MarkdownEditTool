@@ -7,24 +7,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="updated project info">
-      <change afterPath="$PROJECT_DIR$/src/Java/GUI/AboutPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Java/Global/Global.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Convert/BlockBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Convert/BlockBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Convert/BlockInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Convert/BlockInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Java/Convert/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Convert/Converter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Java/File/FileInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/File/FileInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Java/File/MarkdownFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/File/MarkdownFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Java/File/ProgramInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/File/ProgramInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Java/File/WebFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/File/WebFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/GUI/AlertBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/AlertBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GUI/AboutPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/AboutPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Java/GUI/EditPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/EditPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/GUI/IntroPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/IntroPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Java/GUI/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/GetTotalLineNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GetTotalLineNumber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/Global/GlobalVariables.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GetTotalLineNumber.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Global/Global.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Global/Global.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/fxml/GUI_edit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/GUI_edit.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/fxml/GUI_intro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/GUI_intro.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,6 +31,20 @@
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="DebuggerManager">
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
@@ -167,7 +178,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.GetTotalLineNumber">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -186,14 +197,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GetTotalLineNumber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="GetTotalLineNumber" />
-      <module name="MarkdownEditTool" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="MarkdownEditTool" />
@@ -205,28 +208,6 @@
       </extension>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Sample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="GUI.Sample" />
-      <module name="MarkdownEditTool" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="GUI.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test" />
-      <module name="MarkdownEditTool" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -249,11 +230,6 @@
     </configuration>
     <configuration name="MarkdownEditTool.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/test/test.jar" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="TestNG">
@@ -279,19 +255,11 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="Application.Test" />
-      <item itemvalue="Application.Sample" />
-      <item itemvalue="Application.GetTotalLineNumber" />
-      <item itemvalue="JAR Application.test.jar" />
       <item itemvalue="JAR Application.MarkdownEditTool.jar" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GetTotalLineNumber" />
         <item itemvalue="JAR Application.MarkdownEditTool.jar" />
-        <item itemvalue="JAR Application.test.jar" />
-        <item itemvalue="Application.Test" />
-        <item itemvalue="Application.Sample" />
       </list>
     </recent_temporary>
   </component>
@@ -348,6 +316,7 @@
       <workItem from="1572541699010" duration="61000" />
       <workItem from="1572605413937" duration="4824000" />
       <workItem from="1572611201180" duration="861000" />
+      <workItem from="1572677021576" duration="4520000" />
     </task>
     <task id="LOCAL-00001" summary="add functions to GUI">
       <created>1572340530273</created>
@@ -447,16 +416,5 @@
     <MESSAGE value="new UI" />
     <MESSAGE value="updated project info" />
     <option name="LAST_COMMIT_MESSAGE" value="updated project info" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Java/GUI/IntroPageController.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

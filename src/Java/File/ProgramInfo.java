@@ -1,7 +1,6 @@
 package File;
 
 import Global.Global;
-
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,6 +15,7 @@ public class ProgramInfo extends FileInfo {
     public LinkedList<String> recentFilePaths = new LinkedList<String>(); // new -> old
     public LinkedList<String> themesList = new LinkedList<String>();
 
+    // judge if this program is first open by searching the usersetting file
     public boolean isFirstOpen = false;
 
     public ProgramInfo() throws IOException {
@@ -31,10 +31,10 @@ public class ProgramInfo extends FileInfo {
         loadConfig();
     }
 
+    // load config from usersetting file
     private void loadConfig() {
         recentFilePaths = new LinkedList<String>();
         themesList = new LinkedList<String>();
-
         Pattern themeSettingRegex = Pattern.compile("# Theme: (.*)");
         Pattern recentRecordRegex = Pattern.compile("# Recent Files: \\[(.*)\\]");
         Matcher m;
@@ -54,7 +54,7 @@ public class ProgramInfo extends FileInfo {
         }
 
         // get available themes
-        File themeFolder = new File(Global.programAbsolutePath + Global.themesFolderPath);
+        File themeFolder = new File(Global.programAbsolutePath + Global.resourcePath + Global.themesFolderPath);
         String[] fileList = themeFolder.list();
         if (fileList != null) {
             for (String s : fileList) {
@@ -68,6 +68,7 @@ public class ProgramInfo extends FileInfo {
         }
     }
 
+    // set using theme
     public void setTheme(int index) throws IOException {
         if (index < themesList.size()) {
             currentTheme = themesList.get(index);
@@ -75,6 +76,7 @@ public class ProgramInfo extends FileInfo {
         }
     }
 
+    // add new file to recent file list
     public void addNewRecentFile(String path) throws IOException {
         path = path.replace('/','\\');
         if (path.startsWith("\\")) {
@@ -87,6 +89,7 @@ public class ProgramInfo extends FileInfo {
         }
     }
 
+    // save whenever settings are changed
     private void saveSettings() throws IOException {
         LinkedList<String> tmp = recentFilePaths;
         StringBuilder settings = new StringBuilder("## This file stores user's configs ##\n\n");
@@ -103,6 +106,7 @@ public class ProgramInfo extends FileInfo {
         loadConfig();
     }
 
+    // initialize on the program's first run
     private void initialize() throws IOException {
         InputStream rms = Thread.currentThread().getContextClassLoader().getResourceAsStream(Global.readmePath);
         InputStream uss = Thread.currentThread().getContextClassLoader().getResourceAsStream(Global.settingsPath);
@@ -119,6 +123,7 @@ public class ProgramInfo extends FileInfo {
         loadConfig();
     }
 
+    // create several default files
     private void createDefaultFiles(InputStream is, String relativePath) throws IOException {
         FileInfo newFile = new FileInfo(relativePath,'r');
         InputStreamReader isr = new InputStreamReader(is);
