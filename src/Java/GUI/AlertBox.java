@@ -26,6 +26,7 @@ public class AlertBox implements Initializable {
         msg1 = line;
 
         window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
         Parent root = FXMLLoader.load(EditPageController.class.getResource(Global.alertFXMLPath));
         Image logoPNG = new Image(Global.logoRelativePath);
         window.setTitle("File NOT Save Alert");

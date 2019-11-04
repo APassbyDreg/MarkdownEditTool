@@ -4,7 +4,7 @@
 
 **Creator:** Martin_Z_He
 
-**Download:** [latest release (20191102 16:00)](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar)
+**Download:** [latest release (20191104 15:45)](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar)
 
 ## Functions and features
 
@@ -25,8 +25,10 @@
 - run with JRE (requires Java 8 or above)
 
 ```
-java -jar [file location]/test.jar
+java -jar [file location]/MarkdownEditTool.jar
 ```
+
+note: you *should not* changed the file name for it is used in locating program path
 
 - build yourself
 

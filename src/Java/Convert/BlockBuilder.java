@@ -20,15 +20,14 @@ public class BlockBuilder {
             "^(\\s*)\\d*\\. (.*)" // li
     };
     public String[] spanRegex = {
-            "\\*\\*(.*)\\*\\*", // b
-            "\\*(.*)\\*", // em
-            "`(.*?)`", // code
             "!\\[(.*?)\\]\\((.*?)\\)", // img
             "\\[(.*?)\\]\\((.*?)\\)", // a
+            "\\*\\*(.*)\\*\\*", // b
+            "\\*(.*)\\*", // em
     };
     public Pattern[] linePatterns = new Pattern[lineRegex.length], spanPatterns = new Pattern [spanRegex.length];
     public String[] linePattenNames = {"HEADER", "QUOTE", "SEPARATE_LINE", "CODE_LINES", "UNORDERED_LIST", "ORDERED_LIST"};
-    public String[] spanPattenNames = {"BOLD", "EMPHASISE", "INLINE_CODE", "IMAGE", "LINK"};
+    public String[] spanPattenNames = {"IMAGE", "LINK", "BOLD", "EMPHASISE"};
 
     BlockBuilder() {
         for (int i=0; i<lineRegex.length; i++) {
@@ -173,6 +172,15 @@ public class BlockBuilder {
 
     // build inline html content
     public String spanBuilder(String line) {
+        // for code: replace special characters first:
+        Matcher codeMatcher = Pattern.compile("`(.*?)`").matcher(line);
+        while (codeMatcher.find()) {
+            BlockInfo block = new BlockInfo("INLINE_CODE");
+            block.setContent(codeMatcher.group(1).replace("[","&0x5B;").replace("*","&0x2A;"));
+            line = codeMatcher.replaceFirst(blockMaker(block));
+            codeMatcher = Pattern.compile("`(.*?)`").matcher(line);
+        }
+
         for (int i=0; i<spanRegex.length; i++) {
             Matcher m = spanPatterns[i].matcher(line);
             while (m.find()) {
@@ -185,6 +193,8 @@ public class BlockBuilder {
                 m = spanPatterns[i].matcher(line);
             }
         }
-        return line;
+
+        // restore changes
+        return line.replace("&0x5B;","[").replace("&0x2A;","*");
     }
 }

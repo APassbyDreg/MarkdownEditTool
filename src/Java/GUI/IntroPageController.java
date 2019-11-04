@@ -1,5 +1,9 @@
 package GUI;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.io.*;
 import java.net.URL;
 import java.util.*;
@@ -11,6 +15,8 @@ import javafx.animation.Transition;
 import javafx.collections.ObservableList;
 import javafx.fxml.*;
 import javafx.scene.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -34,7 +40,8 @@ public class IntroPageController implements Initializable{
     public static Button[] recentFileChooser = new Button[Global.MAX_RECENT_FILES_STORED];
     public static Label[] recentFileContent = new Label[Global.MAX_RECENT_FILES_STORED];
     public static Label[] recentFileAddress = new Label[Global.MAX_RECENT_FILES_STORED];
-    public static String[] recentFilePath = new String[Global.MAX_RECENT_FILES_STORED];
+    public static FileInfo[] recentFiles = new FileInfo[Global.MAX_RECENT_FILES_STORED];
+
 
     public static void display(Stage primaryStage) throws IOException {
         editor = new ProgramInfo();
@@ -80,8 +87,17 @@ public class IntroPageController implements Initializable{
     private void openRecent(int index) throws IOException {
         Stage thisWindow = (Stage) buttonOpen.getScene().getWindow();
         thisWindow.close();
-        EditPageController.displayEditWindow(recentFilePath[index],editor);
-        editor.addNewRecentFile(recentFilePath[index]);
+        EditPageController.displayEditWindow(recentFiles[index].src,editor);
+        editor.addNewRecentFile(recentFiles[index].src);
+    }
+
+    private void copyFilePath(int index) {
+        String path = recentFiles[index].src;
+        path = path.substring(0,path.length() - (recentFiles[index].name + ".md").length());
+        Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
+        Transferable tText = new StringSelection(path);
+        clip.setContents(tText, null);
+        Notification.display("MarkdownEditTool Message", "file path copied to keyboard");
     }
 
     public void introButtonAnimationIn(MouseEvent event) {
@@ -256,17 +272,15 @@ public class IntroPageController implements Initializable{
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        FileInfo[] recentFiles = new FileInfo[Global.MAX_RECENT_FILES_STORED];
-
         buttonOpen.getStyleClass().add("mainButtons");
         buttonNew.getStyleClass().add("mainButtons");
 
         ObservableList<VBox> items = recentList.getItems();
         LinkedList<String> paths = editor.recentFilePaths;
         for (int i=0; i < paths.size(); i++) {
-            recentFilePath[i] = paths.get(i);
+            int index = i;
             try {
-                recentFiles[i] = new FileInfo(recentFilePath[i],'a');
+                recentFiles[i] = new FileInfo(paths.get(i),'a');
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -276,16 +290,6 @@ public class IntroPageController implements Initializable{
             recentFileChooser[i].getStyleClass().add("recentViewChooser");
             recentFileContent[i].getStyleClass().add("recentViewContent");
             recentFileAddress[i].getStyleClass().add("recentViewAddress");
-            recentFileChooser[i].setOnMouseEntered(event -> chooseButtonAnimationIn(event));
-            recentFileChooser[i].setOnMouseExited(event -> chooseButtonAnimationOut(event));
-            recentFileContent[i].setOnMouseEntered(event -> chooseContentAnimationIn(event));
-            recentFileContent[i].setOnMouseExited(event -> chooseContentAnimationOut(event));
-            recentFileAddress[i].setOnMouseEntered(event -> chooseContentAnimationIn(event));
-            recentFileAddress[i].setOnMouseExited(event -> chooseContentAnimationOut(event));
-            recentFileContainer[i] = new VBox();
-            recentFileContainer[i].getChildren().addAll(recentFileChooser[i],recentFileContent[i],recentFileAddress[i]);
-            items.add(recentFileContainer[i]);
-            int index = i;
             recentFileChooser[i].setOnAction(e -> {
                 try {
                     openRecent(index);
@@ -293,14 +297,21 @@ public class IntroPageController implements Initializable{
                     ex.printStackTrace();
                 }
             });
-
-            mainWindow.setOnKeyPressed(event -> {
-                try {
-                    hotKeyHandler(event);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
+            recentFileChooser[i].setOnMouseEntered(event -> chooseButtonAnimationIn(event));
+            recentFileChooser[i].setOnMouseExited(event -> chooseButtonAnimationOut(event));
+            recentFileAddress[i].setOnMouseEntered(event -> chooseContentAnimationIn(event));
+            recentFileAddress[i].setOnMouseExited(event -> chooseContentAnimationOut(event));
+            recentFileAddress[i].setOnMouseClicked(e -> copyFilePath(index));
+            recentFileContainer[i] = new VBox();
+            recentFileContainer[i].getChildren().addAll(recentFileChooser[i],recentFileContent[i],recentFileAddress[i]);
+            items.add(recentFileContainer[i]);
         }
+        mainWindow.setOnKeyPressed(event -> {
+            try {
+                hotKeyHandler(event);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

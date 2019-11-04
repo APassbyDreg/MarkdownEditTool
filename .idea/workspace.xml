@@ -9,6 +9,33 @@
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="BUG fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/Convert/BlockBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/Convert/BlockBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/EditPageDesign.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/AboutPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/AboutPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/AlertBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/AlertBox.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/EditPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/EditPageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/IntroPageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/Notification.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/GUI/Notification.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/Global/Global.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarkdownEditTool/Global/Global.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/IntroPageDesign.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/Logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarkdownEditTool/sarasa-monoT-sc-semibold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Convert/BlockBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Convert/BlockBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GUI/AlertBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/AlertBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GUI/IntroPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/IntroPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GUI/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/Notification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Global/Global.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Global/Global.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/EditPageDesign.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/design/EditPageDesign.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/IntroPageDesign.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/design/IntroPageDesign.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/Logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/design/Logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/sarasa-monoT-sc-semibold.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/design/sarasa-monoT-sc-semibold.ttf" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -139,18 +166,18 @@
     <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\APass\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources" />
-      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources\themes" />
-      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources\fxml" />
-      <recent name="C:\Users\APass\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\resources\fxml" />
-      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\resources" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources\design" />
+      <recent name="C:\Users\APass\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources" />
+      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources\themes" />
+      <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources\fxml" />
+      <recent name="C:\Users\APass\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\resources\fxml" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -304,6 +331,7 @@
       <workItem from="1572605413937" duration="4824000" />
       <workItem from="1572611201180" duration="861000" />
       <workItem from="1572677021576" duration="4696000" />
+      <workItem from="1572848232973" duration="4825000" />
     </task>
     <task id="LOCAL-00001" summary="add functions to GUI">
       <created>1572340530273</created>
@@ -411,5 +439,26 @@
     <MESSAGE value="updated project info" />
     <MESSAGE value="BUG fix" />
     <option name="LAST_COMMIT_MESSAGE" value="BUG fix" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Java/GUI/Notification.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Java/GUI/Notification.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Java/GUI/Notification.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
