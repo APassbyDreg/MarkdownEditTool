@@ -4,7 +4,7 @@
 
 **Creator:** Martin_Z_He
 
-**Download:** [latest release (20191104 15:45)](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar)
+**Download:** [latest release (20191106 01:30)](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar)
 
 ## Functions and features
 
@@ -19,6 +19,11 @@
     - quotes
 - output to TXT/HTML file
 - customizable theme (view the instructions [here](https://github.com/APassbyDreg/MarkdownEditTool/blob/master/doc/Customize%20Themes%20Instructions.md))
+
+## New features of this release
+
+- customizable font size
+- preview can be close now
 
 ## How to use
 
@@ -49,7 +54,6 @@ download the whole project and open it in IntelliJ IDEA, build 'Main' class.
 
 - more preferences
 
-  - editor font size
   - autosave
 
 - notification/alert box redesign
