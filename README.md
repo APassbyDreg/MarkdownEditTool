@@ -39,8 +39,19 @@ download the whole project and open it in IntelliJ IDEA, build 'Main' class.
 ## Known issues
 
 - error preview on file open
-- chinese characters might come across encoding problem
+- Chinese characters might come across encoding problem
 
 ## User Guide and Program Introduction
 
 [Chinese] see [here](https://apassbydreg.work/open-source-files/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A%E8%AF%B4%E6%98%8E_update20191102.html)
+
+## Upcoming features:
+
+- more preferences
+
+  - editor font size
+  - autosave
+
+- notification/alert box redesign
+
+- editor page redesign

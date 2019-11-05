@@ -5,6 +5,7 @@ public class Global {
 
     public static final int MAX_RECENT_FILES_STORED = 4;
     public static final int NOTIFICATION_TIME_OUT = 10;
+    public static final int[] fontSizeList = new int[]{12,14,16,18,20,24,28};
     public static final String programName = "MDEditTool";
     public static final String jarName = "MarkdownEditTool";
     public static final String resourcePath = "resources\\";

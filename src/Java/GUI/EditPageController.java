@@ -34,16 +34,20 @@ public class EditPageController implements Initializable{
 
     private static TextArea editor;
     private static WebEngine previewEngine;
-    private static RadioMenuItem[] themesToggleGroupItems;
-    private static ToggleGroup themesToggleGroup = new ToggleGroup();
+    private static RadioMenuItem[] themesToggleGroupItems, fontSizeToggleGroupItems;
+    private static RadioMenuItem previewSwitch;
+    private static ToggleGroup themesToggleGroup = new ToggleGroup(), fontSizeToggleGroup = new ToggleGroup();
     private static Label totalCharNumIndicator, lastSaveTimeIndicator;
+    private static SplitPane splitView;
 
+    @FXML public SplitPane splitPane;
     @FXML public TextArea editPane;
     @FXML public WebView previewPane;
-    @FXML public Menu themeMenu;
+    @FXML public Menu themeMenu,fontSizeMenu;
     @FXML public MenuItem newButton,openButton,closeButton,saveButton,returnButton;
     @FXML public Label charNumLabel,lastSaveTimeLabel;
     @FXML public VBox mainPane;
+    @FXML public RadioMenuItem previewSwitchButton;
 
     public static void displayEditWindow(String mdPath, ProgramInfo editor) throws IOException {
         if (mdPath.equals("")) {
@@ -57,7 +61,6 @@ public class EditPageController implements Initializable{
 
         // create basic files
         settings = editor;
-        themesToggleGroupItems = new RadioMenuItem[settings.themesList.size()];
         web = new WebFile(Global.programAbsolutePath + Global.tmpFolderPath + Global.tmpHTMLName);
         web.makeTemp();
 
@@ -79,6 +82,12 @@ public class EditPageController implements Initializable{
                     ex.printStackTrace();
                 }
             }
+        });
+        window.widthProperty().addListener((obs, oldVal, newVal)->{
+            changePreviewStatus();
+        });
+        window.heightProperty().addListener((obs, oldVal, newVal)->{
+            changePreviewStatus();
         });
         window.show();
 
@@ -150,6 +159,10 @@ public class EditPageController implements Initializable{
             editorStyle += "-fx-text-fill:" + textMatcher.group(1) + ";";
         }
         editor.setStyle(editorStyle);
+    }
+
+    private static void setEditorFont(int size) {
+        editor.setFont(Font.loadFont(Thread.currentThread().getContextClassLoader().getResourceAsStream(Global.fontPath),size));
     }
 
     private static boolean closeProgram() throws IOException {
@@ -289,6 +302,17 @@ public class EditPageController implements Initializable{
         AboutPage.display();
     }
 
+    public static void changePreviewStatus() {
+        if (previewSwitch.isSelected()) {
+            splitView.setDividerPositions(0.4);
+            splitView.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(false) );
+        }
+        else {
+            splitView.setDividerPositions(1);
+            splitView.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(true) );
+        }
+    }
+
     private void hotKeyHandler(KeyEvent e) throws IOException {
         if (e.isControlDown() && e.getCode() == KeyCode.S) {
             if (e.isAltDown()) {
@@ -311,15 +335,20 @@ public class EditPageController implements Initializable{
         else if (e.isControlDown() && e.getCode() == KeyCode.E) {
             closeProgram();
         }
+        else if (e.isControlDown() && e.getCode() == KeyCode.P) {
+            previewSwitch.setSelected(!previewSwitch.isSelected());
+            changePreviewStatus();
+        }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Menu themeSelector = themeMenu;
         editor = editPane;
+        splitView = splitPane;
         previewEngine = previewPane.getEngine();
         totalCharNumIndicator = charNumLabel;
         lastSaveTimeIndicator = lastSaveTimeLabel;
+        previewSwitch = previewSwitchButton;
 
         // ini preview pane
         try {
@@ -330,6 +359,7 @@ public class EditPageController implements Initializable{
         }
 
         // ini themes select list
+        themesToggleGroupItems = new RadioMenuItem[settings.themesList.size()];
         LinkedList<String> themeList = settings.themesList;
         for (int i=0; i<themeList.size(); i++) {
             String name = themeList.get(i);
@@ -346,8 +376,32 @@ public class EditPageController implements Initializable{
             if (name.equals(settings.currentTheme)) {
                 themesToggleGroupItems[i].setSelected(true);
             }
-            themeSelector.getItems().add(themesToggleGroupItems[i]);
+            themeMenu.getItems().add(themesToggleGroupItems[i]);
         }
+
+        // ini font size select list
+        fontSizeToggleGroupItems = new RadioMenuItem[Global.fontSizeList.length];
+        for (int i=0; i<Global.fontSizeList.length; i++) {
+            fontSizeToggleGroupItems[i] = new RadioMenuItem(String.valueOf(Global.fontSizeList[i]));
+            fontSizeToggleGroupItems[i].setToggleGroup(fontSizeToggleGroup);
+            int fontSizeIndex = i;
+            fontSizeToggleGroupItems[i].setOnAction(event -> {
+                setEditorFont(Global.fontSizeList[fontSizeIndex]);
+                try {
+                    settings.setFontSize(Global.fontSizeList[fontSizeIndex]);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            if (Global.fontSizeList[i] == settings.getFontSize()) {
+                fontSizeToggleGroupItems[i].setSelected(true);
+            }
+            fontSizeMenu.getItems().add(fontSizeToggleGroupItems[i]);
+        }
+
+        // ini preview switch
+        previewSwitchButton.setSelected(true);
+        previewSwitchButton.setOnAction(event -> changePreviewStatus());
 
         // ini edit pane
         editor.setText(md.str);
@@ -363,7 +417,7 @@ public class EditPageController implements Initializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        editor.setFont(Font.loadFont(Thread.currentThread().getContextClassLoader().getResourceAsStream(Global.fontPath),16));
+        setEditorFont(settings.getFontSize());
 
         // ini hot key listener
         mainPane.setOnKeyPressed(e -> {

@@ -11,6 +11,7 @@ import java.util.*;
 
 public class ProgramInfo extends FileInfo {
     // in UserSettings.conf
+    private int fontSize = 16;
     public String currentTheme = "light(default).css";
     public LinkedList<String> recentFilePaths = new LinkedList<String>(); // new -> old
     public LinkedList<String> themesList = new LinkedList<String>();
@@ -37,6 +38,7 @@ public class ProgramInfo extends FileInfo {
         themesList = new LinkedList<String>();
         Pattern themeSettingRegex = Pattern.compile("# Theme: (.*)");
         Pattern recentRecordRegex = Pattern.compile("# Recent Files: \\[(.*)\\]");
+        Pattern fontSizeRegex = Pattern.compile("# Font Size: (\\d+)");
         Matcher m;
         m = themeSettingRegex.matcher(str);
         if (m.find()) {
@@ -51,6 +53,10 @@ public class ProgramInfo extends FileInfo {
                     recentFilePaths.offer(s.replace('/','\\'));
                 }
             }
+        }
+        m = fontSizeRegex.matcher(str);
+        if (m.find()) {
+            fontSize = Integer.parseInt(m.group(1));
         }
 
         // get available themes
@@ -74,6 +80,17 @@ public class ProgramInfo extends FileInfo {
             currentTheme = themesList.get(index);
             saveSettings();
         }
+    }
+
+    // set font size
+    public void setFontSize(int size) throws IOException {
+        fontSize = size;
+        saveSettings();
+    }
+
+    // get font size
+    public int getFontSize() {
+        return fontSize;
     }
 
     // add new file to recent file list
@@ -100,7 +117,8 @@ public class ProgramInfo extends FileInfo {
             settings.append(tmp.pop()).append(",");
             i++;
         }
-        settings.append("]");
+        settings.append("]\n\n");
+        settings.append("# Font Size: " + fontSize);
         str = settings.toString();
         save();
         loadConfig();

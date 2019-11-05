@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.IntroPageController">
+   <children>
+       <BorderPane prefHeight="600.0" prefWidth="1050.0" fx:id="mainWindow">
+           <left>
+               <VBox prefHeight="600.0" prefWidth="330.0" BorderPane.alignment="TOP_LEFT">
+                  <children>
+                      <Button fx:id="buttonNew" alignment="BASELINE_LEFT" onAction="#openNewFile" onMouseEntered="#introButtonAnimationIn" onMouseExited="#introButtonAnimationOut" prefHeight="50.0" prefWidth="200.0" text="New File">
+                     <VBox.margin>
+                        <Insets bottom="25.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                      <Button fx:id="buttonOpen" alignment="BASELINE_LEFT" onAction="#openExistFile" onMouseEntered="#introButtonAnimationIn" onMouseExited="#introButtonAnimationOut" prefHeight="50.0" prefWidth="200.0" text="Open File">
+                     <VBox.margin>
+                        <Insets bottom="50.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets left="50.0" top="100.0" />
+               </padding>
+               </VBox>
+           </left>
+         <right>
+            <VBox prefHeight="600.0" prefWidth="720.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label prefHeight="50.0" prefWidth="300.0" text="Recent Files">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="recentList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </ListView>
+               </children>
+               <padding>
+                  <Insets left="40.0" top="30.0" />
+               </padding>
+            </VBox>
+         </right>
+       </BorderPane>
+   </children>
+
+</AnchorPane>

@@ -25,11 +25,17 @@
                         <MenuItem mnemonicParsing="false" onAction="#saveAsHtml" text="Web Page (.html)" />
                     </items>
                   </Menu>
-                  <MenuItem mnemonicParsing="false" onAction="#returnIndex" text="Return Home Page (Ctrl+R)" />
+                        <MenuItem fx:id="returnButton" mnemonicParsing="false" onAction="#returnIndex" text="Return Home Page (Ctrl+R)" />
                         <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#setCloseButton" text="Close (Ctrl+E)" />
                   </items>
                 </Menu>
                 <Menu fx:id="themeMenu" mnemonicParsing="false" text="_Theme" />
+            <Menu mnemonicParsing="false" text="_Editor">
+              <items>
+                  <Menu fx:id="fontSizeMenu" mnemonicParsing="false" text="Font Size" />
+                  <RadioMenuItem fx:id="previewSwitchButton" mnemonicParsing="false" text="Turn On/Off Preview (Ctrl + P)" />
+              </items>
+            </Menu>
                 <Menu mnemonicParsing="false" text="_Help">
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#openAboutPage" text="About" />
@@ -37,7 +43,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-      <SplitPane dividerPositions="0.4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="2000.0" prefWidth="1600.0">
+      <SplitPane fx:id="splitPane" dividerPositions="0.4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="2000.0" prefWidth="1600.0">
          <items>
              <TextArea fx:id="editPane" prefHeight="1085.0" prefWidth="635.0" promptText="text here" wrapText="true">
                  <font>
