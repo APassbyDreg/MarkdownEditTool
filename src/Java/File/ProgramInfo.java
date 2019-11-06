@@ -11,6 +11,7 @@ import java.util.*;
 
 public class ProgramInfo extends FileInfo {
     // in UserSettings.conf
+    private int fontWeight;
     private int fontSize = 16;
     private boolean isAutoSaveOn = false;
     public String currentTheme = "light(default).css";
@@ -40,6 +41,7 @@ public class ProgramInfo extends FileInfo {
         Pattern themeSettingRegex = Pattern.compile("# Theme: (.*)");
         Pattern recentRecordRegex = Pattern.compile("# Recent Files: \\[(.*)\\]");
         Pattern fontSizeRegex = Pattern.compile("# Font Size: (\\d+)");
+        Pattern fontWeightRegex = Pattern.compile("# Font Weight: (.+)");
         Pattern autoSaveRegex = Pattern.compile("# Auto Save: (.+)");
         Matcher m;
         m = themeSettingRegex.matcher(str);
@@ -59,6 +61,15 @@ public class ProgramInfo extends FileInfo {
         m = fontSizeRegex.matcher(str);
         if (m.find()) {
             fontSize = Integer.parseInt(m.group(1));
+        }
+        m = fontWeightRegex.matcher(str);
+        if (m.find()) {
+            for (int i=0; i<Global.fontsName.length; i++) {
+                if (m.group(1).equals(Global.fontsName[i])) {
+                    fontWeight = i;
+                    break;
+                }
+            }
         }
         m = autoSaveRegex.matcher(str);
         if (m.find()) {
@@ -80,7 +91,6 @@ public class ProgramInfo extends FileInfo {
         }
     }
 
-    // set using theme
     public void setTheme(int index) throws IOException {
         if (index < themesList.size()) {
             currentTheme = themesList.get(index);
@@ -88,15 +98,24 @@ public class ProgramInfo extends FileInfo {
         }
     }
 
-    // set font size
     public void setFontSize(int size) throws IOException {
         fontSize = size;
         saveSettings();
     }
 
-    // get font size
     public int getFontSize() {
         return fontSize;
+    }
+
+    public void setFontWeight(int w) throws IOException {
+        if (w < Global.fontsName.length) {
+            fontWeight = w;
+            saveSettings();
+        }
+    }
+
+    public int getFontWeight() {
+        return fontWeight;
     }
 
     public void setAutoSave(boolean status) throws IOException {
@@ -134,6 +153,7 @@ public class ProgramInfo extends FileInfo {
         }
         settings.append("]");
         settings.append("\n\n# Font Size: " + fontSize);
+        settings.append("\n\n# Font Weight: " + Global.fontsName[fontWeight]);
         settings.append("\n\n# Auto Save: " + isAutoSaveOn);
         str = settings.toString();
         save();

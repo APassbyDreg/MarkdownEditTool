@@ -22,9 +22,10 @@
 
 ## New features of this release
 
-- customizable font size
+- customizable font size / font weight
 - preview can be close now
 - auto save
+- new hot keys
 
 ## How to use
 
@@ -52,10 +53,6 @@ download the whole project and open it in IntelliJ IDEA, build 'Main' class.
 [Chinese] see [here](https://apassbydreg.work/open-source-files/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A%E8%AF%B4%E6%98%8E_update20191102.html)
 
 ## Upcoming features:
-
-- more preferences
-
-  - autosave
 
 - notification/alert box redesign
 

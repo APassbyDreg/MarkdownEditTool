@@ -22,7 +22,8 @@ public class Global {
     public static final String logoRelativePath = "design/Logo.png";
     public static final String introPageDesignPath = "design/IntroPageDesign.css";
     public static final String editPageDesignPath = "design/EditPageDesign.css";
-    public static final String fontPath = "design/sarasa-monoT-sc-semibold.ttf";
+    public static final String[] fontsPath = new String[]{"design/sarasa-monoT-sc-light.ttf", "design/sarasa-monoT-sc-regular.ttf", "design/sarasa-monoT-sc-semibold.ttf"};
+    public static final String[] fontsName = new String[]{"light","regular","bold"};
     public static final String introFXMLPath = "/fxml/GUI_intro.fxml";
     public static final String editFXMLPath = "/fxml/GUI_edit.fxml";
     public static final String alertFXMLPath = "/fxml/AlertBox.fxml";

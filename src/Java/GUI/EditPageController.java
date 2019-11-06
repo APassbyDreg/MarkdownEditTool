@@ -13,6 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.*;
@@ -34,16 +35,16 @@ public class EditPageController implements Initializable{
 
     private static TextArea editor;
     private static WebEngine previewEngine;
-    private static RadioMenuItem[] themesToggleGroupItems, fontSizeToggleGroupItems;
+    private static RadioMenuItem[] themesToggleGroupItems, fontSizeToggleGroupItems, fontWeightToggleGroupItems;
     private static RadioMenuItem previewSwitch, autoSaveSwitch;
-    private static ToggleGroup themesToggleGroup = new ToggleGroup(), fontSizeToggleGroup = new ToggleGroup();
+    private static ToggleGroup themesToggleGroup = new ToggleGroup(), fontSizeToggleGroup = new ToggleGroup(), FontWeightToggleGroup = new ToggleGroup();
     private static Label totalCharNumIndicator, lastSaveTimeIndicator;
     private static SplitPane splitView;
 
     @FXML public SplitPane splitPane;
     @FXML public TextArea editPane;
     @FXML public WebView previewPane;
-    @FXML public Menu themeMenu,fontSizeMenu;
+    @FXML public Menu themeMenu,fontSizeMenu,fontWeightMenu;
     @FXML public MenuItem newButton,openButton,closeButton,saveButton,returnButton;
     @FXML public Label charNumLabel,lastSaveTimeLabel;
     @FXML public VBox mainPane;
@@ -164,8 +165,8 @@ public class EditPageController implements Initializable{
         editor.setStyle(editorStyle);
     }
 
-    private static void setEditorFont(int size) {
-        editor.setFont(Font.loadFont(Thread.currentThread().getContextClassLoader().getResourceAsStream(Global.fontPath),size));
+    private static void setEditorFont() {
+        editor.setFont(Font.loadFont(Thread.currentThread().getContextClassLoader().getResourceAsStream(Global.fontsPath[settings.getFontWeight()]),settings.getFontSize()));
     }
 
     private static boolean closeProgram() throws IOException {
@@ -346,6 +347,24 @@ public class EditPageController implements Initializable{
             previewSwitch.setSelected(!previewSwitch.isSelected());
             changePreviewStatus();
         }
+        else if (e.isControlDown() && e.getCode() == KeyCode.EQUALS) {
+            for (int i=0; i<Global.fontSizeList.length; i++) {
+                if (settings.getFontSize() == Global.fontSizeList[i]) {
+                    settings.setFontSize(Global.fontSizeList[(i+1) % Global.fontSizeList.length]);
+                    break;
+                }
+            }
+            setEditorFont();
+        }
+        else if (e.isControlDown() && e.getCode() == KeyCode.MINUS) {
+            for (int i=0; i<Global.fontSizeList.length; i++) {
+                if (settings.getFontSize() == Global.fontSizeList[i]) {
+                    settings.setFontSize(Global.fontSizeList[(i+Global.fontSizeList.length - 1) % Global.fontSizeList.length]);
+                    break;
+                }
+            }
+            setEditorFont();
+        }
     }
 
     @Override
@@ -394,7 +413,7 @@ public class EditPageController implements Initializable{
             fontSizeToggleGroupItems[i].setToggleGroup(fontSizeToggleGroup);
             int fontSizeIndex = i;
             fontSizeToggleGroupItems[i].setOnAction(event -> {
-                setEditorFont(Global.fontSizeList[fontSizeIndex]);
+                setEditorFont();
                 try {
                     settings.setFontSize(Global.fontSizeList[fontSizeIndex]);
                 } catch (IOException e) {
@@ -405,6 +424,26 @@ public class EditPageController implements Initializable{
                 fontSizeToggleGroupItems[i].setSelected(true);
             }
             fontSizeMenu.getItems().add(fontSizeToggleGroupItems[i]);
+        }
+
+        // ini font weight select list
+        fontWeightToggleGroupItems = new RadioMenuItem[Global.fontsName.length];
+        for (int i=0; i<Global.fontsName.length; i++) {
+            fontWeightToggleGroupItems[i] = new RadioMenuItem(Global.fontsName[i]);
+            fontWeightToggleGroupItems[i].setToggleGroup(FontWeightToggleGroup);
+            int fontWeightIndex = i;
+            fontWeightToggleGroupItems[i].setOnAction(event -> {
+                try {
+                    settings.setFontWeight(fontWeightIndex);
+                    setEditorFont();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            if (i == settings.getFontWeight()) {
+                fontWeightToggleGroupItems[i].setSelected(true);
+            }
+            fontWeightMenu.getItems().add(fontWeightToggleGroupItems[i]);
         }
 
         // ini switches
@@ -433,7 +472,7 @@ public class EditPageController implements Initializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        setEditorFont(settings.getFontSize());
+        setEditorFont();
 
         // ini hot key listener
         mainPane.setOnKeyPressed(e -> {

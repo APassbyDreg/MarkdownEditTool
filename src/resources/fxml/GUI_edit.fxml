@@ -3,9 +3,6 @@
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.web.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -33,6 +30,7 @@
             <Menu mnemonicParsing="false" text="_Editor">
               <items>
                   <Menu fx:id="fontSizeMenu" mnemonicParsing="false" text="Font Size" />
+                  <Menu fx:id="fontWeightMenu" mnemonicParsing="false" text="Font Weight" />
                   <RadioMenuItem fx:id="autoSaveButton" mnemonicParsing="false" text="Auto Save" />
                   <RadioMenuItem fx:id="previewButton" mnemonicParsing="false" text="Turn On/Off Preview (Ctrl + P)" />
               </items>
