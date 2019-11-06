@@ -4,7 +4,7 @@
 
 **Creator:** Martin_Z_He
 
-**Download:** [latest release (20191106 11:15)](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar)
+**Download:** [latest release (20191106 15:15)](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar)
 
 ## Functions and features
 
@@ -23,9 +23,11 @@
 ## New features of this release
 
 - customizable font size / font weight
-- preview can be close now
+- add only preview/editor menu button
 - auto save
+- improved theme design
 - new hot keys
+- new menu layout
 
 ## How to use
 

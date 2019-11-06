@@ -9,7 +9,7 @@ body {
     width: 84%;
     padding: 4%;
     margin: 4em auto;
-    background-color: #fafafa;
+    background-color: #fbfbf9;
     line-height: 135%;
     font-size: 1em;
     letter-spacing: 0.04em;
@@ -31,6 +31,9 @@ pre {
 
 code {
     color: rgb(10,10,80);
+    background-color: #eeeee0;
+    padding: 1px 4px;
+    border-radius: 4px;
     font-family: monospace;
 }
 

@@ -11,8 +11,8 @@ import java.util.*;
 
 public class ProgramInfo extends FileInfo {
     // in UserSettings.conf
-    private int fontWeight;
-    private int fontSize = 16;
+    private int fontWeight = 1;
+    private int fontSize = 2;
     private boolean isAutoSaveOn = false;
     public String currentTheme = "light(default).css";
     public LinkedList<String> recentFilePaths = new LinkedList<String>(); // new -> old
@@ -38,11 +38,11 @@ public class ProgramInfo extends FileInfo {
     private void loadConfig() {
         recentFilePaths = new LinkedList<String>();
         themesList = new LinkedList<String>();
-        Pattern themeSettingRegex = Pattern.compile("# Theme: (.*)");
-        Pattern recentRecordRegex = Pattern.compile("# Recent Files: \\[(.*)\\]");
-        Pattern fontSizeRegex = Pattern.compile("# Font Size: (\\d+)");
-        Pattern fontWeightRegex = Pattern.compile("# Font Weight: (.+)");
-        Pattern autoSaveRegex = Pattern.compile("# Auto Save: (.+)");
+        Pattern themeSettingRegex = Pattern.compile("# Theme: (.*);");
+        Pattern recentRecordRegex = Pattern.compile("# Recent Files: \\[(.*)\\];");
+        Pattern fontSizeRegex = Pattern.compile("# Font Size: (\\d+);");
+        Pattern fontWeightRegex = Pattern.compile("# Font Weight: (.+);");
+        Pattern autoSaveRegex = Pattern.compile("# Auto Save: (.+);");
         Matcher m;
         m = themeSettingRegex.matcher(str);
         if (m.find()) {
@@ -60,7 +60,12 @@ public class ProgramInfo extends FileInfo {
         }
         m = fontSizeRegex.matcher(str);
         if (m.find()) {
-            fontSize = Integer.parseInt(m.group(1));
+            for (int i=0; i<Global.fontSizeList.length; i++) {
+                if (Integer.parseInt(m.group(1)) == Global.fontSizeList[i]) {
+                    fontSize = i;
+                    break;
+                }
+            }
         }
         m = fontWeightRegex.matcher(str);
         if (m.find()) {
@@ -73,7 +78,7 @@ public class ProgramInfo extends FileInfo {
         }
         m = autoSaveRegex.matcher(str);
         if (m.find()) {
-            isAutoSaveOn = Boolean.valueOf(m.group(1));
+            isAutoSaveOn = Boolean.parseBoolean(m.group(1));
         }
 
         // get available themes
@@ -143,18 +148,18 @@ public class ProgramInfo extends FileInfo {
     // save whenever settings are changed
     private void saveSettings() throws IOException {
         LinkedList<String> tmp = recentFilePaths;
-        StringBuilder settings = new StringBuilder("## This file stores user's configs ##\n\n");
-        settings.append("# Theme: ").append(currentTheme).append("\n\n");
-        settings.append("# Recent Files: [");
+        StringBuilder settings = new StringBuilder("## This file stores user's configs ##");
+        settings.append("\n\n# Theme: ").append(currentTheme).append(";");
+        settings.append("\n\n# Recent Files: [");
         int i=0;
         while (tmp.size()!=0 && i<Global.MAX_RECENT_FILES_STORED) {
             settings.append(tmp.pop()).append(",");
             i++;
         }
-        settings.append("]");
-        settings.append("\n\n# Font Size: " + fontSize);
-        settings.append("\n\n# Font Weight: " + Global.fontsName[fontWeight]);
-        settings.append("\n\n# Auto Save: " + isAutoSaveOn);
+        settings.append("];");
+        settings.append("\n\n# Font Size: ").append(Global.fontSizeList[fontSize]).append(";");
+        settings.append("\n\n# Font Weight: ").append(Global.fontsName[fontWeight]).append(";");
+        settings.append("\n\n# Auto Save: ").append(isAutoSaveOn).append(";");
         str = settings.toString();
         save();
         loadConfig();
@@ -174,7 +179,6 @@ public class ProgramInfo extends FileInfo {
         createDefaultFiles(pts, Global.resourcePath + Global.themesFolderPath + Global.defaultThemesNames[2]);
         super.load();
         addNewRecentFile(Global.programAbsolutePath +  Global.resourcePath + Global.readmeName);
-        loadConfig();
     }
 
     // create several default files

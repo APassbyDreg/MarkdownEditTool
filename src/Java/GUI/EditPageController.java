@@ -13,7 +13,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.*;
@@ -24,7 +23,6 @@ import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import File.*;
 
 public class EditPageController implements Initializable{
@@ -36,7 +34,7 @@ public class EditPageController implements Initializable{
     private static TextArea editor;
     private static WebEngine previewEngine;
     private static RadioMenuItem[] themesToggleGroupItems, fontSizeToggleGroupItems, fontWeightToggleGroupItems;
-    private static RadioMenuItem previewSwitch, autoSaveSwitch;
+    private static RadioMenuItem previewOnlySwitch, editorOnlySwitch, autoSaveSwitch;
     private static ToggleGroup themesToggleGroup = new ToggleGroup(), fontSizeToggleGroup = new ToggleGroup(), FontWeightToggleGroup = new ToggleGroup();
     private static Label totalCharNumIndicator, lastSaveTimeIndicator;
     private static SplitPane splitView;
@@ -48,7 +46,7 @@ public class EditPageController implements Initializable{
     @FXML public MenuItem newButton,openButton,closeButton,saveButton,returnButton;
     @FXML public Label charNumLabel,lastSaveTimeLabel;
     @FXML public VBox mainPane;
-    @FXML public RadioMenuItem previewButton,autoSaveButton;
+    @FXML public RadioMenuItem previewOnlyButton,editorOnlyButton,autoSaveButton;
 
     public static void displayEditWindow(String mdPath, ProgramInfo editor) throws IOException {
         if (mdPath.equals("")) {
@@ -166,7 +164,9 @@ public class EditPageController implements Initializable{
     }
 
     private static void setEditorFont() {
-        editor.setFont(Font.loadFont(Thread.currentThread().getContextClassLoader().getResourceAsStream(Global.fontsPath[settings.getFontWeight()]),settings.getFontSize()));
+        fontSizeToggleGroupItems[settings.getFontSize()].setSelected(true);
+        fontWeightToggleGroupItems[settings.getFontWeight()].setSelected(true);
+        editor.setFont(Font.loadFont(Thread.currentThread().getContextClassLoader().getResourceAsStream(Global.fontsPath[settings.getFontWeight()]),Global.fontSizeList[settings.getFontSize()]));
     }
 
     private static boolean closeProgram() throws IOException {
@@ -311,13 +311,23 @@ public class EditPageController implements Initializable{
     }
 
     public static void changePreviewStatus() {
-        if (previewSwitch.isSelected()) {
-            splitView.setDividerPositions(0.4);
-            splitView.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(false) );
+        if (previewOnlySwitch.isSelected()) {
+            editor.setEditable(false);
+            editor.setVisible(false);
+            splitView.setDividerPositions(0);
+            splitView.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(true));
+        }
+        else if (editorOnlySwitch.isSelected()) {
+            editor.setEditable(true);
+            editor.setVisible(true);
+            splitView.setDividerPositions(1);
+            splitView.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(true));
         }
         else {
-            splitView.setDividerPositions(1);
-            splitView.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(true) );
+            editor.setEditable(true);
+            editor.setVisible(true);
+            splitView.setDividerPositions(0.4);
+            splitView.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(false));
         }
     }
 
@@ -340,28 +350,34 @@ public class EditPageController implements Initializable{
         else if (e.isControlDown() && e.getCode() == KeyCode.R) {
             returnIndex();
         }
-        else if (e.isControlDown() && e.getCode() == KeyCode.E) {
+        else if (e.isControlDown() && e.getCode() == KeyCode.Q) {
             closeProgram();
         }
+        else if (e.isControlDown() && e.getCode() == KeyCode.E) {
+            editorOnlySwitch.setSelected(!editorOnlySwitch.isSelected());
+            previewOnlySwitch.setSelected(false);
+            changePreviewStatus();
+        }
         else if (e.isControlDown() && e.getCode() == KeyCode.P) {
-            previewSwitch.setSelected(!previewSwitch.isSelected());
+            previewOnlySwitch.setSelected(!previewOnlySwitch.isSelected());
+            editorOnlySwitch.setSelected(false);
             changePreviewStatus();
         }
         else if (e.isControlDown() && e.getCode() == KeyCode.EQUALS) {
-            for (int i=0; i<Global.fontSizeList.length; i++) {
-                if (settings.getFontSize() == Global.fontSizeList[i]) {
-                    settings.setFontSize(Global.fontSizeList[(i+1) % Global.fontSizeList.length]);
-                    break;
-                }
+            if (e.isShiftDown()) {
+                settings.setFontWeight((settings.getFontWeight()+1)%Global.fontsName.length);
+            }
+            else {
+                settings.setFontSize((settings.getFontSize()+1)%Global.fontSizeList.length);
             }
             setEditorFont();
         }
         else if (e.isControlDown() && e.getCode() == KeyCode.MINUS) {
-            for (int i=0; i<Global.fontSizeList.length; i++) {
-                if (settings.getFontSize() == Global.fontSizeList[i]) {
-                    settings.setFontSize(Global.fontSizeList[(i+Global.fontSizeList.length - 1) % Global.fontSizeList.length]);
-                    break;
-                }
+            if (e.isShiftDown()) {
+                settings.setFontWeight((settings.getFontWeight()+Global.fontsName.length-1)%Global.fontsName.length);
+            }
+            else {
+                settings.setFontSize((settings.getFontSize()+Global.fontSizeList.length-1)%Global.fontSizeList.length);
             }
             setEditorFont();
         }
@@ -374,7 +390,8 @@ public class EditPageController implements Initializable{
         previewEngine = previewPane.getEngine();
         totalCharNumIndicator = charNumLabel;
         lastSaveTimeIndicator = lastSaveTimeLabel;
-        previewSwitch = previewButton;
+        previewOnlySwitch = previewOnlyButton;
+        editorOnlySwitch = editorOnlyButton;
         autoSaveSwitch = autoSaveButton;
 
         // ini preview pane
@@ -413,9 +430,9 @@ public class EditPageController implements Initializable{
             fontSizeToggleGroupItems[i].setToggleGroup(fontSizeToggleGroup);
             int fontSizeIndex = i;
             fontSizeToggleGroupItems[i].setOnAction(event -> {
-                setEditorFont();
                 try {
-                    settings.setFontSize(Global.fontSizeList[fontSizeIndex]);
+                    settings.setFontSize(fontSizeIndex);
+                    setEditorFont();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -447,8 +464,14 @@ public class EditPageController implements Initializable{
         }
 
         // ini switches
-        previewButton.setSelected(true);
-        previewButton.setOnAction(event -> changePreviewStatus());
+        previewOnlyButton.setOnAction(event -> {
+            editorOnlySwitch.setSelected(false);
+            changePreviewStatus();
+        });
+        editorOnlyButton.setOnAction(event -> {
+            previewOnlySwitch.setSelected(false);
+            changePreviewStatus();
+        });
         autoSaveButton.setSelected(settings.getAutoSaveStatus());
         autoSaveButton.setOnAction(event -> {
             try {

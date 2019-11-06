@@ -23,6 +23,9 @@ pre {
 
 code {
     color: rgb(148, 59, 0);
+    background-color: #f3f3f6;
+    padding: 1px 4px;
+    border-radius: 4px;
     font-family: monospace;
 }
 

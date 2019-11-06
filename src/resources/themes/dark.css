@@ -22,10 +22,11 @@ pre {
 }
 
 code {
-    color: rgb(237, 230, 255);
+    color: rgb(243, 240, 255);
+    background-color: #353f55;
+    padding: 1px 4px;
+    border-radius: 4px;
     font-family: monospace;
-    font-weight: bold;
-    font-size: 1.1em;
     letter-spacing: 0.1em;
 }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.web.*?>
@@ -15,6 +16,9 @@
                         <MenuItem fx:id="newButton" mnemonicParsing="false" onAction="#openNewFile" text="New (Ctrl+N)" />
                         <MenuItem fx:id="openButton" mnemonicParsing="false" onAction="#openExistedFile" text="Open (Ctrl+O)" />
                         <MenuItem fx:id="saveButton" mnemonicParsing="false" onAction="#setSaveButton" text="Save (Ctrl+S)" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <RadioMenuItem fx:id="autoSaveButton" mnemonicParsing="false" text="Auto Save" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
                   <Menu mnemonicParsing="false" text="Save As">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#saveAsMarkdown" text="New Markdown File (.md)" />
@@ -22,17 +26,22 @@
                         <MenuItem mnemonicParsing="false" onAction="#saveAsHtml" text="Web Page (.html)" />
                     </items>
                   </Menu>
+                  <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem fx:id="returnButton" mnemonicParsing="false" onAction="#returnIndex" text="Return Home Page (Ctrl+R)" />
-                        <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#setCloseButton" text="Close (Ctrl+E)" />
+                        <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#setCloseButton" text="Close (Ctrl+Q)" />
                   </items>
                 </Menu>
-                <Menu fx:id="themeMenu" mnemonicParsing="false" text="_Theme" />
             <Menu mnemonicParsing="false" text="_Editor">
               <items>
+                  <RadioMenuItem fx:id="previewOnlyButton" mnemonicParsing="false" text="Show Preview Only (Ctrl + P)" />
+                  <RadioMenuItem fx:id="editorOnlyButton" mnemonicParsing="false" text="Show Editor Only (Ctrl + E)" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="_Look">
+              <items>
+                      <Menu fx:id="themeMenu" mnemonicParsing="false" text="Theme" />
                   <Menu fx:id="fontSizeMenu" mnemonicParsing="false" text="Font Size" />
                   <Menu fx:id="fontWeightMenu" mnemonicParsing="false" text="Font Weight" />
-                  <RadioMenuItem fx:id="autoSaveButton" mnemonicParsing="false" text="Auto Save" />
-                  <RadioMenuItem fx:id="previewButton" mnemonicParsing="false" text="Turn On/Off Preview (Ctrl + P)" />
               </items>
             </Menu>
                 <Menu mnemonicParsing="false" text="_Help">

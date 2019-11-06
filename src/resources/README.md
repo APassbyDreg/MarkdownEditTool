@@ -2,13 +2,7 @@
 
 ## Project Info
 
-**Creator:** Martin_Z_He (ID.18373263)
-
-## Introduction
-
-With this program, you can edit your Markdown file with different theme.
-
-This program is written with Java, GUI powered by JavaFX.
+**Creator:** Martin_Z_He
 
 ## Functions and features
 
@@ -24,12 +18,25 @@ This program is written with Java, GUI powered by JavaFX.
 - output to TXT/HTML file
 - customizable theme (view the instructions [here](https://github.com/APassbyDreg/MarkdownEditTool/blob/master/doc/Customize%20Themes%20Instructions.md))
 
+## New features of recent releases
+
+- customizable font size / font weight
+- add only preview/editor menu button
+- auto save
+- new hot keys
+- new menu layout
+
 ## Known issues
 
-- sometimes recent files disappear
 - error preview on file open
-- chinese characters might come across encoding problem
+- Chinese characters might come across encoding problem
 
-## User Guide
+## User Guide and Program Introduction
 
-see [here](https://apassbydreg.work/2019/10/31/codemarkdownedittool-user-guide/)
+[Chinese] see [here](https://apassbydreg.work/open-source-files/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A%E8%AF%B4%E6%98%8E_update20191102.html)
+
+## Upcoming features:
+
+- notification/alert box redesign
+
+- editor page redesign
