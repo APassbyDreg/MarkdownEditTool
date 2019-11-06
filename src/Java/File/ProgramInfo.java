@@ -12,6 +12,7 @@ import java.util.*;
 public class ProgramInfo extends FileInfo {
     // in UserSettings.conf
     private int fontSize = 16;
+    private boolean isAutoSaveOn = false;
     public String currentTheme = "light(default).css";
     public LinkedList<String> recentFilePaths = new LinkedList<String>(); // new -> old
     public LinkedList<String> themesList = new LinkedList<String>();
@@ -32,13 +33,14 @@ public class ProgramInfo extends FileInfo {
         loadConfig();
     }
 
-    // load config from usersetting file
+    // load config from user settings file
     private void loadConfig() {
         recentFilePaths = new LinkedList<String>();
         themesList = new LinkedList<String>();
         Pattern themeSettingRegex = Pattern.compile("# Theme: (.*)");
         Pattern recentRecordRegex = Pattern.compile("# Recent Files: \\[(.*)\\]");
         Pattern fontSizeRegex = Pattern.compile("# Font Size: (\\d+)");
+        Pattern autoSaveRegex = Pattern.compile("# Auto Save: (.+)");
         Matcher m;
         m = themeSettingRegex.matcher(str);
         if (m.find()) {
@@ -57,6 +59,10 @@ public class ProgramInfo extends FileInfo {
         m = fontSizeRegex.matcher(str);
         if (m.find()) {
             fontSize = Integer.parseInt(m.group(1));
+        }
+        m = autoSaveRegex.matcher(str);
+        if (m.find()) {
+            isAutoSaveOn = Boolean.valueOf(m.group(1));
         }
 
         // get available themes
@@ -93,6 +99,15 @@ public class ProgramInfo extends FileInfo {
         return fontSize;
     }
 
+    public void setAutoSave(boolean status) throws IOException {
+        isAutoSaveOn = status;
+        saveSettings();
+    }
+
+    public boolean getAutoSaveStatus() {
+        return isAutoSaveOn;
+    }
+
     // add new file to recent file list
     public void addNewRecentFile(String path) throws IOException {
         path = path.replace('/','\\');
@@ -117,8 +132,9 @@ public class ProgramInfo extends FileInfo {
             settings.append(tmp.pop()).append(",");
             i++;
         }
-        settings.append("]\n\n");
-        settings.append("# Font Size: " + fontSize);
+        settings.append("]");
+        settings.append("\n\n# Font Size: " + fontSize);
+        settings.append("\n\n# Auto Save: " + isAutoSaveOn);
         str = settings.toString();
         save();
         loadConfig();

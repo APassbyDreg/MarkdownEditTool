@@ -35,7 +35,7 @@ public class EditPageController implements Initializable{
     private static TextArea editor;
     private static WebEngine previewEngine;
     private static RadioMenuItem[] themesToggleGroupItems, fontSizeToggleGroupItems;
-    private static RadioMenuItem previewSwitch;
+    private static RadioMenuItem previewSwitch, autoSaveSwitch;
     private static ToggleGroup themesToggleGroup = new ToggleGroup(), fontSizeToggleGroup = new ToggleGroup();
     private static Label totalCharNumIndicator, lastSaveTimeIndicator;
     private static SplitPane splitView;
@@ -47,7 +47,7 @@ public class EditPageController implements Initializable{
     @FXML public MenuItem newButton,openButton,closeButton,saveButton,returnButton;
     @FXML public Label charNumLabel,lastSaveTimeLabel;
     @FXML public VBox mainPane;
-    @FXML public RadioMenuItem previewSwitchButton;
+    @FXML public RadioMenuItem previewButton,autoSaveButton;
 
     public static void displayEditWindow(String mdPath, ProgramInfo editor) throws IOException {
         if (mdPath.equals("")) {
@@ -107,9 +107,12 @@ public class EditPageController implements Initializable{
             window.setTitle(Global.programName + " : " + md.name);
         }
         updateCharNum();
+        if (settings.getAutoSaveStatus()) {
+            save();
+        }
     }
 
-    public static boolean save() throws IOException {
+    private static boolean save() throws IOException {
         boolean isSuccessful = true;
         if (md.isTemp()) {
             String content = md.str;
@@ -208,6 +211,10 @@ public class EditPageController implements Initializable{
     private static void updateLastSaveTime() {
         String t = md.lastSaveTime;
         lastSaveTimeIndicator.setText("Last save time: " + t);
+    }
+
+    private static void changeAutoSaveStatus() throws IOException {
+        settings.setAutoSave(autoSaveSwitch.isSelected());
     }
 
     public void openNewFile() throws IOException {
@@ -348,7 +355,8 @@ public class EditPageController implements Initializable{
         previewEngine = previewPane.getEngine();
         totalCharNumIndicator = charNumLabel;
         lastSaveTimeIndicator = lastSaveTimeLabel;
-        previewSwitch = previewSwitchButton;
+        previewSwitch = previewButton;
+        autoSaveSwitch = autoSaveButton;
 
         // ini preview pane
         try {
@@ -399,9 +407,17 @@ public class EditPageController implements Initializable{
             fontSizeMenu.getItems().add(fontSizeToggleGroupItems[i]);
         }
 
-        // ini preview switch
-        previewSwitchButton.setSelected(true);
-        previewSwitchButton.setOnAction(event -> changePreviewStatus());
+        // ini switches
+        previewButton.setSelected(true);
+        previewButton.setOnAction(event -> changePreviewStatus());
+        autoSaveButton.setSelected(settings.getAutoSaveStatus());
+        autoSaveButton.setOnAction(event -> {
+            try {
+                changeAutoSaveStatus();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
         // ini edit pane
         editor.setText(md.str);

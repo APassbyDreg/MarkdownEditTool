@@ -33,7 +33,8 @@
             <Menu mnemonicParsing="false" text="_Editor">
               <items>
                   <Menu fx:id="fontSizeMenu" mnemonicParsing="false" text="Font Size" />
-                  <RadioMenuItem fx:id="previewSwitchButton" mnemonicParsing="false" text="Turn On/Off Preview (Ctrl + P)" />
+                  <RadioMenuItem fx:id="autoSaveButton" mnemonicParsing="false" text="Auto Save" />
+                  <RadioMenuItem fx:id="previewButton" mnemonicParsing="false" text="Turn On/Off Preview (Ctrl + P)" />
               </items>
             </Menu>
                 <Menu mnemonicParsing="false" text="_Help">
