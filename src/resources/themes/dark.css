@@ -30,6 +30,10 @@ code {
     letter-spacing: 0.1em;
 }
 
+pre code {
+    background-color: rgba(0,0,0,0);
+}
+
 blockquote {
     border: rgb(150, 235, 192) 0.5em;
     border-left-style: solid;

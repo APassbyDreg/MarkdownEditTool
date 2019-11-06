@@ -56,6 +56,8 @@ download the whole project and open it in IntelliJ IDEA, build 'Main' class.
 
 ## Upcoming features:
 
+- scroll link
+
 - notification/alert box redesign
 
 - editor page redesign
