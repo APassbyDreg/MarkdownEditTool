@@ -2,6 +2,7 @@ package GUI;
 
 import Convert.Converter;
 import Global.Global;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,6 +14,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.*;
@@ -21,6 +23,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import File.*;
@@ -30,14 +34,14 @@ public class EditPageController implements Initializable{
     private static WebFile web;
     private static ProgramInfo settings;
     private static Stage window;
-
     private static TextArea editor;
     private static WebEngine previewEngine;
     private static RadioMenuItem[] themesToggleGroupItems, fontSizeToggleGroupItems, fontWeightToggleGroupItems;
-    private static RadioMenuItem previewOnlySwitch, editorOnlySwitch, autoSaveSwitch;
+    private static RadioMenuItem previewOnlySwitch, editorOnlySwitch, autoSaveSwitch, autoScrollSwitch;
     private static ToggleGroup themesToggleGroup = new ToggleGroup(), fontSizeToggleGroup = new ToggleGroup(), FontWeightToggleGroup = new ToggleGroup();
     private static Label totalCharNumIndicator, lastSaveTimeIndicator;
     private static SplitPane splitView;
+    private static boolean isScrollSyncing = true, autoScroll = true;
 
     @FXML public SplitPane splitPane;
     @FXML public TextArea editPane;
@@ -46,7 +50,7 @@ public class EditPageController implements Initializable{
     @FXML public MenuItem newButton,openButton,closeButton,saveButton,returnButton;
     @FXML public Label charNumLabel,lastSaveTimeLabel;
     @FXML public VBox mainPane;
-    @FXML public RadioMenuItem previewOnlyButton,editorOnlyButton,autoSaveButton;
+    @FXML public RadioMenuItem previewOnlyButton,editorOnlyButton,autoSaveButton,autoScrollButton;
 
     public static void displayEditWindow(String mdPath, ProgramInfo editor) throws IOException {
         if (mdPath.equals("")) {
@@ -218,6 +222,87 @@ public class EditPageController implements Initializable{
         settings.setAutoSave(autoSaveSwitch.isSelected());
     }
 
+    private static void syncScroll() {
+        double yPos = editor.getScrollTop();
+        double height = editor.getHeight();
+        double editorHeight = ((Text)editor.lookup(".text")).getBoundsInLocal().getHeight();
+        int previewHeight = (Integer) previewEngine.executeScript("document.body.scrollHeight");
+        previewEngine.executeScript("window.scrollTo(0," + (previewHeight-height)*(yPos/(editorHeight-height)) + ")");
+    }
+
+    private static void changePreviewStatus() {
+        if (previewOnlySwitch.isSelected()) {
+            editor.setEditable(false);
+            editor.setVisible(false);
+            splitView.setDividerPositions(0);
+            splitView.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(true));
+        }
+        else if (editorOnlySwitch.isSelected()) {
+            editor.setEditable(true);
+            editor.setVisible(true);
+            splitView.setDividerPositions(1);
+            splitView.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(true));
+        }
+        else {
+            editor.setEditable(true);
+            editor.setVisible(true);
+            splitView.setDividerPositions(0.4);
+            splitView.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(false));
+        }
+    }
+
+    private void hotKeyHandler(KeyEvent e) throws IOException {
+        if (e.isControlDown() && e.getCode() == KeyCode.S) {
+            if (e.isAltDown()) {
+                saveAsMarkdown();
+            }
+            save();
+        }
+        else if (e.isControlDown() && e.getCode() == KeyCode.N) {
+            openNewFile();
+        }
+        else if (e.isControlDown() && e.getCode() == KeyCode.O) {
+            openExistedFile();
+        }
+        else if (e.isControlDown() && e.getCode() == KeyCode.H) {
+            openAboutPage();
+        }
+        else if (e.isControlDown() && e.getCode() == KeyCode.R) {
+            returnIndex();
+        }
+        else if (e.isControlDown() && e.getCode() == KeyCode.Q) {
+            closeProgram();
+        }
+        else if (e.isControlDown() && e.getCode() == KeyCode.E) {
+            editorOnlySwitch.setSelected(!editorOnlySwitch.isSelected());
+            previewOnlySwitch.setSelected(false);
+            changePreviewStatus();
+        }
+        else if (e.isControlDown() && e.getCode() == KeyCode.P) {
+            previewOnlySwitch.setSelected(!previewOnlySwitch.isSelected());
+            editorOnlySwitch.setSelected(false);
+            changePreviewStatus();
+        }
+        else if (e.isControlDown() && e.getCode() == KeyCode.EQUALS) {
+            if (e.isShiftDown()) {
+                settings.setFontWeight((settings.getFontWeight()+1)%Global.fontsName.length);
+            }
+            else {
+                settings.setFontSize((settings.getFontSize()+1)%Global.fontSizeList.length);
+            }
+            setEditorFont();
+        }
+        else if (e.isControlDown() && e.getCode() == KeyCode.MINUS) {
+            if (e.isShiftDown()) {
+                settings.setFontWeight((settings.getFontWeight()+Global.fontsName.length-1)%Global.fontsName.length);
+            }
+            else {
+                settings.setFontSize((settings.getFontSize()+Global.fontSizeList.length-1)%Global.fontSizeList.length);
+            }
+            setEditorFont();
+        }
+    }
+
     public void openNewFile() throws IOException {
         if (closeProgram()) {
             displayEditWindow("",settings);
@@ -310,77 +395,8 @@ public class EditPageController implements Initializable{
         AboutPage.display();
     }
 
-    public static void changePreviewStatus() {
-        if (previewOnlySwitch.isSelected()) {
-            editor.setEditable(false);
-            editor.setVisible(false);
-            splitView.setDividerPositions(0);
-            splitView.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(true));
-        }
-        else if (editorOnlySwitch.isSelected()) {
-            editor.setEditable(true);
-            editor.setVisible(true);
-            splitView.setDividerPositions(1);
-            splitView.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(true));
-        }
-        else {
-            editor.setEditable(true);
-            editor.setVisible(true);
-            splitView.setDividerPositions(0.4);
-            splitView.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(false));
-        }
-    }
-
-    private void hotKeyHandler(KeyEvent e) throws IOException {
-        if (e.isControlDown() && e.getCode() == KeyCode.S) {
-            if (e.isAltDown()) {
-                saveAsMarkdown();
-            }
-            save();
-        }
-        else if (e.isControlDown() && e.getCode() == KeyCode.N) {
-            openNewFile();
-        }
-        else if (e.isControlDown() && e.getCode() == KeyCode.O) {
-            openExistedFile();
-        }
-        else if (e.isControlDown() && e.getCode() == KeyCode.H) {
-            openAboutPage();
-        }
-        else if (e.isControlDown() && e.getCode() == KeyCode.R) {
-            returnIndex();
-        }
-        else if (e.isControlDown() && e.getCode() == KeyCode.Q) {
-            closeProgram();
-        }
-        else if (e.isControlDown() && e.getCode() == KeyCode.E) {
-            editorOnlySwitch.setSelected(!editorOnlySwitch.isSelected());
-            previewOnlySwitch.setSelected(false);
-            changePreviewStatus();
-        }
-        else if (e.isControlDown() && e.getCode() == KeyCode.P) {
-            previewOnlySwitch.setSelected(!previewOnlySwitch.isSelected());
-            editorOnlySwitch.setSelected(false);
-            changePreviewStatus();
-        }
-        else if (e.isControlDown() && e.getCode() == KeyCode.EQUALS) {
-            if (e.isShiftDown()) {
-                settings.setFontWeight((settings.getFontWeight()+1)%Global.fontsName.length);
-            }
-            else {
-                settings.setFontSize((settings.getFontSize()+1)%Global.fontSizeList.length);
-            }
-            setEditorFont();
-        }
-        else if (e.isControlDown() && e.getCode() == KeyCode.MINUS) {
-            if (e.isShiftDown()) {
-                settings.setFontWeight((settings.getFontWeight()+Global.fontsName.length-1)%Global.fontsName.length);
-            }
-            else {
-                settings.setFontSize((settings.getFontSize()+Global.fontSizeList.length-1)%Global.fontSizeList.length);
-            }
-            setEditorFont();
-        }
+    public void switchAutoScroll() {
+        autoScroll = autoScrollSwitch.isSelected();
     }
 
     @Override
@@ -393,6 +409,7 @@ public class EditPageController implements Initializable{
         previewOnlySwitch = previewOnlyButton;
         editorOnlySwitch = editorOnlyButton;
         autoSaveSwitch = autoSaveButton;
+        autoScrollSwitch = autoScrollButton;
 
         // ini preview pane
         try {
@@ -480,12 +497,14 @@ public class EditPageController implements Initializable{
                 e.printStackTrace();
             }
         });
+        autoScrollButton.setSelected(true);
 
         // ini edit pane
         editor.setText(md.str);
         editor.setOnKeyReleased(e -> {
             try {
                 refresh();
+                isScrollSyncing = true;
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -496,6 +515,7 @@ public class EditPageController implements Initializable{
             e.printStackTrace();
         }
         setEditorFont();
+        previewPane.setOnScroll(e->{isScrollSyncing=false;});
 
         // ini hot key listener
         mainPane.setOnKeyPressed(e -> {
@@ -506,6 +526,30 @@ public class EditPageController implements Initializable{
             }
         });
 
+        // ini bottom bar
         updateCharNum();
+
+        // sync scroll bars
+//        editor.scrollTopProperty().addListener((obj,start,end) -> {syncScroll();});
+        Timer t = new Timer();
+        t.schedule(new task(),0,1);
+    }
+
+    static class task extends TimerTask {
+
+        /**
+         * The action to be performed by this timer task.
+         */
+        @Override
+        public void run() {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    if (isScrollSyncing && autoScroll) {
+                        syncScroll();
+                    }
+                }
+            });
+        }
     }
 }

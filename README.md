@@ -20,7 +20,7 @@
 - output to TXT/HTML file
 - customizable theme (view the instructions [here](https://github.com/APassbyDreg/MarkdownEditTool/blob/master/doc/Customize%20Themes%20Instructions.md))
 
-## New features of this release
+## New features of recent releases
 
 - customizable font size / font weight
 - add only preview/editor menu button
@@ -28,6 +28,7 @@
 - improved theme design
 - new hot keys
 - new menu layout
+- scroll sync
 
 ## How to use
 
@@ -55,8 +56,6 @@ download the whole project and open it in IntelliJ IDEA, build 'Main' class.
 [Chinese] see [here](https://apassbydreg.work/open-source-files/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A%E8%AF%B4%E6%98%8E_update20191102.html)
 
 ## Upcoming features:
-
-- scroll link
 
 - notification/alert box redesign
 

@@ -15,15 +15,15 @@ public class BlockBuilder {
             "^(#+)\\s*(.*)", // head
             "^&gt; (.*)", // blockquote
             "^-{3,}$", // hr
-            "^<code></code>`", // code lines
+            "^`<code></code>", // code lines
             "^(\\s*)- (.*)", // ul
             "^(\\s*)\\d*\\. (.*)" // li
     };
     public String[] spanRegex = {
-            "!\\[(.*?)\\]\\((.*?)\\)", // img
-            "\\[(.*?)\\]\\((.*?)\\)", // a
-            "\\*\\*(.*)\\*\\*", // b
-            "\\*(.*)\\*", // em
+            "(.*)!\\[(.*?)\\]\\((.*?)\\)", // img
+            "(.*)\\[(.*?)\\]\\((.*?)\\)", // a
+            "(.*)\\*\\*(.*?)\\*\\*", // b
+            "(.*)\\*(.*?)\\*", // em
     };
     public Pattern[] linePatterns = new Pattern[lineRegex.length], spanPatterns = new Pattern [spanRegex.length];
     public String[] linePattenNames = {"HEADER", "QUOTE", "SEPARATE_LINE", "CODE_LINES", "UNORDERED_LIST", "ORDERED_LIST"};
@@ -173,11 +173,11 @@ public class BlockBuilder {
     // build inline html content
     public String spanBuilder(String line) {
         // for code: replace special characters first:
-        Matcher codeMatcher = Pattern.compile("`(.*?)`").matcher(line);
+        Matcher codeMatcher = Pattern.compile("(.*)`(.*?)`").matcher(line);
         while (codeMatcher.find()) {
             BlockInfo block = new BlockInfo("INLINE_CODE");
-            block.setContent(codeMatcher.group(1).replace("[","&0x5B;").replace("*","&0x2A;"));
-            line = codeMatcher.replaceFirst(blockMaker(block));
+            block.setContent(codeMatcher.group(2).replace("[","&0x5B;").replace("*","&0x2A;"));
+            line = codeMatcher.replaceFirst(codeMatcher.group(1) + blockMaker(block));
             codeMatcher = Pattern.compile("`(.*?)`").matcher(line);
         }
 
@@ -185,11 +185,11 @@ public class BlockBuilder {
             Matcher m = spanPatterns[i].matcher(line);
             while (m.find()) {
                 BlockInfo block = new BlockInfo(spanPattenNames[i]);
-                block.setContent(m.group(1));
-                if (m.groupCount() == 2) {
-                    block.setUrl(m.group(2));
+                block.setContent(m.group(2));
+                if (m.groupCount() == 3) {
+                    block.setUrl(m.group(3));
                 }
-                line = m.replaceFirst(blockMaker(block));
+                line = m.replaceFirst(m.group(1) + blockMaker(block));
                 m = spanPatterns[i].matcher(line);
             }
         }

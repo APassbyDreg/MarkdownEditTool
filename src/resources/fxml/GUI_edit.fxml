@@ -16,9 +16,6 @@
                         <MenuItem fx:id="newButton" mnemonicParsing="false" onAction="#openNewFile" text="New (Ctrl+N)" />
                         <MenuItem fx:id="openButton" mnemonicParsing="false" onAction="#openExistedFile" text="Open (Ctrl+O)" />
                         <MenuItem fx:id="saveButton" mnemonicParsing="false" onAction="#setSaveButton" text="Save (Ctrl+S)" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <RadioMenuItem fx:id="autoSaveButton" mnemonicParsing="false" text="Auto Save" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
                   <Menu mnemonicParsing="false" text="Save As">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#saveAsMarkdown" text="New Markdown File (.md)" />
@@ -35,6 +32,9 @@
               <items>
                   <RadioMenuItem fx:id="previewOnlyButton" mnemonicParsing="false" text="Show Preview Only (Ctrl + P)" />
                   <RadioMenuItem fx:id="editorOnlyButton" mnemonicParsing="false" text="Show Editor Only (Ctrl + E)" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <RadioMenuItem fx:id="autoSaveButton" mnemonicParsing="false" text="Auto Save" />
+                  <RadioMenuItem fx:id="autoScrollButton" mnemonicParsing="false" onAction="#switchAutoScroll" text="Auto Scroll" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="_Look">
