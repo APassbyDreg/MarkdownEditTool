@@ -27,6 +27,7 @@ pre {
     background-color: #eeeeee;
     padding: 1em;
     border-radius: 0.4em;
+    text-indent: 0;
 }
 
 code {

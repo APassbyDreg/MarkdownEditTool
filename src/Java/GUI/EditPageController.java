@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -35,6 +36,7 @@ public class EditPageController implements Initializable{
     private static ProgramInfo settings;
     private static Stage window;
     private static TextArea editor;
+    private static WebView preview;
     private static WebEngine previewEngine;
     private static RadioMenuItem[] themesToggleGroupItems, fontSizeToggleGroupItems, fontWeightToggleGroupItems;
     private static RadioMenuItem previewOnlySwitch, editorOnlySwitch, autoSaveSwitch, autoScrollSwitch;
@@ -93,6 +95,7 @@ public class EditPageController implements Initializable{
             changePreviewStatus();
         });
         window.show();
+        setEditorStyle(settings.currentTheme);
 
         if (mdPath.equals("")) {
             md.makeTemp();
@@ -160,9 +163,11 @@ public class EditPageController implements Initializable{
         String editorStyle = "";
         if (bgMatcher.find()) {
             editorStyle += "-fx-control-inner-background: " + bgMatcher.group(1) + ";";
+            editor.lookup(".track").setStyle("-fx-background-color : " + bgMatcher.group(1) + ";");
         }
         if (textMatcher.find()) {
             editorStyle += "-fx-text-fill:" + textMatcher.group(1) + ";";
+            editor.lookup(".thumb").setStyle("-fx-background-color :derive(" + textMatcher.group(1) + ",90.0%);");
         }
         editor.setStyle(editorStyle);
     }
@@ -402,6 +407,7 @@ public class EditPageController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         editor = editPane;
+        preview = previewPane;
         splitView = splitPane;
         previewEngine = previewPane.getEngine();
         totalCharNumIndicator = charNumLabel;
@@ -503,19 +509,15 @@ public class EditPageController implements Initializable{
         editor.setText(md.str);
         editor.setOnKeyReleased(e -> {
             try {
-                refresh();
                 isScrollSyncing = true;
+                refresh();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         });
-        try {
-            setEditorStyle(settings.currentTheme);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        setEditorFont();
+        editor.scrollTopProperty().addListener((obj, start, end) -> {isScrollSyncing=true;});
         previewPane.setOnScroll(e->{isScrollSyncing=false;});
+        setEditorFont();
 
         // ini hot key listener
         mainPane.setOnKeyPressed(e -> {

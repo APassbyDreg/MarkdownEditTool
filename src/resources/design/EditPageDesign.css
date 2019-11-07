@@ -1,9 +1,25 @@
-.text-area{
+/*.text-area{*/
+/*    -fx-padding: 0;*/
+/*    -fx-start-margin: 0;*/
+/*    -fx-background-color: transparent;*/
+/*    -fx-text-box-border: transparent;*/
+/*    -fx-focus-color: transparent;*/
+/*}*/
+.text-area {
+    -fx-background-insets: 0;
     -fx-padding: 0;
     -fx-start-margin: 0;
-    -fx-background-color: transparent;
     -fx-text-box-border: transparent;
     -fx-focus-color: transparent;
+}
+
+.text-area:focused .content {
+    -fx-background-color:
+            -fx-control-inner-background transparent transparent -fx-control-inner-background;
+}
+
+.text-area:focused {
+    -fx-highlight-fill: transparent;
 }
 
 .menu-bar {
@@ -11,7 +27,7 @@
 }
 
 .scroll-bar:vertical .track{
-    -fx-background-color :transparent;
+    -fx-background-color : transparent;
     -fx-border-color :transparent;
     -fx-background-radius : 0.0em;
     -fx-border-radius :2.0em;
