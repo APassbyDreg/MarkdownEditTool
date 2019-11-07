@@ -4,7 +4,7 @@
 
 **Creator:** Martin_Z_He
 
-**Download:** [latest release (20191107 11:05)](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar)
+**Download:** [latest release (20191107 11:45)](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar)
 
 ## Functions and features
 
@@ -24,8 +24,7 @@
 
 - customizable font size / font weight
 - add only preview/editor menu button
-- auto save
-- improved theme design
+- improved design
 - new hot keys
 - new menu layout
 - scroll sync
@@ -53,7 +52,7 @@ download the whole project and open it in IntelliJ IDEA, build 'Main' class.
 
 ## User Guide and Program Introduction
 
-[Chinese] see [here](https://apassbydreg.work/open-source-files/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A%E8%AF%B4%E6%98%8E_update20191102.html)
+[Chinese] see [here](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/doc/User_Guide.html)
 
 ## Upcoming features:
 

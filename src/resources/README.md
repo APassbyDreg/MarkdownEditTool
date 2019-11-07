@@ -33,7 +33,7 @@
 
 ## User Guide and Program Introduction
 
-[Chinese] see [here](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/doc/UserGuide_update20191106.html)
+[Chinese] see [here](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/doc/User_Guide.html)
 
 ## Upcoming features:
 

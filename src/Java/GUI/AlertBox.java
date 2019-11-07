@@ -1,6 +1,7 @@
 package GUI;
 
 import Global.Global;
+import com.sun.org.apache.xerces.internal.impl.xs.SchemaNamespaceSupport;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,9 +30,11 @@ public class AlertBox implements Initializable {
         window.initModality(Modality.APPLICATION_MODAL);
         Parent root = FXMLLoader.load(EditPageController.class.getResource(Global.alertFXMLPath));
         Image logoPNG = new Image(Global.logoRelativePath);
+        Scene scene = new Scene(root, 360, 120);
+        scene.getStylesheets().add(Global.alertBoxDesignPath);
         window.setTitle("File NOT Save Alert");
         window.getIcons().add(logoPNG);
-        window.setScene(new Scene(root, 360, 120));
+        window.setScene(scene);
         window.setResizable(false);
         window.showAndWait();
 

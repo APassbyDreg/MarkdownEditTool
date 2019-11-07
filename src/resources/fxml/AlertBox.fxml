@@ -14,13 +14,23 @@
          <children>
             <Label fx:id="fileNameLabel">
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets top="5.0" />
                </VBox.margin>
-            </Label>
-            <Label fx:id="contentLabel" text="do you want to save it before exit?">
                <font>
-                  <Font size="16.0" />
-               </font></Label>
+                  <Font size="15.0" />
+               </font>
+               <padding>
+                  <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
+               </padding>
+            </Label>
+            <Label id="lowerLabel" fx:id="contentLabel" text="do you want to save it before exit?">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <padding>
+                  <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
+               </padding>
+            </Label>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0">
                <children>
                   <Button fx:id="yesButton" mnemonicParsing="false" prefHeight="0.0" prefWidth="80.0" text="Yes" />

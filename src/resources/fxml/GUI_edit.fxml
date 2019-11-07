@@ -46,7 +46,7 @@
             </Menu>
                 <Menu mnemonicParsing="false" text="_Help">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#openAboutPage" text="About" />
+                    <MenuItem mnemonicParsing="false" onAction="#openAboutPage" text="User Guide (Ctrl + H)" />
                   </items>
                 </Menu>
               </menus>
