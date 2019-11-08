@@ -7,14 +7,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="BUG fix">
-      <change afterPath="$PROJECT_DIR$/src/resources/design/AlertBoxDesign.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/User_Guide.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/User_Guide.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/GUI/AlertBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/GUI/AlertBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Java/Global/Global.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Global/Global.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Convert/BlockBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/convert/BlockBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Convert/BlockInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/convert/BlockInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Convert/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/convert/Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/File/FileInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/fileio/FileInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/File/MarkdownFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/fileio/MarkdownFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/File/ProgramInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/fileio/ProgramInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/File/WebFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/fileio/WebFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GUI/AboutPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/gui/AboutPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GUI/AlertBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/gui/AlertBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GUI/EditPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/gui/EditPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GUI/IntroPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/gui/IntroPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/GUI/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/gui/Notification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Global/Global.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/global/Global.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/design/EditPageDesign.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/design/EditPageDesign.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/fxml/AlertBox.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/AlertBox.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/fxml/GUI_edit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/GUI_edit.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/fxml/GUI_intro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/GUI_intro.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -86,8 +100,8 @@
         <option value="Enum" />
         <option value="HTML File" />
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -130,7 +144,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JAVAFX_test" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/MarkdownEditTool-master" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -145,18 +159,18 @@
     <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources\design" />
       <recent name="C:\Users\APass\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources" />
       <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources\themes" />
       <recent name="C:\Users\APassbyDreg\OneDrive - buaa.edu.cn\Java\MarkdownEditTool\src\resources\fxml" />
       <recent name="C:\Users\APass\OneDrive - buaa.edu.cn\Java\JavaMarkdownEditTool\src\resources\fxml" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -186,6 +200,14 @@
     </configuration>
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GetTotalLineNumber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GetTotalLineNumber" />
+      <module name="MarkdownEditTool" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -248,11 +270,13 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="Application.GetTotalLineNumber" />
       <item itemvalue="JAR Application.MarkdownEditTool.jar" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JAR Application.MarkdownEditTool.jar" />
+        <item itemvalue="Application.GetTotalLineNumber" />
       </list>
     </recent_temporary>
   </component>
@@ -323,6 +347,11 @@
       <workItem from="1573039856547" duration="444000" />
       <workItem from="1573043685543" duration="11134000" />
       <workItem from="1573092418402" duration="4889000" />
+      <workItem from="1573099161563" duration="296000" />
+      <workItem from="1573200760967" duration="679000" />
+      <workItem from="1573202406154" duration="6394000" />
+      <workItem from="1573214885050" duration="790000" />
+      <workItem from="1573218343481" duration="5732000" />
     </task>
     <task id="LOCAL-00001" summary="add functions to GUI">
       <created>1572340530273</created>
@@ -435,9 +464,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Java/GUI/Notification.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/src/Java/gui/EditPageController.java</url>
+          <line>227</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

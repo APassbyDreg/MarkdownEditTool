@@ -1,8 +1,12 @@
-package Global;
+package global;
+
+import fileio.ProgramInfo;
 
 public class Global {
     public static String programAbsolutePath;
+    public static ProgramInfo settings;
 
+    // default values
     public static final int MAX_RECENT_FILES_STORED = 4;
     public static final int NOTIFICATION_TIME_OUT = 10;
     public static final int[] fontSizeList = new int[]{12,14,16,18,20,24,28};

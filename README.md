@@ -22,12 +22,8 @@
 
 ## New features of recent releases
 
-- customizable font size / font weight
-- add only preview/editor menu button
-- improved design
-- new hot keys
-- new menu layout
-- scroll sync
+- allow multiple edit window
+- slight change of look
 
 ## How to use
 

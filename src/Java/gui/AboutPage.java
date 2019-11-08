@@ -1,6 +1,6 @@
-package GUI;
+package gui;
 
-import Global.Global;
+import global.Global;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;

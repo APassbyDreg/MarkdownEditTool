@@ -1,6 +1,6 @@
-package GUI;
+package gui;
 
-import Global.Global;
+import global.Global;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -8,12 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import javax.xml.stream.FactoryConfigurationError;
 import java.util.Timer;
 import java.util.TimerTask;
 

@@ -1,6 +1,6 @@
-package File;
+package fileio;
 
-import Global.Global;
+import global.Global;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;

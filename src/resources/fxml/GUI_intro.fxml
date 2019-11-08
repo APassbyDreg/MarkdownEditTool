@@ -6,13 +6,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.IntroPageController">
+<AnchorPane prefHeight="600.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
        <BorderPane prefHeight="600.0" prefWidth="1050.0" fx:id="mainWindow">
            <left>
                <VBox prefHeight="600.0" prefWidth="330.0" BorderPane.alignment="TOP_LEFT">
                   <children>
-                      <Button fx:id="buttonNew" alignment="BASELINE_LEFT" onAction="#openNewFile" onMouseEntered="#introButtonAnimationIn" onMouseExited="#introButtonAnimationOut" prefHeight="50.0" prefWidth="200.0" text="New File">
+                      <Button fx:id="buttonNew" alignment="BASELINE_LEFT" onAction="#openNewFile" onMouseEntered="#introButtonAnimationIn" onMouseExited="#introButtonAnimationOut" prefHeight="50.0" prefWidth="200.0" text="New fileio">
                      <VBox.margin>
                         <Insets bottom="25.0" />
                      </VBox.margin>
@@ -20,7 +20,7 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                      <Button fx:id="buttonOpen" alignment="BASELINE_LEFT" onAction="#openExistFile" onMouseEntered="#introButtonAnimationIn" onMouseExited="#introButtonAnimationOut" prefHeight="50.0" prefWidth="200.0" text="Open File">
+                      <Button fx:id="buttonOpen" alignment="BASELINE_LEFT" onAction="#openExistFile" onMouseEntered="#introButtonAnimationIn" onMouseExited="#introButtonAnimationOut" prefHeight="50.0" prefWidth="200.0" text="Open fileio">
                      <VBox.margin>
                         <Insets bottom="50.0" />
                      </VBox.margin>

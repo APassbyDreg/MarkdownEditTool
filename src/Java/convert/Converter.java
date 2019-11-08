@@ -1,10 +1,10 @@
-package Convert;
+package convert;
 
 import java.io.IOException;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-import File.*;
-import Global.Global;
+import fileio.*;
+import global.Global;
 
 public class Converter extends BlockBuilder {
     private MarkdownFile md;

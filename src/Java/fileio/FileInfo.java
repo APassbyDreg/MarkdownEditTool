@@ -1,4 +1,4 @@
-package File;
+package fileio;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -6,7 +6,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import Global.*;
+import global.*;
 
 public class FileInfo {
     public String str = "";

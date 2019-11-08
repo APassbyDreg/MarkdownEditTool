@@ -4,6 +4,8 @@
     -fx-start-margin: 0;
     -fx-text-box-border: transparent;
     -fx-focus-color: transparent;
+    -fx-background-color:
+        -fx-control-inner-background transparent transparent transparent;
 }
 
 .text-area:focused .content {
@@ -11,8 +13,9 @@
             -fx-control-inner-background transparent transparent -fx-control-inner-background;
 }
 
-.text-area:focused {
-    -fx-highlight-fill: transparent;
+.text-area .content {
+    -fx-background-color:
+            -fx-control-inner-background transparent transparent transparent;
 }
 
 .menu-bar {

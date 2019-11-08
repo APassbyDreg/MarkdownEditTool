@@ -1,7 +1,6 @@
-package GUI;
+package gui;
 
-import Global.Global;
-import com.sun.org.apache.xerces.internal.impl.xs.SchemaNamespaceSupport;
+import global.Global;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -25,70 +25,72 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.*;
-import Global.Global;
-import File.*;
+import global.Global;
+import fileio.*;
 import javafx.util.Duration;
 
 public class IntroPageController implements Initializable{
-    private static ProgramInfo editor;
+    private static Stage window;
 
     @FXML public Button buttonOpen,buttonNew;
     @FXML public ListView<VBox> recentList;
     @FXML public BorderPane mainWindow;
 
-    public static VBox[] recentFileContainer = new VBox[Global.MAX_RECENT_FILES_STORED];
-    public static Button[] recentFileChooser = new Button[Global.MAX_RECENT_FILES_STORED];
-    public static Label[] recentFileContent = new Label[Global.MAX_RECENT_FILES_STORED];
-    public static Label[] recentFileAddress = new Label[Global.MAX_RECENT_FILES_STORED];
-    public static FileInfo[] recentFiles = new FileInfo[Global.MAX_RECENT_FILES_STORED];
+    private VBox[] recentFileContainer = new VBox[Global.MAX_RECENT_FILES_STORED];
+    private Button[] recentFileChooser = new Button[Global.MAX_RECENT_FILES_STORED];
+    private Label[] recentFileContent = new Label[Global.MAX_RECENT_FILES_STORED];
+    private Label[] recentFileAddress = new Label[Global.MAX_RECENT_FILES_STORED];
+    private FileInfo[] recentFiles = new FileInfo[Global.MAX_RECENT_FILES_STORED];
 
+    public void setStage(Stage stage) {
+        window = stage;
+    }
 
-    public static void display(Stage primaryStage) throws IOException {
-        editor = new ProgramInfo();
-        Parent root = FXMLLoader.load(IntroPageController.class.getResource("/fxml/GUI_intro.fxml"));
-        Image logoPNG = new Image(Global.logoRelativePath);
-        Stage window = primaryStage;
-        Scene scene = new Scene(root, 1050, 600);
-        scene.getStylesheets().add(Global.introPageDesignPath);
-        window.setTitle(Global.programName);
-        window.getIcons().add(logoPNG);
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
-
-        // for a strange bug: config reset when image load
-        if (editor.isFirstOpen) {
-            editor.save();
+    public void display() throws IOException {
+        if (window != null) {
+            FXMLLoader loader = new FXMLLoader(IntroPageController.class.getResource(Global.introFXMLPath));
+            loader.setController(this);
+            Parent root = loader.load();
+            Image logoPNG = new Image(Global.logoRelativePath);
+            Scene scene = new Scene(root, 1050, 600);
+            scene.getStylesheets().add(Global.introPageDesignPath);
+            window.setTitle(Global.programName);
+            window.getIcons().add(logoPNG);
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
         }
     }
 
     @FXML
-    public void openExistFile() throws IOException {
+    public void openExistFile() throws Throwable {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Markdown Docs", "*.md");
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog((Stage) buttonOpen.getScene().getWindow());
         if (file != null) {
-            EditPageController.md = new MarkdownFile(file.getAbsolutePath());
             Stage thisWindow = (Stage) buttonOpen.getScene().getWindow();
             thisWindow.close();
-            editor.addNewRecentFile(file.getAbsolutePath());
-            EditPageController.displayEditWindow(file.getAbsolutePath(),editor);
+            Global.settings.addNewRecentFile(file.getAbsolutePath());
+            EditPageController newEditPage = new EditPageController();
+            newEditPage.display(file.getAbsolutePath());
         }
     }
 
     @FXML
-    public void openNewFile() throws IOException {
+    public void openNewFile() throws Throwable {
         Stage thisWindow = (Stage) buttonNew.getScene().getWindow();
         thisWindow.close();
-        EditPageController.displayEditWindow("",editor);
+        EditPageController newEditPage = new EditPageController();
+        newEditPage.display("");
     }
 
-    private void openRecent(int index) throws IOException {
+    private void openRecent(int index) throws Throwable {
         Stage thisWindow = (Stage) buttonOpen.getScene().getWindow();
         thisWindow.close();
-        EditPageController.displayEditWindow(recentFiles[index].src,editor);
-        editor.addNewRecentFile(recentFiles[index].src);
+        Global.settings.addNewRecentFile(recentFiles[index].src);
+        EditPageController newEditPage = new EditPageController();
+        newEditPage.display(recentFiles[index].src);
     }
 
     private void copyFilePath(int index) {
@@ -250,7 +252,7 @@ public class IntroPageController implements Initializable{
         animation.play();
     }
 
-    private void hotKeyHandler(KeyEvent e) throws IOException {
+    private void hotKeyHandler(KeyEvent e) throws Throwable {
         if (e.isControlDown() && e.getCode() == KeyCode.N) {
             openNewFile();
         }
@@ -276,7 +278,7 @@ public class IntroPageController implements Initializable{
         buttonNew.getStyleClass().add("mainButtons");
 
         ObservableList<VBox> items = recentList.getItems();
-        LinkedList<String> paths = editor.recentFilePaths;
+        LinkedList<String> paths = Global.settings.recentFilePaths;
         for (int i=0; i < paths.size(); i++) {
             int index = i;
             try {
@@ -293,8 +295,8 @@ public class IntroPageController implements Initializable{
             recentFileChooser[i].setOnAction(e -> {
                 try {
                     openRecent(index);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+                } catch (Throwable throwable) {
+                    throwable.printStackTrace();
                 }
             });
             recentFileChooser[i].setOnMouseEntered(event -> chooseButtonAnimationIn(event));
@@ -309,7 +311,7 @@ public class IntroPageController implements Initializable{
         mainWindow.setOnKeyPressed(event -> {
             try {
                 hotKeyHandler(event);
-            } catch (IOException e) {
+            } catch (Throwable e) {
                 e.printStackTrace();
             }
         });

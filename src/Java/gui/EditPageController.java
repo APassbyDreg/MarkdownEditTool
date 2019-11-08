@@ -1,12 +1,11 @@
-package GUI;
+package gui;
 
-import Convert.Converter;
-import Global.Global;
+import convert.Converter;
+import global.Global;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -28,33 +27,31 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import File.*;
+import fileio.*;
 
 public class EditPageController implements Initializable{
-    public static MarkdownFile md;
-    private static WebFile web;
-    private static ProgramInfo settings;
-    private static Stage window;
-    private static TextArea editor;
-    private static WebView preview;
-    private static WebEngine previewEngine;
-    private static RadioMenuItem[] themesToggleGroupItems, fontSizeToggleGroupItems, fontWeightToggleGroupItems;
-    private static RadioMenuItem previewOnlySwitch, editorOnlySwitch, autoSaveSwitch, autoScrollSwitch;
-    private static ToggleGroup themesToggleGroup = new ToggleGroup(), fontSizeToggleGroup = new ToggleGroup(), FontWeightToggleGroup = new ToggleGroup();
-    private static Label totalCharNumIndicator, lastSaveTimeIndicator;
-    private static SplitPane splitView;
-    private static boolean isScrollSyncing = true, autoScroll = true;
+    private MarkdownFile md;
+    private WebFile web;
+
+    private TextArea editor;
+    private Stage window;
+    private RadioMenuItem[] themesToggleGroupItems, fontSizeToggleGroupItems, fontWeightToggleGroupItems;
+    private ToggleGroup themesToggleGroup = new ToggleGroup(), fontSizeToggleGroup = new ToggleGroup(), FontWeightToggleGroup = new ToggleGroup();
+    private boolean isScrollSyncing = true, autoScroll = true;
 
     @FXML public SplitPane splitPane;
     @FXML public TextArea editPane;
     @FXML public WebView previewPane;
     @FXML public Menu themeMenu,fontSizeMenu,fontWeightMenu;
-    @FXML public MenuItem newButton,openButton,closeButton,saveButton,returnButton;
     @FXML public Label charNumLabel,lastSaveTimeLabel;
     @FXML public VBox mainPane;
     @FXML public RadioMenuItem previewOnlyButton,editorOnlyButton,autoSaveButton,autoScrollButton;
 
-    public static void displayEditWindow(String mdPath, ProgramInfo editor) throws IOException {
+    public EditPageController() throws Exception {
+        window = new Stage();
+    }
+
+    public void display(String mdPath) throws Throwable {
         if (mdPath.equals("")) {
             mdPath = Global.programAbsolutePath + Global.tmpFolderPath + Global.tmpMDName;
             md = new MarkdownFile(mdPath);
@@ -63,15 +60,18 @@ public class EditPageController implements Initializable{
         else {
             md = new MarkdownFile(mdPath);
         }
+        if (mdPath.equals("")) {
+            md.makeTemp();
+        }
 
         // create basic files
-        settings = editor;
         web = new WebFile(Global.programAbsolutePath + Global.tmpFolderPath + Global.tmpHTMLName);
         web.makeTemp();
 
-        // load window
-        window = new Stage();
-        Parent root = FXMLLoader.load(EditPageController.class.getResource(Global.editFXMLPath));
+        FXMLLoader loader = new FXMLLoader(EditPageController.class.getResource(Global.editFXMLPath));
+        loader.setController(this);
+        Parent root = loader.load();
+
         Image logoPNG = new Image(Global.logoRelativePath);
         window.setTitle(Global.programName + " : " + md.name);
         window.getIcons().add(logoPNG);
@@ -83,8 +83,8 @@ public class EditPageController implements Initializable{
                 try {
                     e.consume();
                     closeProgram();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+                } catch (Throwable throwable) {
+                    throwable.printStackTrace();
                 }
             }
         });
@@ -95,17 +95,13 @@ public class EditPageController implements Initializable{
             changePreviewStatus();
         });
         window.show();
-        setEditorStyle(settings.currentTheme);
-
-        if (mdPath.equals("")) {
-            md.makeTemp();
-        }
+        setEditorStyle(Global.settings.currentTheme);
     }
 
-    private static void refresh() throws IOException {
-        md.str = editor.getText().replace("\t","  ");
-        Converter converter = new Converter(md, web, settings);
-        previewEngine.loadContent(converter.getHTML());
+    private void refresh() throws Throwable {
+        md.str = editPane.getText().replace("\t","  ");
+        Converter converter = new Converter(md, web, Global.settings);
+        previewPane.getEngine().loadContent(converter.getHTML());
         if (md.isChanged()) {
             window.setTitle(Global.programName + " : " + md.name + "*");
         }
@@ -113,12 +109,12 @@ public class EditPageController implements Initializable{
             window.setTitle(Global.programName + " : " + md.name);
         }
         updateCharNum();
-        if (settings.getAutoSaveStatus()) {
+        if (Global.settings.getAutoSaveStatus()) {
             save();
         }
     }
 
-    private static boolean save() throws IOException {
+    private boolean save() throws Throwable {
         boolean isSuccessful = true;
         if (md.isTemp()) {
             String content = md.str;
@@ -131,8 +127,9 @@ public class EditPageController implements Initializable{
                 md.str = content;
                 md.save();
                 window.close();
-                settings.addNewRecentFile(file.getAbsolutePath());
-                displayEditWindow(file.getAbsolutePath(), settings);
+                Global.settings.addNewRecentFile(file.getAbsolutePath());
+                EditPageController newEditPage = new EditPageController();
+                newEditPage.display(file.getAbsolutePath());
             }
             else {
                 isSuccessful = false;
@@ -146,15 +143,15 @@ public class EditPageController implements Initializable{
         return isSuccessful;
     }
 
-    private static void chooseTheme(int index) throws IOException {
+    private void chooseTheme(int index) throws Throwable {
         String name = themesToggleGroupItems[index].getText() + ".css";
-        int i = settings.themesList.indexOf(name);
-        settings.setTheme(i);
+        int i = Global.settings.themesList.indexOf(name);
+        Global.settings.setTheme(i);
         setEditorStyle(name);
         refresh();
     }
 
-    private static void setEditorStyle(String name) throws IOException {
+    private void setEditorStyle(String name) throws IOException {
         FileInfo style = new FileInfo(Global.resourcePath + Global.themesFolderPath + name,'r');
         Pattern bg = Pattern.compile("body *\\{[\\s\\S]*?background-color:(.*?);[\\s\\S]*");
         Pattern text = Pattern.compile("body *\\{[\\s\\S]*?[^-]color: (#.*?);[\\s\\S]*");
@@ -163,22 +160,22 @@ public class EditPageController implements Initializable{
         String editorStyle = "";
         if (bgMatcher.find()) {
             editorStyle += "-fx-control-inner-background: " + bgMatcher.group(1) + ";";
-            editor.lookup(".track").setStyle("-fx-background-color : " + bgMatcher.group(1) + ";");
+            editPane.lookup(".track").setStyle("-fx-background-color : " + bgMatcher.group(1) + ";");
         }
         if (textMatcher.find()) {
             editorStyle += "-fx-text-fill:" + textMatcher.group(1) + ";";
-            editor.lookup(".thumb").setStyle("-fx-background-color :derive(" + textMatcher.group(1) + ",90.0%);");
+            editPane.lookup(".thumb").setStyle("-fx-background-color :derive(" + textMatcher.group(1) + ",90.0%);");
         }
-        editor.setStyle(editorStyle);
+        editPane.setStyle(editorStyle);
     }
 
-    private static void setEditorFont() {
-        fontSizeToggleGroupItems[settings.getFontSize()].setSelected(true);
-        fontWeightToggleGroupItems[settings.getFontWeight()].setSelected(true);
-        editor.setFont(Font.loadFont(Thread.currentThread().getContextClassLoader().getResourceAsStream(Global.fontsPath[settings.getFontWeight()]),Global.fontSizeList[settings.getFontSize()]));
+    private void setEditorFont() {
+        fontSizeToggleGroupItems[Global.settings.getFontSize()].setSelected(true);
+        fontWeightToggleGroupItems[Global.settings.getFontWeight()].setSelected(true);
+        editPane.setFont(Font.loadFont(Thread.currentThread().getContextClassLoader().getResourceAsStream(Global.fontsPath[Global.settings.getFontWeight()]),Global.fontSizeList[Global.settings.getFontSize()]));
     }
 
-    private static boolean closeProgram() throws IOException {
+    private boolean closeProgram() throws Throwable {
         boolean isClosing = true;
         char usrConfirm = 'c';
         if (md.isChanged()){
@@ -213,50 +210,51 @@ public class EditPageController implements Initializable{
         return isClosing;
     }
 
-    private static void updateCharNum() {
-        int charNum = editor.getText().trim().length();
-        totalCharNumIndicator.setText("Total characters: " + charNum);
+    private void updateCharNum() {
+        int charNum = editPane.getText().trim().length();
+        charNumLabel.setText("Total characters: " + charNum);
     }
 
-    private static void updateLastSaveTime() {
+    private void updateLastSaveTime() {
         String t = md.lastSaveTime;
-        lastSaveTimeIndicator.setText("Last save time: " + t);
+        lastSaveTimeLabel.setText("Last save time: " + t);
     }
 
-    private static void changeAutoSaveStatus() throws IOException {
-        settings.setAutoSave(autoSaveSwitch.isSelected());
+    private void changeAutoSaveStatus() throws IOException {
+        Global.settings.setAutoSave(autoSaveButton.isSelected());
     }
 
-    private static void syncScroll() {
-        double yPos = editor.getScrollTop();
-        double height = editor.getHeight();
-        double editorHeight = ((Text)editor.lookup(".text")).getBoundsInLocal().getHeight();
-        int previewHeight = (Integer) previewEngine.executeScript("document.body.scrollHeight");
-        previewEngine.executeScript("window.scrollTo(0," + (previewHeight-height)*(yPos/(editorHeight-height)) + ")");
+    private void syncScroll() {
+        double yPos = editPane.getScrollTop();
+        double height = editPane.getHeight();
+        double editorHeight = ((Text) editPane.lookup(".text")).getBoundsInLocal().getHeight();
+        int previewHeight = (Integer) previewPane.getEngine().executeScript("document.body.scrollHeight");
+        double scrollTo = (previewHeight-height)*(yPos/(editorHeight-height));
+        previewPane.getEngine().executeScript("window.scrollTo(0," + scrollTo + ")");
     }
 
-    private static void changePreviewStatus() {
-        if (previewOnlySwitch.isSelected()) {
-            editor.setEditable(false);
-            editor.setVisible(false);
-            splitView.setDividerPositions(0);
-            splitView.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(true));
+    private void changePreviewStatus() {
+        if (previewOnlyButton.isSelected()) {
+            editPane.setEditable(false);
+            editPane.setVisible(false);
+            splitPane.setDividerPositions(0);
+            splitPane.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(true));
         }
-        else if (editorOnlySwitch.isSelected()) {
-            editor.setEditable(true);
-            editor.setVisible(true);
-            splitView.setDividerPositions(1);
-            splitView.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(true));
+        else if (editorOnlyButton.isSelected()) {
+            editPane.setEditable(true);
+            editPane.setVisible(true);
+            splitPane.setDividerPositions(1);
+            splitPane.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(true));
         }
         else {
-            editor.setEditable(true);
-            editor.setVisible(true);
-            splitView.setDividerPositions(0.4);
-            splitView.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(false));
+            editPane.setEditable(true);
+            editPane.setVisible(true);
+            splitPane.setDividerPositions(0.4);
+            splitPane.lookupAll(".split-pane-divider").forEach(div ->  div.setMouseTransparent(false));
         }
     }
 
-    private void hotKeyHandler(KeyEvent e) throws IOException {
+    private void hotKeyHandler(KeyEvent e) throws Throwable {
         if (e.isControlDown() && e.getCode() == KeyCode.S) {
             if (e.isAltDown()) {
                 saveAsMarkdown();
@@ -279,64 +277,72 @@ public class EditPageController implements Initializable{
             closeProgram();
         }
         else if (e.isControlDown() && e.getCode() == KeyCode.E) {
-            editorOnlySwitch.setSelected(!editorOnlySwitch.isSelected());
-            previewOnlySwitch.setSelected(false);
+           previewOnlyButton.setSelected(previewOnlyButton.isSelected());
+            previewOnlyButton.setSelected(false);
             changePreviewStatus();
         }
         else if (e.isControlDown() && e.getCode() == KeyCode.P) {
-            previewOnlySwitch.setSelected(!previewOnlySwitch.isSelected());
-            editorOnlySwitch.setSelected(false);
+            previewOnlyButton.setSelected(!previewOnlyButton.isSelected());
+           previewOnlyButton.setSelected(false);
             changePreviewStatus();
         }
         else if (e.isControlDown() && e.getCode() == KeyCode.EQUALS) {
             if (e.isShiftDown()) {
-                settings.setFontWeight((settings.getFontWeight()+1)%Global.fontsName.length);
+                Global.settings.setFontWeight((Global.settings.getFontWeight()+1)%Global.fontsName.length);
             }
             else {
-                settings.setFontSize((settings.getFontSize()+1)%Global.fontSizeList.length);
+                Global.settings.setFontSize((Global.settings.getFontSize()+1)%Global.fontSizeList.length);
             }
             setEditorFont();
         }
         else if (e.isControlDown() && e.getCode() == KeyCode.MINUS) {
             if (e.isShiftDown()) {
-                settings.setFontWeight((settings.getFontWeight()+Global.fontsName.length-1)%Global.fontsName.length);
+                Global.settings.setFontWeight((Global.settings.getFontWeight()+Global.fontsName.length-1)%Global.fontsName.length);
             }
             else {
-                settings.setFontSize((settings.getFontSize()+Global.fontSizeList.length-1)%Global.fontSizeList.length);
+                Global.settings.setFontSize((Global.settings.getFontSize()+Global.fontSizeList.length-1)%Global.fontSizeList.length);
             }
             setEditorFont();
         }
     }
 
-    public void openNewFile() throws IOException {
-        if (closeProgram()) {
-            displayEditWindow("",settings);
-        }
+    public void openNewFile() throws Throwable {
+//        if (closeProgram()) {
+//            EditPageController newEditPage = new EditPageController();
+//            newEditPage.display("");
+//        }
+        EditPageController newEditPage = new EditPageController();
+        newEditPage.display("");
     }
 
-    public void openExistedFile() throws IOException {
+    public void openExistedFile() throws Throwable {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Markdown Docs", "*.md");
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(window);
         if (file !=  null) {
-            if (closeProgram()) {
-                md = new MarkdownFile(file.getAbsolutePath());
-                settings.addNewRecentFile(file.getAbsolutePath());
-                displayEditWindow(file.getAbsolutePath(),settings);
-            }
+//            if (closeProgram()) {
+//                md = new MarkdownFile(file.getAbsolutePath());
+//                Global.settings.addNewRecentFile(file.getAbsolutePath());
+//                EditPageController newEditPage = new EditPageController();
+//                newEditPage.display(file.getAbsolutePath());
+//            }
+            md = new MarkdownFile(file.getAbsolutePath());
+            Global.settings.addNewRecentFile(file.getAbsolutePath());
+            EditPageController newEditPage = new EditPageController();
+            newEditPage.display(file.getAbsolutePath());
         }
     }
 
-    public void setSaveButton() throws IOException {
+    public void setSaveButton() throws Throwable {
         save();
     }
 
-    public void setCloseButton() throws IOException {
+    public void setCloseButton() throws Throwable {
         closeProgram();
     }
 
-    public void saveAsMarkdown() throws IOException {
+    public void saveAsMarkdown() throws Throwable {
         save();
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Markdown", "*.md");
@@ -347,12 +353,13 @@ public class EditPageController implements Initializable{
             FileInfo newMD = new FileInfo(file.getAbsolutePath(), 'a');
             newMD.str = content;
             newMD.save();
-            settings.addNewRecentFile(file.getAbsolutePath());
-            displayEditWindow(file.getAbsolutePath(),settings);
+            Global.settings.addNewRecentFile(file.getAbsolutePath());
+            EditPageController newEditPage = new EditPageController();
+            newEditPage.display(file.getAbsolutePath());
         }
     }
 
-    public void saveAsTxt() throws IOException {
+    public void saveAsTxt() throws Throwable {
         save();
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Plain Text", "*.txt");
@@ -366,7 +373,7 @@ public class EditPageController implements Initializable{
         }
     }
 
-    public void saveAsHtml() throws IOException {
+    public void saveAsHtml() throws Throwable {
         save();
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Web Docs", "*.html");
@@ -381,18 +388,10 @@ public class EditPageController implements Initializable{
         Notification.display("Notification","plz pay attention to your image references!");
     }
 
-    public void returnIndex() throws IOException {
+    public void returnIndex() throws Throwable {
         if (closeProgram()) {
-            Parent root = FXMLLoader.load(getClass().getResource(Global.introFXMLPath));
-            Image logoPNG = new Image(Global.logoRelativePath);
-            Stage index = new Stage();
-            Scene scene = new Scene(root, 1050, 600);
-            scene.getStylesheets().add(Global.introPageDesignPath);
-            index.setTitle(Global.programName);
-            index.getIcons().add(logoPNG);
-            index.setScene(scene);
-            index.setResizable(false);
-            index.show();
+            IntroPageController index = new IntroPageController();
+            index.display();
         }
     }
 
@@ -401,33 +400,14 @@ public class EditPageController implements Initializable{
     }
 
     public void switchAutoScroll() {
-        autoScroll = autoScrollSwitch.isSelected();
+        autoScroll = autoScrollButton.isSelected();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        editor = editPane;
-        preview = previewPane;
-        splitView = splitPane;
-        previewEngine = previewPane.getEngine();
-        totalCharNumIndicator = charNumLabel;
-        lastSaveTimeIndicator = lastSaveTimeLabel;
-        previewOnlySwitch = previewOnlyButton;
-        editorOnlySwitch = editorOnlyButton;
-        autoSaveSwitch = autoSaveButton;
-        autoScrollSwitch = autoScrollButton;
-
-        // ini preview pane
-        try {
-            Converter converter = new Converter(md, web, settings);
-            previewEngine.loadContent(converter.getHTML());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         // ini themes select list
-        themesToggleGroupItems = new RadioMenuItem[settings.themesList.size()];
-        LinkedList<String> themeList = settings.themesList;
+        themesToggleGroupItems = new RadioMenuItem[Global.settings.themesList.size()];
+        LinkedList<String> themeList = Global.settings.themesList;
         for (int i=0; i<themeList.size(); i++) {
             String name = themeList.get(i);
             themesToggleGroupItems[i] = new RadioMenuItem(name.substring(0, name.length()-4));
@@ -436,11 +416,11 @@ public class EditPageController implements Initializable{
             themesToggleGroupItems[i].setOnAction(e->{
                 try {
                     chooseTheme(themeIndex);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+                } catch (Throwable throwable) {
+                    throwable.printStackTrace();
                 }
             });
-            if (name.equals(settings.currentTheme)) {
+            if (name.equals(Global.settings.currentTheme)) {
                 themesToggleGroupItems[i].setSelected(true);
             }
             themeMenu.getItems().add(themesToggleGroupItems[i]);
@@ -454,13 +434,13 @@ public class EditPageController implements Initializable{
             int fontSizeIndex = i;
             fontSizeToggleGroupItems[i].setOnAction(event -> {
                 try {
-                    settings.setFontSize(fontSizeIndex);
+                    Global.settings.setFontSize(fontSizeIndex);
                     setEditorFont();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
-            if (Global.fontSizeList[i] == settings.getFontSize()) {
+            if (Global.fontSizeList[i] == Global.settings.getFontSize()) {
                 fontSizeToggleGroupItems[i].setSelected(true);
             }
             fontSizeMenu.getItems().add(fontSizeToggleGroupItems[i]);
@@ -474,13 +454,13 @@ public class EditPageController implements Initializable{
             int fontWeightIndex = i;
             fontWeightToggleGroupItems[i].setOnAction(event -> {
                 try {
-                    settings.setFontWeight(fontWeightIndex);
+                    Global.settings.setFontWeight(fontWeightIndex);
                     setEditorFont();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
-            if (i == settings.getFontWeight()) {
+            if (i == Global.settings.getFontWeight()) {
                 fontWeightToggleGroupItems[i].setSelected(true);
             }
             fontWeightMenu.getItems().add(fontWeightToggleGroupItems[i]);
@@ -488,14 +468,14 @@ public class EditPageController implements Initializable{
 
         // ini switches
         previewOnlyButton.setOnAction(event -> {
-            editorOnlySwitch.setSelected(false);
+            editorOnlyButton.setSelected(false);
             changePreviewStatus();
         });
         editorOnlyButton.setOnAction(event -> {
-            previewOnlySwitch.setSelected(false);
+            previewOnlyButton.setSelected(false);
             changePreviewStatus();
         });
-        autoSaveButton.setSelected(settings.getAutoSaveStatus());
+        autoSaveButton.setSelected(Global.settings.getAutoSaveStatus());
         autoSaveButton.setOnAction(event -> {
             try {
                 changeAutoSaveStatus();
@@ -503,28 +483,38 @@ public class EditPageController implements Initializable{
                 e.printStackTrace();
             }
         });
+        autoScrollButton.setOnAction(event -> {
+            switchAutoScroll();
+        });
         autoScrollButton.setSelected(true);
 
         // ini edit pane
-        editor.setText(md.str);
-        editor.setOnKeyReleased(e -> {
+        try {
+            Converter converter = new Converter(md, web, Global.settings);
+            previewPane.getEngine().loadContent(converter.getHTML());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        editPane.setOnKeyReleased(e -> {
             try {
                 isScrollSyncing = true;
                 refresh();
-            } catch (IOException ex) {
+            } catch (Throwable ex) {
                 ex.printStackTrace();
             }
         });
-        editor.scrollTopProperty().addListener((obj, start, end) -> {isScrollSyncing=true;});
+        editPane.scrollTopProperty().addListener((obj, start, end) -> {isScrollSyncing = true;});
         previewPane.setOnScroll(e->{isScrollSyncing=false;});
+        editPane.setText(md.str);
+//        editor = editPane;
         setEditorFont();
 
         // ini hot key listener
         mainPane.setOnKeyPressed(e -> {
             try {
                 hotKeyHandler(e);
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
             }
         });
 
@@ -532,12 +522,11 @@ public class EditPageController implements Initializable{
         updateCharNum();
 
         // sync scroll bars
-//        editor.scrollTopProperty().addListener((obj,start,end) -> {syncScroll();});
         Timer t = new Timer();
         t.schedule(new task(),0,1);
     }
 
-    static class task extends TimerTask {
+    class task extends TimerTask {
 
         /**
          * The action to be performed by this timer task.

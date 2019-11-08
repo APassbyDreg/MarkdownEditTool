@@ -1,11 +1,12 @@
-import GUI.IntroPageController;
-import Global.Global;
+import fileio.ProgramInfo;
+import gui.IntroPageController;
+import global.Global;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class Main extends Application {
+public class Main extends Application{
 
     public static void main(String[] args) throws IOException, URISyntaxException {
         // ini program info
@@ -16,12 +17,15 @@ public class Main extends Application {
         else {
             Global.programAbsolutePath = src;
         }
+        Global.settings = new ProgramInfo();
 
         launch();
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        IntroPageController.display(primaryStage);
+        IntroPageController index = new IntroPageController();
+        index.setStage(primaryStage);
+        index.display();
     }
 }

@@ -1,4 +1,4 @@
-package Convert;
+package convert;
 
 import java.util.Stack;
 import java.util.regex.Matcher;
@@ -178,7 +178,7 @@ public class BlockBuilder {
             BlockInfo block = new BlockInfo("INLINE_CODE");
             block.setContent(codeMatcher.group(2).replace("[","&0x5B;").replace("*","&0x2A;"));
             line = codeMatcher.replaceFirst(codeMatcher.group(1) + blockMaker(block));
-            codeMatcher = Pattern.compile("`(.*?)`").matcher(line);
+            codeMatcher = Pattern.compile("(.*)`(.*?)`").matcher(line);
         }
 
         for (int i=0; i<spanRegex.length; i++) {

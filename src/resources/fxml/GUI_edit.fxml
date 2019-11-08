@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="mainPane" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EditPageController">
+<VBox fx:id="mainPane" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
          <children>
             <MenuBar>
               <menus>
@@ -18,7 +18,7 @@
                         <MenuItem fx:id="saveButton" mnemonicParsing="false" onAction="#setSaveButton" text="Save (Ctrl+S)" />
                   <Menu mnemonicParsing="false" text="Save As">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#saveAsMarkdown" text="New Markdown File (.md)" />
+                        <MenuItem mnemonicParsing="false" onAction="#saveAsMarkdown" text="New Markdown fileio (.md)" />
                       <MenuItem mnemonicParsing="false" onAction="#saveAsTxt" text="Plain Text (.txt)" />
                         <MenuItem mnemonicParsing="false" onAction="#saveAsHtml" text="Web Page (.html)" />
                     </items>
