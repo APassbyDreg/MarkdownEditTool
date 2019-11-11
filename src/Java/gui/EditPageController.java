@@ -33,7 +33,6 @@ public class EditPageController implements Initializable{
     private MarkdownFile md;
     private WebFile web;
 
-    private TextArea editor;
     private Stage window;
     private RadioMenuItem[] themesToggleGroupItems, fontSizeToggleGroupItems, fontWeightToggleGroupItems;
     private ToggleGroup themesToggleGroup = new ToggleGroup(), fontSizeToggleGroup = new ToggleGroup(), FontWeightToggleGroup = new ToggleGroup();
@@ -307,10 +306,6 @@ public class EditPageController implements Initializable{
     }
 
     public void openNewFile() throws Throwable {
-//        if (closeProgram()) {
-//            EditPageController newEditPage = new EditPageController();
-//            newEditPage.display("");
-//        }
         EditPageController newEditPage = new EditPageController();
         newEditPage.display("");
     }
@@ -321,12 +316,6 @@ public class EditPageController implements Initializable{
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(window);
         if (file !=  null) {
-//            if (closeProgram()) {
-//                md = new MarkdownFile(file.getAbsolutePath());
-//                Global.settings.addNewRecentFile(file.getAbsolutePath());
-//                EditPageController newEditPage = new EditPageController();
-//                newEditPage.display(file.getAbsolutePath());
-//            }
             md = new MarkdownFile(file.getAbsolutePath());
             Global.settings.addNewRecentFile(file.getAbsolutePath());
             EditPageController newEditPage = new EditPageController();
@@ -506,7 +495,6 @@ public class EditPageController implements Initializable{
         editPane.scrollTopProperty().addListener((obj, start, end) -> {isScrollSyncing = true;});
         previewPane.setOnScroll(e->{isScrollSyncing=false;});
         editPane.setText(md.str);
-//        editor = editPane;
         setEditorFont();
 
         // ini hot key listener
@@ -527,7 +515,6 @@ public class EditPageController implements Initializable{
     }
 
     class task extends TimerTask {
-
         /**
          * The action to be performed by this timer task.
          */
