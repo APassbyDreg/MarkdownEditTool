@@ -2,9 +2,9 @@
 
 ## Project Info
 
-**Creator:** Martin_Z_He
+**Creator:** Martin_Z_He @ 18373263
 
-## Functions and features
+## Main features
 
 - available MD syntax:
     - lists
@@ -17,14 +17,6 @@
     - quotes
 - output to TXT/HTML file
 - customizable theme (view the instructions [here](https://github.com/APassbyDreg/MarkdownEditTool/blob/master/doc/Customize_Themes_Instructions.md))
-
-## New features of recent releases
-
-- customizable font size / font weight
-- add only preview/editor menu button
-- auto save
-- new hot keys
-- new menu layout
 
 ## Known issues
 

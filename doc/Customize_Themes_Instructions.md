@@ -19,7 +19,7 @@ Examples can be find in the themes folder, three basic examples are provided.
 However, MarkdwonEditTool takes some settings in your stylesheet to make it look better. Here's the list:
 
 - `body.background-color` will be taken as edit-pane's background color
-- `body.color` will be taken as edit-pane's text color
+- `body.color` will be taken as edit-pane's text color and scrollbar color
 
 ## Example
 

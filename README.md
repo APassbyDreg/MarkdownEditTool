@@ -4,7 +4,7 @@
 
 **Creator:** Martin_Z_He
 
-**Download:** [latest release (20191108 10:30)](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar)
+**Download:** [latest release (20191111 16:40)](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar)
 
 ## Functions and features
 
@@ -18,12 +18,13 @@
     - code blocks and inline code
     - quotes
 - output to TXT/HTML file
-- customizable theme (view the instructions [here](https://github.com/APassbyDreg/MarkdownEditTool/blob/master/doc/Customize%20Themes%20Instructions.md))
+- customizable theme (view the instructions [here](https://github.com/APassbyDreg/MarkdownEditTool/blob/master/doc/Customize_Themes_Instructions.md))
 
 ## New features of recent releases
 
 - allow multiple edit window
 - slight change of look
+- add more guides
 
 ## How to use
 

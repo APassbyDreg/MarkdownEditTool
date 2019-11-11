@@ -15,7 +15,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.*;
 import java.io.File;
@@ -113,35 +112,6 @@ public class EditPageController implements Initializable{
         }
     }
 
-    private boolean save() throws Throwable {
-        boolean isSuccessful = true;
-        if (md.isTemp()) {
-            String content = md.str;
-            FileChooser fileChooser = new FileChooser();
-            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Markdown Docs", "*.md");
-            fileChooser.getExtensionFilters().add(extFilter);
-            File file = fileChooser.showSaveDialog(window);
-            if (file != null) {
-                md = new MarkdownFile(file.getAbsolutePath());
-                md.str = content;
-                md.save();
-                window.close();
-                Global.settings.addNewRecentFile(file.getAbsolutePath());
-                EditPageController newEditPage = new EditPageController();
-                newEditPage.display(file.getAbsolutePath());
-            }
-            else {
-                isSuccessful = false;
-            }
-        }
-        else if (md.isChanged()) {
-            md.save();
-            updateLastSaveTime();
-            window.setTitle(Global.programName + " : " + md.name);
-        }
-        return isSuccessful;
-    }
-
     private void chooseTheme(int index) throws Throwable {
         String name = themesToggleGroupItems[index].getText() + ".css";
         int i = Global.settings.themesList.indexOf(name);
@@ -172,41 +142,6 @@ public class EditPageController implements Initializable{
         fontSizeToggleGroupItems[Global.settings.getFontSize()].setSelected(true);
         fontWeightToggleGroupItems[Global.settings.getFontWeight()].setSelected(true);
         editPane.setFont(Font.loadFont(Thread.currentThread().getContextClassLoader().getResourceAsStream(Global.fontsPath[Global.settings.getFontWeight()]),Global.fontSizeList[Global.settings.getFontSize()]));
-    }
-
-    private boolean closeProgram() throws Throwable {
-        boolean isClosing = true;
-        char usrConfirm = 'c';
-        if (md.isChanged()){
-            if (md.isTemp()) {
-                usrConfirm = AlertBox.display("This new file has NOT been saved");
-            }
-            else {
-                usrConfirm = AlertBox.display(md.name + " is changed but NOT saved");
-            }
-            switch (usrConfirm){
-                case 'y': // yes
-                    if (!save()) {
-                        isClosing = false;
-                    }
-                    break;
-                case 'n': // no
-                    break;
-                case 'c': // cancel
-                    isClosing = false;
-                    break;
-            }
-        }
-        if (isClosing) {
-            window.close();
-            if (web.isTemp()) {
-                web.delete();
-            }
-            if (md.isTemp()) {
-                md.delete();
-            }
-        }
-        return isClosing;
     }
 
     private void updateCharNum() {
@@ -305,6 +240,70 @@ public class EditPageController implements Initializable{
         }
     }
 
+    public boolean save() throws Throwable {
+        boolean isSuccessful = true;
+        if (md.isTemp()) {
+            String content = md.str;
+            FileChooser fileChooser = new FileChooser();
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Markdown Docs", "*.md");
+            fileChooser.getExtensionFilters().add(extFilter);
+            File file = fileChooser.showSaveDialog(window);
+            if (file != null) {
+                md = new MarkdownFile(file.getAbsolutePath());
+                md.str = content;
+                md.save();
+                window.close();
+                Global.settings.addNewRecentFile(file.getAbsolutePath());
+                EditPageController newEditPage = new EditPageController();
+                newEditPage.display(file.getAbsolutePath());
+            }
+            else {
+                isSuccessful = false;
+            }
+        }
+        else if (md.isChanged()) {
+            md.save();
+            updateLastSaveTime();
+            window.setTitle(Global.programName + " : " + md.name);
+        }
+        return isSuccessful;
+    }
+
+    public boolean closeProgram() throws Throwable {
+        boolean isClosing = true;
+        char usrConfirm = 'c';
+        if (md.isChanged()){
+            if (md.isTemp()) {
+                usrConfirm = AlertBox.display("This new file has NOT been saved");
+            }
+            else {
+                usrConfirm = AlertBox.display(md.name + " is changed but NOT saved");
+            }
+            switch (usrConfirm){
+                case 'y': // yes
+                    if (!save()) {
+                        isClosing = false;
+                    }
+                    break;
+                case 'n': // no
+                    break;
+                case 'c': // cancel
+                    isClosing = false;
+                    break;
+            }
+        }
+        if (isClosing) {
+            window.close();
+            if (web.isTemp()) {
+                web.delete();
+            }
+            if (md.isTemp()) {
+                md.delete();
+            }
+        }
+        return isClosing;
+    }
+
     public void openNewFile() throws Throwable {
         EditPageController newEditPage = new EditPageController();
         newEditPage.display("");
@@ -321,14 +320,6 @@ public class EditPageController implements Initializable{
             EditPageController newEditPage = new EditPageController();
             newEditPage.display(file.getAbsolutePath());
         }
-    }
-
-    public void setSaveButton() throws Throwable {
-        save();
-    }
-
-    public void setCloseButton() throws Throwable {
-        closeProgram();
     }
 
     public void saveAsMarkdown() throws Throwable {
@@ -384,12 +375,24 @@ public class EditPageController implements Initializable{
         }
     }
 
+    public void switchAutoScroll() {
+        autoScroll = autoScrollButton.isSelected();
+    }
+
     public void openAboutPage() {
         AboutPage.display();
     }
 
-    public void switchAutoScroll() {
-        autoScroll = autoScrollButton.isSelected();
+    public void openChineseMarkdownGuide() throws IOException {
+        Runtime.getRuntime().exec("cmd /c start " + Global.markdownGuide_zhcn);
+    }
+
+    public void openEnglishMarkdownGuide() throws IOException {
+        Runtime.getRuntime().exec("cmd /c start " + Global.markdownGuide_enus);
+    }
+
+    public void openCustomizeThemeGuide() throws IOException {
+        Runtime.getRuntime().exec("cmd /c start " + Global.customizeThemeGuide);
     }
 
     @Override

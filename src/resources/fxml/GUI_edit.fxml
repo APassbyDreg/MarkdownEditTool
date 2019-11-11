@@ -15,17 +15,17 @@
                   <items>
                         <MenuItem fx:id="newButton" mnemonicParsing="false" onAction="#openNewFile" text="New (Ctrl+N)" />
                         <MenuItem fx:id="openButton" mnemonicParsing="false" onAction="#openExistedFile" text="Open (Ctrl+O)" />
-                        <MenuItem fx:id="saveButton" mnemonicParsing="false" onAction="#setSaveButton" text="Save (Ctrl+S)" />
+                        <MenuItem fx:id="saveButton" mnemonicParsing="false" onAction="#save" text="Save (Ctrl+S)" />
                   <Menu mnemonicParsing="false" text="Save As">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#saveAsMarkdown" text="New Markdown fileio (.md)" />
+                        <MenuItem mnemonicParsing="false" onAction="#saveAsMarkdown" text="New Markdown File (.md)" />
                       <MenuItem mnemonicParsing="false" onAction="#saveAsTxt" text="Plain Text (.txt)" />
                         <MenuItem mnemonicParsing="false" onAction="#saveAsHtml" text="Web Page (.html)" />
                     </items>
                   </Menu>
                   <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem fx:id="returnButton" mnemonicParsing="false" onAction="#returnIndex" text="Return Home Page (Ctrl+R)" />
-                        <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#setCloseButton" text="Close (Ctrl+Q)" />
+                        <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#closeProgram" text="Close (Ctrl+Q)" />
                   </items>
                 </Menu>
             <Menu mnemonicParsing="false" text="_Editor">
@@ -47,6 +47,10 @@
                 <Menu mnemonicParsing="false" text="_Help">
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#openAboutPage" text="User Guide (Ctrl + H)" />
+                  <MenuItem mnemonicParsing="false" onAction="#openCustomizeThemeGuide" text="Customize Theme Guide" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#openChineseMarkdownGuide" text="Markdown Guide [Chinese]" />
+                  <MenuItem mnemonicParsing="false" onAction="#openEnglishMarkdownGuide" text="Markdown Guide [English]" />
                   </items>
                 </Menu>
               </menus>
