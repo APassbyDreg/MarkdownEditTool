@@ -9,14 +9,13 @@
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="BUG fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/Customize_Themes_Instructions.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/Customize_Themes_Instructions.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/User_Guide.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/User_Guide.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Java/global/Global.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/global/Global.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/gui/AboutPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/gui/AboutPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/gui/AlertBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/gui/AlertBox.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Java/gui/EditPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/gui/EditPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/fxml/GUI_edit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/GUI_edit.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/fxml/GUI_intro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/GUI_intro.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/gui/IntroPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/gui/IntroPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Java/gui/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Java/gui/Notification.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -345,6 +344,8 @@
       <workItem from="1573442011026" duration="167000" />
       <workItem from="1573460646900" duration="963000" />
       <workItem from="1573462149599" duration="426000" />
+      <workItem from="1573480914127" duration="63000" />
+      <workItem from="1573703765291" duration="7255000" />
     </task>
     <task id="LOCAL-00001" summary="add functions to GUI">
       <created>1572340530273</created>

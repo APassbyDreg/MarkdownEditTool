@@ -20,7 +20,7 @@ public class Global {
     public static final String tmpMDName = "Untitled.md";
     public static final String tmpHTMLName = "pre_render_html.html";
     public static final String[] defaultThemesNames = {"light(default).css","dark.css","page.css"};
-    public static final String aboutUrl = "https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/doc/UserGuide_update20191106.html";
+    public static final String aboutUrl = "https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/doc/User_Guide.html";
     public static final String markdownGuide_zhcn = "https://www.rdtoc.com/tutorial/markdown-tutorial.html";
     public static final String markdownGuide_enus = "https://www.markdownguide.org/";
     public static final String customizeThemeGuide = "https://github.com/APassbyDreg/MarkdownEditTool/blob/master/doc/Customize_Themes_Instructions.md  ";

@@ -1,6 +1,9 @@
 package gui;
 
 import convert.Converter;
+import fileio.FileInfo;
+import fileio.MarkdownFile;
+import fileio.WebFile;
 import global.Global;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -14,9 +17,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
-import javafx.stage.*;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -26,30 +30,37 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import fileio.*;
 
 public class EditPageController implements Initializable{
+    public static int editorWindowsNum = 0;
+
     private MarkdownFile md;
     private WebFile web;
-
-    private Stage window;
+    private Stage window = new Stage();
     private RadioMenuItem[] themesToggleGroupItems, fontSizeToggleGroupItems, fontWeightToggleGroupItems;
     private ToggleGroup themesToggleGroup = new ToggleGroup(), fontSizeToggleGroup = new ToggleGroup(), FontWeightToggleGroup = new ToggleGroup();
     private boolean isScrollSyncing = true, autoScroll = true;
 
-    @FXML public SplitPane splitPane;
-    @FXML public TextArea editPane;
-    @FXML public WebView previewPane;
-    @FXML public Menu themeMenu,fontSizeMenu,fontWeightMenu;
-    @FXML public Label charNumLabel,lastSaveTimeLabel;
-    @FXML public VBox mainPane;
-    @FXML public RadioMenuItem previewOnlyButton,editorOnlyButton,autoSaveButton,autoScrollButton;
+    @FXML
+    private SplitPane splitPane;
+    @FXML
+    private TextArea editPane;
+    @FXML
+    private WebView previewPane;
+    @FXML
+    private Menu themeMenu,fontSizeMenu,fontWeightMenu;
+    @FXML
+    private Label charNumLabel,lastSaveTimeLabel;
+    @FXML
+    private VBox mainPane;
+    @FXML
+    private RadioMenuItem previewOnlyButton,editorOnlyButton,autoSaveButton,autoScrollButton;
 
-    public EditPageController() throws Exception {
-        window = new Stage();
+    public EditPageController() {
+        editorWindowsNum++;
     }
 
-    public void display(String mdPath) throws Throwable {
+    void display(String mdPath) throws Throwable {
         if (mdPath.equals("")) {
             mdPath = Global.programAbsolutePath + Global.tmpFolderPath + Global.tmpMDName;
             md = new MarkdownFile(mdPath);
@@ -77,21 +88,19 @@ public class EditPageController implements Initializable{
         scene.getStylesheets().add(Global.editPageDesignPath);
         window.setScene(scene);
         window.setOnCloseRequest(e -> {
-            if (md.isChanged()) {
-                try {
-                    e.consume();
-                    closeProgram();
-                } catch (Throwable throwable) {
-                    throwable.printStackTrace();
+            e.consume();
+            try {
+                closeProgram();
+                if (editorWindowsNum==0) {
+                    Platform.exit();
+                    System.exit(0);
                 }
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
             }
         });
-        window.widthProperty().addListener((obs, oldVal, newVal)->{
-            changePreviewStatus();
-        });
-        window.heightProperty().addListener((obs, oldVal, newVal)->{
-            changePreviewStatus();
-        });
+        window.widthProperty().addListener((obs, oldVal, newVal)-> changePreviewStatus());
+        window.heightProperty().addListener((obs, oldVal, newVal)-> changePreviewStatus());
         window.show();
         setEditorStyle(Global.settings.currentTheme);
     }
@@ -161,7 +170,7 @@ public class EditPageController implements Initializable{
     private void syncScroll() {
         double yPos = editPane.getScrollTop();
         double height = editPane.getHeight();
-        double editorHeight = ((Text) editPane.lookup(".text")).getBoundsInLocal().getHeight();
+        double editorHeight = editPane.lookup(".text").getBoundsInLocal().getHeight();
         int previewHeight = (Integer) previewPane.getEngine().executeScript("document.body.scrollHeight");
         double scrollTo = (previewHeight-height)*(yPos/(editorHeight-height));
         previewPane.getEngine().executeScript("window.scrollTo(0," + scrollTo + ")");
@@ -201,7 +210,7 @@ public class EditPageController implements Initializable{
         else if (e.isControlDown() && e.getCode() == KeyCode.O) {
             openExistedFile();
         }
-        else if (e.isControlDown() && e.getCode() == KeyCode.H) {
+        else if (e.isControlDown() && e.isAltDown() && e.getCode() == KeyCode.H) {
             openAboutPage();
         }
         else if (e.isControlDown() && e.getCode() == KeyCode.R) {
@@ -209,15 +218,19 @@ public class EditPageController implements Initializable{
         }
         else if (e.isControlDown() && e.getCode() == KeyCode.Q) {
             closeProgram();
+            if (editorWindowsNum==0) {
+                Platform.exit();
+                System.exit(0);
+            }
         }
         else if (e.isControlDown() && e.getCode() == KeyCode.E) {
-           previewOnlyButton.setSelected(previewOnlyButton.isSelected());
+            editorOnlyButton.setSelected(!editorOnlyButton.isSelected());
             previewOnlyButton.setSelected(false);
             changePreviewStatus();
         }
         else if (e.isControlDown() && e.getCode() == KeyCode.P) {
             previewOnlyButton.setSelected(!previewOnlyButton.isSelected());
-           previewOnlyButton.setSelected(false);
+            editorOnlyButton.setSelected(false);
             changePreviewStatus();
         }
         else if (e.isControlDown() && e.getCode() == KeyCode.EQUALS) {
@@ -240,7 +253,8 @@ public class EditPageController implements Initializable{
         }
     }
 
-    public boolean save() throws Throwable {
+    @FXML
+    private boolean save() throws Throwable {
         boolean isSuccessful = true;
         if (md.isTemp()) {
             String content = md.str;
@@ -269,15 +283,18 @@ public class EditPageController implements Initializable{
         return isSuccessful;
     }
 
-    public boolean closeProgram() throws Throwable {
+    @FXML
+    private boolean closeProgram() throws Throwable {
         boolean isClosing = true;
-        char usrConfirm = 'c';
+        char usrConfirm;
         if (md.isChanged()){
             if (md.isTemp()) {
-                usrConfirm = AlertBox.display("This new file has NOT been saved");
+                AlertBox alert = new AlertBox();
+                usrConfirm = alert.display("This new file has NOT been saved");
             }
             else {
-                usrConfirm = AlertBox.display(md.name + " is changed but NOT saved");
+                AlertBox alert = new AlertBox();
+                usrConfirm = alert.display(md.name + " is changed but NOT saved");
             }
             switch (usrConfirm){
                 case 'y': // yes
@@ -294,6 +311,7 @@ public class EditPageController implements Initializable{
         }
         if (isClosing) {
             window.close();
+            editorWindowsNum--;
             if (web.isTemp()) {
                 web.delete();
             }
@@ -304,12 +322,14 @@ public class EditPageController implements Initializable{
         return isClosing;
     }
 
-    public void openNewFile() throws Throwable {
+    @FXML
+    private void openNewFile() throws Throwable {
         EditPageController newEditPage = new EditPageController();
         newEditPage.display("");
     }
 
-    public void openExistedFile() throws Throwable {
+    @FXML
+    private void openExistedFile() throws Throwable {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Markdown Docs", "*.md");
         fileChooser.getExtensionFilters().add(extFilter);
@@ -322,7 +342,8 @@ public class EditPageController implements Initializable{
         }
     }
 
-    public void saveAsMarkdown() throws Throwable {
+    @FXML
+    private void saveAsMarkdown() throws Throwable {
         save();
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Markdown", "*.md");
@@ -339,7 +360,8 @@ public class EditPageController implements Initializable{
         }
     }
 
-    public void saveAsTxt() throws Throwable {
+    @FXML
+    private void saveAsTxt() throws Throwable {
         save();
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Plain Text", "*.txt");
@@ -353,7 +375,8 @@ public class EditPageController implements Initializable{
         }
     }
 
-    public void saveAsHtml() throws Throwable {
+    @FXML
+    private void saveAsHtml() throws Throwable {
         save();
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Web Docs", "*.html");
@@ -368,30 +391,36 @@ public class EditPageController implements Initializable{
         Notification.display("Notification","plz pay attention to your image references!");
     }
 
-    public void returnIndex() throws Throwable {
+    @FXML
+    private void returnIndex() throws Throwable {
         if (closeProgram()) {
             IntroPageController index = new IntroPageController();
-            index.display();
+            index.display(new Stage());
         }
     }
 
-    public void switchAutoScroll() {
+    @FXML
+    private void switchAutoScroll() {
         autoScroll = autoScrollButton.isSelected();
     }
 
-    public void openAboutPage() {
+    @FXML
+    private void openAboutPage() throws IOException {
         AboutPage.display();
     }
 
-    public void openChineseMarkdownGuide() throws IOException {
+    @FXML
+    private void openChineseMarkdownGuide() throws IOException {
         Runtime.getRuntime().exec("cmd /c start " + Global.markdownGuide_zhcn);
     }
 
-    public void openEnglishMarkdownGuide() throws IOException {
+    @FXML
+    private void openEnglishMarkdownGuide() throws IOException {
         Runtime.getRuntime().exec("cmd /c start " + Global.markdownGuide_enus);
     }
 
-    public void openCustomizeThemeGuide() throws IOException {
+    @FXML
+    private void openCustomizeThemeGuide() throws IOException {
         Runtime.getRuntime().exec("cmd /c start " + Global.customizeThemeGuide);
     }
 

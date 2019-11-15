@@ -25,7 +25,6 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         IntroPageController index = new IntroPageController();
-        index.setStage(primaryStage);
-        index.display();
+        index.display(primaryStage);
     }
 }

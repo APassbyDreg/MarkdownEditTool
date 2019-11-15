@@ -14,9 +14,9 @@ import javafx.stage.Stage;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Notification {
+class Notification {
 
-    public static void display(String title,String msg) {
+    static void display(String title, String msg) {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         Label content = new Label(msg);

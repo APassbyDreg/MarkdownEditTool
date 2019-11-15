@@ -12,18 +12,50 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class AboutPage {
-    public static boolean isOn = false;
+class AboutPage {
+    private static boolean isOn = false;
 
-    public static void display() {
+    static void display() throws IOException {
+        URL url = new URL(Global.aboutUrl);
+        HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
+        StringBuilder content = new StringBuilder();
+        String html;
+        if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+            InputStream in = httpConnection.getInputStream();
+            InputStreamReader isr = new InputStreamReader(in);
+            BufferedReader buffer = new BufferedReader(isr);
+            String line;
+            while ((line = buffer.readLine()) != null) {
+                content.append(line);
+            }
+            buffer.close();
+        }
+        Pattern regex = Pattern.compile("\"(<[\\s\\S]+html>)\"");
+        Matcher m = regex.matcher(content.toString());
+        if (m.find()) {
+            html = m.group(1);
+        }
+        else {
+            html = content.toString();
+        }
+        System.out.println(html);
+
         if (!isOn) {
             isOn = true;
             Stage about = new Stage();
             WebView aboutView = new WebView();
             aboutView.setOnKeyPressed(event -> hotKeyHandler(event));
             WebEngine aboutEngine = aboutView.getEngine();
-            aboutEngine.load(Global.aboutUrl);
+            aboutEngine.loadContent(html);
             Image logoPNG = new Image(Global.logoRelativePath);
             about.setOnCloseRequest(event -> {
                 isOn = false;
@@ -35,7 +67,7 @@ public class AboutPage {
         }
     }
 
-    public static void hotKeyHandler(KeyEvent e) {
+    private static void hotKeyHandler(KeyEvent e) {
         if (e.isControlDown() && e.isAltDown() && e.getCode() == KeyCode.C) {
             Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
             Transferable tText = new StringSelection(Global.aboutUrl);

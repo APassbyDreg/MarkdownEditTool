@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.Transition;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.*;
 import javafx.scene.*;
@@ -30,23 +31,25 @@ import fileio.*;
 import javafx.util.Duration;
 
 public class IntroPageController implements Initializable{
-    private static Stage window;
+    private static int introWindowsNum = 0;
 
-    @FXML public Button buttonOpen,buttonNew;
-    @FXML public ListView<VBox> recentList;
-    @FXML public BorderPane mainWindow;
+    @FXML
+    private Button buttonOpen,buttonNew;
+    @FXML
+    private ListView<VBox> recentList;
+    @FXML
+    private BorderPane mainWindow;
 
+    private Stage window;
     private VBox[] recentFileContainer = new VBox[Global.MAX_RECENT_FILES_STORED];
     private Button[] recentFileChooser = new Button[Global.MAX_RECENT_FILES_STORED];
     private Label[] recentFileContent = new Label[Global.MAX_RECENT_FILES_STORED];
     private Label[] recentFileAddress = new Label[Global.MAX_RECENT_FILES_STORED];
     private FileInfo[] recentFiles = new FileInfo[Global.MAX_RECENT_FILES_STORED];
 
-    public void setStage(Stage stage) {
+    public void display(Stage stage) throws IOException {
+        introWindowsNum++;
         window = stage;
-    }
-
-    public void display() throws IOException {
         if (window != null) {
             FXMLLoader loader = new FXMLLoader(IntroPageController.class.getResource(Global.introFXMLPath));
             loader.setController(this);
@@ -54,6 +57,7 @@ public class IntroPageController implements Initializable{
             Image logoPNG = new Image(Global.logoRelativePath);
             Scene scene = new Scene(root, 1050, 600);
             scene.getStylesheets().add(Global.introPageDesignPath);
+            window.setOnCloseRequest(e->closeWindow());
             window.setTitle(Global.programName);
             window.getIcons().add(logoPNG);
             window.setScene(scene);
@@ -62,47 +66,46 @@ public class IntroPageController implements Initializable{
         }
     }
 
+    private void closeWindow() {
+        window.close();
+        introWindowsNum--;
+        if (introWindowsNum==0 && EditPageController.editorWindowsNum==0) {
+            Platform.exit();
+            System.exit(0);
+        }
+    }
+
     @FXML
-    public void openExistFile() throws Throwable {
+    private void openExistFile() throws Throwable {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Markdown Docs", "*.md");
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog((Stage) buttonOpen.getScene().getWindow());
         if (file != null) {
-            Stage thisWindow = (Stage) buttonOpen.getScene().getWindow();
-            thisWindow.close();
             Global.settings.addNewRecentFile(file.getAbsolutePath());
             EditPageController newEditPage = new EditPageController();
             newEditPage.display(file.getAbsolutePath());
+            closeWindow();
         }
     }
 
     @FXML
-    public void openNewFile() throws Throwable {
-        Stage thisWindow = (Stage) buttonNew.getScene().getWindow();
-        thisWindow.close();
+    private void openNewFile() throws Throwable {
         EditPageController newEditPage = new EditPageController();
         newEditPage.display("");
+        closeWindow();
     }
 
+    @FXML
     private void openRecent(int index) throws Throwable {
-        Stage thisWindow = (Stage) buttonOpen.getScene().getWindow();
-        thisWindow.close();
         Global.settings.addNewRecentFile(recentFiles[index].src);
         EditPageController newEditPage = new EditPageController();
         newEditPage.display(recentFiles[index].src);
+        closeWindow();
     }
 
-    private void copyFilePath(int index) {
-        String path = recentFiles[index].src;
-        path = path.substring(0,path.length() - (recentFiles[index].name + ".md").length());
-        Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
-        Transferable tText = new StringSelection(path);
-        clip.setContents(tText, null);
-        Notification.display("MarkdownEditTool Message", "file path copied to keyboard");
-    }
-
-    public void introButtonAnimationIn(MouseEvent event) {
+    @FXML
+    private void introButtonAnimationIn(MouseEvent event) {
         Button button = (Button) event.getSource();
         final Animation animation = new Transition() {
             double currentRadius = 10;
@@ -126,7 +129,8 @@ public class IntroPageController implements Initializable{
         animation.play();
     }
 
-    public void introButtonAnimationOut(MouseEvent event) {
+    @FXML
+    private void introButtonAnimationOut(MouseEvent event) {
         Button button = (Button) event.getSource();
         final Animation animation = new Transition() {
             double currentRadius = 30;
@@ -150,7 +154,7 @@ public class IntroPageController implements Initializable{
         animation.play();
     }
 
-    public void chooseButtonAnimationIn(MouseEvent event) {
+    private void chooseButtonAnimationIn(MouseEvent event) {
         Button button = (Button) event.getSource();
         final Animation animation = new Transition() {
             double opacity = 1;
@@ -174,7 +178,7 @@ public class IntroPageController implements Initializable{
         animation.play();
     }
 
-    public void chooseButtonAnimationOut(MouseEvent event) {
+    private void chooseButtonAnimationOut(MouseEvent event) {
         Button button = (Button) event.getSource();
         final Animation animation = new Transition() {
             double opacity = 0;
@@ -198,7 +202,7 @@ public class IntroPageController implements Initializable{
         animation.play();
     }
 
-    public void chooseContentAnimationIn(MouseEvent event) {
+    private void chooseContentAnimationIn(MouseEvent event) {
         Label label = (Label) event.getSource();
         final Animation animation = new Transition() {
             {
@@ -225,7 +229,7 @@ public class IntroPageController implements Initializable{
         animation.play();
     }
 
-    public void chooseContentAnimationOut(MouseEvent event) {
+    private void chooseContentAnimationOut(MouseEvent event) {
         Label label = (Label) event.getSource();
         final Animation animation = new Transition() {
             {
@@ -250,6 +254,15 @@ public class IntroPageController implements Initializable{
             }
         };
         animation.play();
+    }
+
+    private void copyFilePath(int index) {
+        String path = recentFiles[index].src;
+        path = path.substring(0,path.length() - (recentFiles[index].name + ".md").length());
+        Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
+        Transferable tText = new StringSelection(path);
+        clip.setContents(tText, null);
+        Notification.display("MarkdownEditTool Message", "file path copied to keyboard");
     }
 
     private void hotKeyHandler(KeyEvent e) throws Throwable {

@@ -15,19 +15,21 @@ import java.util.ResourceBundle;
 public class AlertBox implements Initializable {
 
     //Create variable
-    static char answer = 'c';
-    static Stage window;
-    static String msg1;
+    private char answer = 'c';
+    private Stage window;
+    private String msg1;
 
     @FXML public Button yesButton,noButton,cancelButton;
     @FXML public Label fileNameLabel;
 
-    public static char display(String line) throws IOException {
+    char display(String line) throws IOException {
         msg1 = line;
 
         window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
-        Parent root = FXMLLoader.load(EditPageController.class.getResource(Global.alertFXMLPath));
+        FXMLLoader loader = new FXMLLoader(EditPageController.class.getResource(Global.alertFXMLPath));
+        loader.setController(this);
+        Parent root = loader.load();
         Image logoPNG = new Image(Global.logoRelativePath);
         Scene scene = new Scene(root, 360, 120);
         scene.getStylesheets().add(Global.alertBoxDesignPath);

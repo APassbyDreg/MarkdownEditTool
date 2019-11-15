@@ -4,7 +4,7 @@
 
 **Creator:** Martin_Z_He
 
-**Download:** [latest release (20191111 16:40)](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar)
+**Download:** [latest release (20191115 11:25)](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/out/artifacts/MarkdownEditTool/MarkdownEditTool.jar)
 
 ## Functions and features
 
@@ -22,9 +22,7 @@
 
 ## New features of recent releases
 
-- allow multiple edit window
-- slight change of look
-- add more guides
+- bug fix
 
 ## How to use
 
