@@ -48,9 +48,3 @@ download the whole project and open it in IntelliJ IDEA, build 'Main' class.
 ## User Guide and Program Introduction
 
 [Chinese] see [here](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/doc/User_Guide.html)
-
-## Upcoming features:
-
-- notification/alert box redesign
-
-- editor page redesign
