@@ -25,13 +25,7 @@
 
 ## User Guide and Program Introduction
 
-[Chinese] see [here](https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/doc/User_Guide.html)
-
-## Upcoming features:
-
-- notification/alert box redesign
-
-- editor page redesign
+[Chinese] see [here](https://cdn.githubraw.com/APassbyDreg/MarkdownEditTool/master/doc/User_Guide.htm)
 
 ---
 

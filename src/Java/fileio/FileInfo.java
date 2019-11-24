@@ -76,7 +76,7 @@ public class FileInfo {
     }
 
     // mark last save time of the file
-    public void markTime() {
+    private void markTime() {
         Date d = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         lastSaveTime = ft.format(d);

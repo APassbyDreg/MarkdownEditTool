@@ -11,7 +11,7 @@ public class BlockBuilder {
     ** xxx Builder: intake string and pass blockinfo to maker
      */
 
-    public String[] lineRegex = {
+    private String[] lineRegex = {
             "^(#+)\\s*(.*)", // head
             "^&gt; (.*)", // blockquote
             "^-{3,}$", // hr
@@ -19,15 +19,15 @@ public class BlockBuilder {
             "^(\\s*)- (.*)", // ul
             "^(\\s*)\\d*\\. (.*)" // li
     };
-    public String[] spanRegex = {
+    private String[] spanRegex = {
             "(.*)!\\[(.*?)\\]\\((.*?)\\)", // img
             "(.*)\\[(.*?)\\]\\((.*?)\\)", // a
             "(.*)\\*\\*(.*?)\\*\\*", // b
             "(.*)\\*(.*?)\\*", // em
     };
-    public Pattern[] linePatterns = new Pattern[lineRegex.length], spanPatterns = new Pattern [spanRegex.length];
-    public String[] linePattenNames = {"HEADER", "QUOTE", "SEPARATE_LINE", "CODE_LINES", "UNORDERED_LIST", "ORDERED_LIST"};
-    public String[] spanPattenNames = {"IMAGE", "LINK", "BOLD", "EMPHASISE"};
+    private Pattern[] linePatterns = new Pattern[lineRegex.length], spanPatterns = new Pattern [spanRegex.length];
+    private String[] linePattenNames = {"HEADER", "QUOTE", "SEPARATE_LINE", "CODE_LINES", "UNORDERED_LIST", "ORDERED_LIST"};
+    private String[] spanPattenNames = {"IMAGE", "LINK", "BOLD", "EMPHASISE"};
 
     BlockBuilder() {
         for (int i=0; i<lineRegex.length; i++) {

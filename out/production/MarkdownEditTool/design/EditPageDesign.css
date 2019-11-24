@@ -1,0 +1,61 @@
+.text-area {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-start-margin: 0;
+    -fx-text-box-border: transparent;
+    -fx-focus-color: transparent;
+    -fx-background-color:
+        -fx-control-inner-background transparent transparent transparent;
+}
+
+.text-area:focused .content {
+    -fx-background-color:
+            -fx-control-inner-background transparent transparent -fx-control-inner-background;
+}
+
+.text-area .content {
+    -fx-background-color:
+            -fx-control-inner-background transparent transparent transparent;
+}
+
+.menu-bar {
+    -fx-background-color: white;
+}
+
+.scroll-bar:vertical .track{
+    -fx-background-color : transparent;
+    -fx-border-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-border-radius :2.0em;
+}
+
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-padding :0.0 10.0 0.0 0.0;
+
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow{
+    -fx-shape : " ";
+    -fx-padding :0.15em 0.0;
+}
+
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow{
+    -fx-shape : " ";
+    -fx-padding :0.0 0.15em;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color :derive(black,90.0%);
+    -fx-background-insets : 2.0, 0.0, 0.0;
+    -fx-background-radius : 2.0em;
+}
+
+.split-pane:horizontal > .split-pane-divider {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0.05em 0 0.05em;
+}

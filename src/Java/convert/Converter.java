@@ -24,7 +24,7 @@ public class Converter extends BlockBuilder {
     }
 
     // gather all infomation and make full html string
-    public void convert() throws IOException {
+    private void convert() throws IOException {
         html.str = "<!doctype html><html>" + genHead().replaceAll("\\s+"," ") + genBody() + "</html>";
         html.save();
     }
@@ -82,7 +82,7 @@ public class Converter extends BlockBuilder {
                 case 5:
                     content.append("\n");
                     while (md.isReady()) {
-                        String next = new String(spanBuilder(replaceSpecialCharacters(md.readLine())));
+                        String next = spanBuilder(replaceSpecialCharacters(md.readLine()));
                         int nextType = defineLineType(next);
                         if (nextType == 5 || nextType == 4) {
                             content.append(next).append("\n");
@@ -101,7 +101,7 @@ public class Converter extends BlockBuilder {
     }
 
     // replace html specific strings
-    public String replaceSpecialCharacters(String text) {
+    private String replaceSpecialCharacters(String text) {
         text = text.replaceAll("&", "&amp;");
         text = text.replaceAll("<", "&lt;");
         text = text.replaceAll(">", "&gt;");
