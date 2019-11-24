@@ -46,7 +46,7 @@
             </Menu>
                 <Menu mnemonicParsing="false" text="_Help">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#openAboutPage" text="User Guide (Ctrl + H)" />
+                    <MenuItem mnemonicParsing="false" onAction="#openAboutPage" text="User Guide (Ctrl + alt + H)" />
                   <MenuItem mnemonicParsing="false" onAction="#openCustomizeThemeGuide" text="Customize Theme Guide" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" onAction="#openChineseMarkdownGuide" text="Markdown Guide [Chinese]" />

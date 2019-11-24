@@ -33,7 +33,7 @@ class AboutPage {
             Stage about = new Stage();
             WebView aboutView = new WebView();
             WebEngine aboutEngine = aboutView.getEngine();
-            aboutEngine.loadContent(Global.aboutLoadingTip);
+            aboutEngine.load(Global.aboutUrl);
             Image logoPNG = new Image(Global.logoRelativePath);
             about.setOnCloseRequest(event -> {
                 isOn = false;
@@ -42,19 +42,6 @@ class AboutPage {
             about.getIcons().add(logoPNG);
             about.setScene(new Scene(aboutView,600,750));
             about.show();
-            Platform.runLater(() -> {
-                try {
-                    String content = loadContent();
-                    if (!content.equals("")) {
-                        aboutEngine.loadContent(content);
-                    }
-                    else {
-                        aboutEngine.loadContent(Global.aboutLoadingErrorTip);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
             aboutView.setOnKeyPressed(event -> {
                 try {
                     hotKeyHandler(event);
@@ -63,35 +50,6 @@ class AboutPage {
                 }
             });
         }
-    }
-
-    private static String loadContent() throws IOException {
-        URL url = new URL(Global.aboutRawUrl);
-        HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
-        StringBuilder content = new StringBuilder();
-        String html;
-        if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-            InputStream in = httpConnection.getInputStream();
-            InputStreamReader isr = new InputStreamReader(in);
-            BufferedReader buffer = new BufferedReader(isr);
-            String line;
-            while ((line = buffer.readLine()) != null) {
-                content.append(line);
-            }
-            buffer.close();
-        }
-        else {
-            return "";
-        }
-        Pattern regex = Pattern.compile("\"(<[\\s\\S]+html>)\"");
-        Matcher m = regex.matcher(content.toString());
-        if (m.find()) {
-            html = m.group(1);
-        }
-        else {
-            html = content.toString();
-        }
-        return html;
     }
 
     private static void hotKeyHandler(KeyEvent e) throws IOException {

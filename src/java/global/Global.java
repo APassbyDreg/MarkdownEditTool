@@ -20,13 +20,10 @@ public class Global {
     public static final String tmpMDName = "Untitled.md";
     public static final String tmpHTMLName = "pre_render_html.html";
     public static final String[] defaultThemesNames = {"light(default).css","dark.css","page.css"};
-    public static final String aboutRawUrl = "https://raw.githubusercontent.com/APassbyDreg/MarkdownEditTool/master/doc/User_Guide.html";
     public static final String aboutUrl = "https://cdn.githubraw.com/APassbyDreg/MarkdownEditTool/master/doc/User_Guide.html";
     public static final String markdownGuide_zhcn = "https://www.rdtoc.com/tutorial/markdown-tutorial.html";
     public static final String markdownGuide_enus = "https://www.markdownguide.org/";
     public static final String customizeThemeGuide = "https://github.com/APassbyDreg/MarkdownEditTool/blob/master/doc/Customize_Themes_Instructions.md";
-    public static final String aboutLoadingTip = "<html><head></head><body><center>now loading...</center></body></html>";
-    public static final String aboutLoadingErrorTip = "<html><head></head><body><center>loading error: failed to read content from server</center></body></html>";
 
     // resources
     public static final String logoRelativePath = "design/Logo.png";
